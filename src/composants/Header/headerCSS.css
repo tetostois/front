@@ -1,0 +1,344 @@
+/* ============================================
+   HEADER PRINCIPAL
+   ============================================ */
+.mainDivHeader {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000;
+    width: 100% !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Supprimer toute marge du AppBar Material-UI */
+.mainDivHeader.MuiAppBar-root {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+}
+
+.headerToolbar {
+    padding: 0 20px !important;
+    min-height: 70px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+.logoDiv {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo {
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   NAVIGATION DESKTOP
+   ============================================ */
+.largeScreanList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.allItemDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.itemListDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 8px;
+    min-height: 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.itemListDiv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.itemListDiv:hover::before {
+    left: 100%;
+}
+
+.itemListDiv:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.itemListDiv.activeItemMenu {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    font-weight: 600;
+}
+
+.itemListDiv.activeItemMenu .itemList {
+    color: white !important;
+}
+
+.itemListDiv.activeItemMenu .menuItemIcon {
+    color: white !important;
+}
+
+.menuItemIcon {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #667eea;
+    transition: all 0.3s ease;
+}
+
+.itemListDiv:hover .menuItemIcon {
+    transform: scale(1.1);
+}
+
+.itemList {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1f2937;
+    white-space: nowrap;
+}
+
+.itemListDiv.activeItemMenu .itemList {
+    color: white;
+}
+
+/* ============================================
+   ACTIONS (Boutons, Langue, Profil)
+   ============================================ */
+.buttonAction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-right: 20px;
+}
+
+.profileIconButton {
+    border-radius: 50% !important;
+    padding: 6px !important;
+}
+
+.languageSelectContainer {
+    transition: all 0.3s ease;
+}
+
+.languageSelectContainer:hover {
+    transform: translateY(-2px);
+}
+
+.languageSelect {
+    flex: 1;
+    min-width: 120px;
+}
+
+.languageSelect .MuiSelect-select {
+    padding-right: 24px !important;
+    min-width: 80px;
+}
+
+/* ============================================
+   MENU MOBILE
+   ============================================ */
+.smallScreanList {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobileMenuContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+.mobileMenuTitle {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+}
+
+.mobileMenuList {
+    padding: 10px 0;
+    flex: 1;
+}
+
+.mobileMenuItem {
+    margin: 4px 10px;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.mobileMenuItem:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%) !important;
+    transform: translateX(4px);
+}
+
+.mobileMenuItem.activeMobileItem {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+}
+
+.mobileMenuItem.activeMobileItem .MuiListItemText-primary {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.mobileMenuItemIcon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    color: #667eea;
+    font-size: 20px;
+}
+
+.mobileMenuItem.activeMobileItem .mobileMenuItemIcon {
+    color: white !important;
+}
+
+.mobileMenuActions {
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (min-width: 769px) {
+    .mainDivHeader {
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        height: 60px;
+    }
+
+    .smallScreanList {
+        display: none;
+    }
+
+    .largeScreanList {
+        display: flex;
+    }
+
+    .allItemDiv {
+        width: auto;
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainDivHeader {
+        font-size: 0.85rem;
+    }
+
+    .headerToolbar {
+        padding: 0 15px !important;
+        min-height: 60px !important;
+    }
+
+    .logo {
+        height: 45px;
+        width: auto;
+    }
+
+    .smallScreanList {
+        display: flex;
+    }
+
+    .largeScreanList {
+        display: none;
+    }
+
+    .buttonAction {
+        margin-right: 10px;
+        gap: 8px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .mainDivHeader {
+        font-size: 1rem;
+    }
+
+    .itemList {
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobileMenuItem {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.mobileMenuItem:nth-child(1) { animation-delay: 0.05s; }
+.mobileMenuItem:nth-child(2) { animation-delay: 0.1s; }
+.mobileMenuItem:nth-child(3) { animation-delay: 0.15s; }
+.mobileMenuItem:nth-child(4) { animation-delay: 0.2s; }
+.mobileMenuItem:nth-child(5) { animation-delay: 0.25s; }

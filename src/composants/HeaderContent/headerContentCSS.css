@@ -1,0 +1,220 @@
+.mainHaderContent {
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    margin-bottom: 60px;
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.subDivHeaderContent {
+    width: 85%;
+    max-width: 1200px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 160px;
+    position: absolute;
+    bottom: -50px;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.subDivHeaderContent:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.userProfilButtonAction {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.navigationHeaderContent {
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+    border-top: 2px solid rgba(102, 126, 234, 0.1);
+}
+
+.itemNavigationHeaderContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 200px;
+    font-weight: 600;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid transparent;
+}
+
+.itemNavigationHeaderContent:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+    color: #667eea;
+}
+
+.selectedNav {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-bottom: 3px solid #667eea;
+    color: #667eea;
+    border-radius: 0;
+}
+
+.userProfil {
+    min-width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatarContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.profileAvatar {
+    transition: all 0.3s ease;
+}
+
+.cameraButton {
+    transition: all 0.3s ease;
+}
+
+.infoUser {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nomCompletHedercontent {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+}
+
+.metierHedercontent {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    font-style: italic;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+}
+
+.buttonPrecedentHeaderContent {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mainHaderContent {
+        height: 120px;
+    }
+
+    .subDivHeaderContent {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 140px;
+        bottom: -40px;
+    }
+
+    .nomCompletHedercontent {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .metierHedercontent {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .itemNavigationHeaderContent {
+        font-size: 11px;
+        font-weight: 600;
+        min-width: 150px;
+        padding: 6px 8px;
+    }
+
+    .userProfil {
+        gap: 12px;
+    }
+
+    .profileAvatar {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 24px !important;
+    }
+
+    .cameraButton {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .buttonPrecedentHeaderContent {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .subDivHeaderContent {
+        width: 98%;
+        height: 130px;
+    }
+
+    .nomCompletHedercontent {
+        font-size: 16px;
+    }
+
+    .metierHedercontent {
+        font-size: 12px;
+    }
+
+    .itemNavigationHeaderContent {
+        font-size: 10px;
+        min-width: 120px;
+        padding: 4px 6px;
+    }
+
+    .profileAvatar {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+}

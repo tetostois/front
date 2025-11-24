@@ -1,0 +1,151 @@
+.mainDivConnexion{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    align-self: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mainDivConnexion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 769px) {
+    .mainDivConnexion{
+        min-width: 480px;
+        max-width: 550px;
+    }
+}
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    .mainDivConnexion{
+        min-width: 90%;
+        max-width: 95%;
+        padding: 35px 25px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Amélioration des champs de formulaire */
+.divFormulaire {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signInTitle {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.divChamp {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.subDivChamp {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.labelSignIn {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+}
+
+.inputSignIn {
+    height: 50px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.inputSignIn:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.inputSignIn:hover {
+    border-color: #d1d5db;
+}
+
+.inputSignIn::placeholder {
+    color: #9ca3af;
+}
+
+fieldset {
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+}
+
+fieldset legend {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    padding: 0 15px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.divContainButton {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Responsive pour les champs */
+@media (max-width: 768px) {
+    .signInTitle {
+        font-size: 24px;
+    }
+    
+    fieldset {
+        padding: 20px 15px;
+    }
+    
+    fieldset legend {
+        font-size: 16px;
+    }
+    
+    .inputSignIn {
+        height: 48px;
+        font-size: 16px;
+    }
+}

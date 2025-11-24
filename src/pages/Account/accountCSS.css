@@ -1,0 +1,168 @@
+.accountContainer {
+   min-height: 100vh;
+   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+   padding: 40px 20px;
+}
+
+.accountHeaderRow {
+   margin-bottom: 30px;
+}
+
+.accountHeader {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   padding: 30px;
+   background: white;
+   border-radius: 20px;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.accountTitle {
+   font-family: 'Poppins', sans-serif;
+   font-weight: 700;
+   color: #1f2937;
+   margin-top: 16px;
+   margin-bottom: 8px;
+}
+
+.accountSubtitle {
+   font-family: 'Inter', sans-serif;
+   color: #6b7280;
+   font-size: 16px;
+}
+
+.accountContentRow {
+   gap: 24px;
+}
+
+.accountInfoCard,
+.accountActionsCard {
+   border-radius: 20px;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease;
+   border: none;
+}
+
+.accountInfoCard:hover,
+.accountActionsCard:hover {
+   transform: translateY(-4px);
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.cardHeader {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 8px;
+}
+
+.cardTitle {
+   font-family: 'Poppins', sans-serif;
+   font-weight: 600;
+   color: #1f2937;
+}
+
+.infoItem {
+   display: flex;
+   align-items: flex-start;
+   gap: 16px;
+   padding: 16px;
+   background: #f9fafb;
+   border-radius: 12px;
+   transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+   background: #f3f4f6;
+   transform: translateX(4px);
+}
+
+.infoIcon {
+   color: #667eea;
+   font-size: 24px;
+   margin-top: 4px;
+}
+
+.infoContent {
+   flex: 1;
+}
+
+.infoLabel {
+   font-family: 'Inter', sans-serif;
+   font-weight: 600;
+   color: #6b7280;
+   text-transform: uppercase;
+   font-size: 11px;
+   letter-spacing: 0.5px;
+   display: block;
+   margin-bottom: 4px;
+}
+
+.infoValue {
+   font-family: 'Inter', sans-serif;
+   font-weight: 500;
+   color: #1f2937;
+   font-size: 16px;
+}
+
+.actionButton {
+   transition: all 0.3s ease;
+}
+
+.accountEmptyState {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 60vh;
+   padding: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+   .accountContainer {
+      padding: 20px 10px;
+   }
+
+   .accountHeader {
+      padding: 20px;
+   }
+
+   .accountTitle {
+      font-size: 28px;
+   }
+
+   .accountSubtitle {
+      font-size: 14px;
+   }
+
+   .infoItem {
+      padding: 12px;
+   }
+
+   .infoIcon {
+      font-size: 20px;
+   }
+
+   .infoValue {
+      font-size: 14px;
+   }
+}
+
+@media (max-width: 480px) {
+   .accountHeader {
+      padding: 16px;
+   }
+
+   .accountTitle {
+      font-size: 24px;
+   }
+
+   .cardHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+   }
+}
+

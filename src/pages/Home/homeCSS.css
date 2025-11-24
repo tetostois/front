@@ -1,0 +1,134 @@
+/* Styles pour les tablettes et ordinateur */
+li {
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.mainDivHome001{
+width: 70%;
+/* background-color: red; */
+z-index: 2;
+}
+
+@media (min-width: 769px) {
+
+    /* Styles pour les tablettes */
+
+    .divTitre {
+        width: 50%;
+    }
+
+    .spantitle1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 37px;
+        font-weight: 700;
+        line-height: 51.8px;
+        text-align: left;
+    }
+
+    .divSoustexte {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        /* font-weight: 700; */
+        line-height: 23.4px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .divSoustexteMoile {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        /* font-weight: 700; */
+        line-height: 23.4px;
+        text-align: left;
+        color: #000000;
+    }
+
+
+
+    .footerHome {
+        height: 150px;
+        width: 100%;
+
+        background-size: cover;
+        /* Ajustez le dimensionnement de l'image */
+        background-repeat: no-repeat;
+        /* background-color: red; */
+    }
+
+    .imageFille {
+        width: 40%;
+        height: 720px;
+        background-size: cover;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        background-repeat: no-repeat;
+        z-index: 1;
+
+    }
+
+}
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+
+    /* Styles pour les smartphones */
+.mainDivHome001{
+    width: 100%;
+    z-index: 0;
+}
+    .divTitre {
+        width: 100%;
+    }
+
+    .spantitle1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 29.4px;
+        text-align: center;
+    }
+
+    .divSoustexte {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        /* font-weight: 700; */
+        line-height: 18.2px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .divSoustexteMoile {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        /* font-weight: 700; */
+        line-height: 23.4px;
+        text-align: left;
+        color: #000000;
+    }
+
+    .footerHome {
+        height: 95px;
+        width: 100%;
+        /* position: absolute; */
+        /* bottom: 0; */
+        background-size: cover;
+        /* Ajustez le dimensionnement de l'image */
+        background-repeat: no-repeat;
+        /* background-color: red; */
+    }
+
+    .imageFille {
+        /* width: 40%;
+        height: 25px;
+        background-size: cover;
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+        background-repeat: no-repeat;
+        z-index: 1; */
+        display: none;
+    }
+}

@@ -1,0 +1,420 @@
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9f8;
+  color: #202427;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Fix pour la visibilité du texte dans les champs Material-UI */
+/* Tous les types d'inputs Material-UI */
+.MuiOutlinedInput-input,
+.MuiOutlinedInput-input::placeholder,
+.MuiInputBase-input,
+.MuiInputBase-input::placeholder,
+.MuiInputBase-inputMultiline,
+.MuiInputBase-inputMultiline::placeholder,
+.MuiFilledInput-input,
+.MuiFilledInput-input::placeholder,
+.MuiStandardInput-input,
+.MuiStandardInput-input::placeholder,
+.MuiInputBase-root input,
+.MuiInputBase-root textarea,
+.MuiOutlinedInput-root input,
+.MuiOutlinedInput-root textarea,
+.MuiFilledInput-root input,
+.MuiFilledInput-root textarea,
+.MuiTextField-root input,
+.MuiTextField-root textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Inputs HTML natifs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="url"]:focus,
+textarea,
+textarea:focus {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Placeholders - tous les contextes */
+.MuiOutlinedInput-input::placeholder,
+.MuiInputBase-input::placeholder,
+.MuiInputBase-inputMultiline::placeholder,
+.MuiFilledInput-input::placeholder,
+input::placeholder,
+textarea::placeholder,
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+input::-moz-placeholder,
+textarea::-moz-placeholder,
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #a0aec0 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #a0aec0 !important;
+}
+
+/* Labels - tous les contextes */
+.MuiInputLabel-root,
+.MuiFormLabel-root,
+.MuiInputLabel-root.Mui-focused,
+.MuiFormLabel-root.Mui-focused,
+label {
+  color: #718096 !important;
+}
+
+.MuiInputLabel-root.Mui-focused,
+.MuiFormLabel-root.Mui-focused,
+label:focus-within {
+  color: #667eea !important;
+}
+
+/* Champs dans les dialogs et modals */
+.MuiDialog-root .MuiOutlinedInput-input,
+.MuiDialog-root .MuiInputBase-input,
+.MuiDialog-root .MuiInputBase-inputMultiline,
+.MuiDialog-root input,
+.MuiDialog-root textarea,
+.MuiModal-root .MuiOutlinedInput-input,
+.MuiModal-root .MuiInputBase-input,
+.MuiModal-root input,
+.MuiModal-root textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+.MuiDialog-root .MuiInputLabel-root,
+.MuiModal-root .MuiInputLabel-root {
+  color: #718096 !important;
+}
+
+.MuiDialog-root .MuiInputLabel-root.Mui-focused,
+.MuiModal-root .MuiInputLabel-root.Mui-focused {
+  color: #667eea !important;
+}
+
+/* Select et autres composants */
+.MuiSelect-select,
+.MuiSelect-nativeInput,
+.MuiSelect-select.MuiSelect-select,
+.MuiSelect-select:focus {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+.MuiSelect-icon {
+  color: #718096 !important;
+}
+
+/* Champs désactivés */
+.MuiInputBase-input.Mui-disabled,
+.MuiOutlinedInput-input.Mui-disabled,
+input:disabled,
+textarea:disabled {
+  color: #a0aec0 !important;
+  -webkit-text-fill-color: #a0aec0 !important;
+}
+
+/* Champs avec erreur - garder le texte visible */
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-input,
+.MuiInputBase-root.Mui-error input,
+.MuiInputBase-root.Mui-error textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Assurer la visibilité dans tous les contextes - sélecteurs très spécifiques */
+.adminPageContainer .MuiOutlinedInput-input,
+.adminPageContainer .MuiInputBase-input,
+.adminPageContainer .MuiInputBase-inputMultiline,
+.adminPageContainer input,
+.adminPageContainer textarea,
+.adminDashboardContainer .MuiOutlinedInput-input,
+.adminDashboardContainer .MuiInputBase-input,
+.adminDashboardContainer input,
+.adminDashboardContainer textarea,
+* .MuiOutlinedInput-input,
+* .MuiInputBase-input,
+* .MuiInputBase-inputMultiline {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Fix spécifique pour les champs dans les formulaires */
+form .MuiOutlinedInput-input,
+form .MuiInputBase-input,
+form input,
+form textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Fix pour les champs avec autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: #1a202c !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* Règles globales ultra-spécifiques pour garantir la visibilité - PRIORITÉ MAXIMALE */
+* input,
+* textarea,
+* input[type="text"],
+* input[type="email"],
+* input[type="password"],
+* input[type="number"],
+* input[type="date"],
+* input[type="time"],
+* input[type="search"],
+* input[type="tel"],
+* input[type="url"],
+* .MuiInputBase-root *,
+* .MuiOutlinedInput-root *,
+* .MuiFilledInput-root *,
+* .MuiTextField-root *,
+* .MuiFormControl-root *,
+* [class*="MuiInputBase"] *,
+* [class*="MuiOutlinedInput"] *,
+* [class*="MuiFilledInput"] *,
+* [class*="MuiTextField"] * {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Force la couleur du texte pour tous les inputs dans tous les contextes */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Spécifique pour le dashboard admin - règles encore plus fortes */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+.adminPageContainer * input,
+.adminPageContainer * textarea,
+.adminPageContainer * .MuiInputBase-input,
+.adminPageContainer * .MuiOutlinedInput-input,
+.adminDashboardContainer * input,
+.adminDashboardContainer * textarea,
+.adminDashboardContainer * .MuiInputBase-input,
+.adminDashboardContainer * .MuiOutlinedInput-input,
+[class*="admin"] * input,
+[class*="admin"] * textarea,
+[class*="admin"] * .MuiInputBase-input,
+[class*="admin"] * .MuiOutlinedInput-input {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+  caret-color: #667eea !important;
+}
+
+/* Force la visibilité même avec des styles inline ou des classes spécifiques */
+input[style*="color"],
+textarea[style*="color"] {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Assurer la visibilité dans tous les états */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+input:focus,
+input:active,
+input:hover,
+textarea:focus,
+textarea:active,
+textarea:hover {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* RÈGLES ULTRA-AGRESSIVES - PRIORITÉ ABSOLUE */
+/* Cibler tous les inputs et textarea avec tous les sélecteurs possibles */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+html body input,
+html body textarea,
+html body .MuiInputBase-input,
+html body .MuiOutlinedInput-input,
+html body .MuiFilledInput-input,
+html body .MuiInputBase-root input,
+html body .MuiInputBase-root textarea,
+html body .MuiOutlinedInput-root input,
+html body .MuiOutlinedInput-root textarea,
+html body .MuiTextField-root input,
+html body .MuiTextField-root textarea,
+html body [class*="MuiInputBase"] input,
+html body [class*="MuiInputBase"] textarea,
+html body [class*="MuiOutlinedInput"] input,
+html body [class*="MuiOutlinedInput"] textarea,
+html body [class*="MuiTextField"] input,
+html body [class*="MuiTextField"] textarea {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+  caret-color: #667eea !important;
+}
+
+/* Forcer la couleur même si elle est définie inline */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+input[style],
+textarea[style],
+input[style*="color"],
+textarea[style*="color"] {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Cibler les pseudo-éléments */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+input::value,
+textarea::value {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Règles pour tous les contextes Material-UI */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+.MuiInputBase-root,
+.MuiOutlinedInput-root,
+.MuiFilledInput-root,
+.MuiTextField-root {
+  color: #374151 !important;
+}
+
+.MuiInputBase-root input,
+.MuiInputBase-root textarea,
+.MuiOutlinedInput-root input,
+.MuiOutlinedInput-root textarea,
+.MuiFilledInput-root input,
+.MuiFilledInput-root textarea {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Cibler spécifiquement les classes Material-UI */
+.MuiInputBase-input,
+.MuiInputBase-inputMultiline,
+.MuiOutlinedInput-input,
+.MuiFilledInput-input {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Règles pour les formulaires dans le dashboard admin */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+form input,
+form textarea,
+form .MuiInputBase-input,
+form .MuiOutlinedInput-input,
+.adminPageContainer form input,
+.adminPageContainer form textarea,
+.adminDashboardContainer form input,
+.adminDashboardContainer form textarea {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Override pour tous les états Material-UI */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+.MuiInputBase-root.Mui-focused input,
+.MuiInputBase-root.Mui-focused textarea,
+.MuiOutlinedInput-root.Mui-focused input,
+.MuiOutlinedInput-root.Mui-focused textarea,
+.MuiInputBase-root.Mui-error input,
+.MuiInputBase-root.Mui-error textarea,
+.MuiOutlinedInput-root.Mui-error input,
+.MuiOutlinedInput-root.Mui-error textarea,
+.MuiInputBase-root.Mui-disabled input,
+.MuiInputBase-root.Mui-disabled textarea,
+.MuiOutlinedInput-root.Mui-disabled input,
+.MuiOutlinedInput-root.Mui-disabled textarea {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* RÈGLE FINALE - FORCE ABSOLUE - PRIORITÉ MAXIMALE */
+/* Utiliser des sélecteurs avec la plus haute spécificité possible */
+html body div#root div input,
+html body div#root div textarea,
+html body div#root div .MuiInputBase-input,
+html body div#root div .MuiOutlinedInput-input,
+html body div#root div .MuiInputBase-root input,
+html body div#root div .MuiInputBase-root textarea,
+html body div#root div .MuiOutlinedInput-root input,
+html body div#root div .MuiOutlinedInput-root textarea,
+html body div#root div .MuiTextField-root input,
+html body div#root div .MuiTextField-root textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+  caret-color: #667eea !important;
+}
+
+/* Forcer la couleur même si elle est définie par Material-UI via JavaScript */
+input[class*="Mui"],
+textarea[class*="Mui"],
+[class*="MuiInputBase"] input,
+[class*="MuiInputBase"] textarea,
+[class*="MuiOutlinedInput"] input,
+[class*="MuiOutlinedInput"] textarea,
+[class*="MuiTextField"] input,
+[class*="MuiTextField"] textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Règle pour override les styles Material-UI injectés dynamiquement */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+.MuiInputBase-input[style],
+.MuiOutlinedInput-input[style],
+input[class*="Mui"][style],
+textarea[class*="Mui"][style] {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Forcer la couleur sur tous les éléments input/textarea même avec color: inherit */
+/* Utiliser la même couleur que le textarea QRO qui fonctionne (#374151) */
+input,
+textarea {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* Override pour les conteneurs qui pourraient hériter d'une couleur blanche */
+.adminPageContainer,
+.adminDashboardContainer,
+.adminPageContainer *,
+.adminDashboardContainer * {
+  color: #1a202c;
+}
+
+/* Mais forcer le texte des inputs à être visible */
+.adminPageContainer input,
+.adminPageContainer textarea,
+.adminDashboardContainer input,
+.adminDashboardContainer textarea {
+  color: #1a202c !important;
+  -webkit-text-fill-color: #1a202c !important;
+}

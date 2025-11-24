@@ -1,0 +1,762 @@
+@import url('https://fonts.googleapis.com/css2?family=Digital-7&display=swap');
+
+.btn{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 27px;
+    fill: #18932b;
+    color: #18932b;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #18932b;
+    border-radius: 5px;
+    padding: 12px 33px;
+  }
+  .btn:hover{
+    background:#18932b;
+    border-color:#18932b;
+    color:#ffffff;
+  }
+
+  .btn-insc{
+	background:#0877bf;
+	border-color:#0877bf;
+	color:#ffffff;
+}
+.btn-login{
+	background:#fa9401;
+	border-color:#fa9401;
+	color:#ffffff;
+}
+
+
+.download-button02 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+  }
+  
+  .download-button02:hover {
+    background-color: #0056b3;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+  
+
+.homeHeroDiv{
+    /* background: linear-gradient(270deg, rgba(2, 44, 16, 0.65) 63.5%, rgba(196, 196, 196, 0) 100%); */
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    padding: 50px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 70px;
+}
+
+.homeHeroMainDivTexte{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 50%;
+    margin-left:5%;
+
+}
+
+
+.homeHeroMainDivChronoDivText{
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.homeHeroMainDivChronoDivTimer{
+    font-size: 28px;
+    font-weight: 800;
+    color: #733c93;
+    font-family: cursive;
+    font-style: italic;
+}
+
+.homeHeroMainDivChrono{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 2.5%;
+    margin-right: 5%;
+    background-color: #ffffff7b;
+    min-width: 30%;
+    min-height: max-content
+}
+
+.homeHeroMainH1Texte{
+    font-size:40px;
+    font-weight: 700;
+    line-height: 48px; 
+}
+
+
+.homeHeroMainspan01{
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.homeHeroMainspan02{
+    font-size: 17px;
+    color: white;
+    text-decoration: underline;
+    line-height: 20px;
+}
+
+.programmeMainDiv{
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5%;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    align-items: center;
+    background-color: #FFFBEB;
+    min-height: 300px;
+    
+}
+
+.programmeTitreDiv{
+    position: absolute;
+    left: 0;
+    top: -37px;
+    min-width: 50vw;
+    height: 75px;
+    background: #FFC700;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5%;
+    align-items: center;
+    font-size: 2.8rem;
+    border-radius: 0px 60px 60px 00px;
+
+    color: #0E8135; 
+    font-weight: 800;
+   
+}
+
+.programmeTexte01{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.programmeSubdivison{
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: space-between;
+}
+
+.programmeFormat{
+    width:45% ;
+}
+
+.titreSubdivision{
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 40px;
+    background-color: #0E8135;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+    color: white;
+    font-weight: 700;
+    font-size: 20px
+}
+
+.texteProgramme01{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sousTexteSpetialProgramme{
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.contextMainDiv{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.contextTitreDiv{
+    width: 434px;
+    height: 75px;
+    border-radius: 80px 80px 20px 20px;
+    background: #FFC700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 48.41px;
+    text-align: center;
+    color: #0E8135;  
+    
+
+    margin-bottom: 20px;
+}
+
+.contextTexteViewSmall{
+    transition: 250ms;
+    position: relative;
+    max-height: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /*-webkit-line-clamp: 3; /* Nombre de lignes avant le tronquage */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Permet le retour à la ligne */
+}
+
+.contextTexteViewAll{
+    transition: 300ms;
+    min-height: 300px;
+}
+
+
+.contextParagraphe{
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 29px;
+    text-align: justify;
+
+}
+
+.flouteur{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f8f8f994;
+}
+
+.contextDivRedMoreOrNot{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    text-align: center;
+    color: #0E8135;
+    cursor: pointer;
+
+}
+
+.contextDivRedMoreOrNot.red{
+    color: red;
+}
+
+
+.activiteMainDiv{
+    position: relative;
+    margin-top: 50px;
+    width: 100vw;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 70px;
+    padding-bottom: 60px;
+    background-color: #BAC5D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.activiteTitreDiv{
+    position: absolute;
+    top: -40px;
+    height: 75px;
+    width: max-content;
+    background: #0877BF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 80px 80px 20px 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 48.41px;
+    text-align: center;
+    color: white;
+}
+
+.activiteDivText{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 38.73px;
+    text-align: center;
+}
+
+.activiteSouBloc{
+    padding: 20px;
+    padding-left: 25px;
+    width: 40%;
+    min-height: 400px;
+    background-color: white;
+    border-radius: 0px 80px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+.activiteSouBlocTitre{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 31px;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #0877BF;
+
+}
+
+.objecticMaincDiv{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.objectifSousBloc01{
+    background-size: cover;
+    background-position: center;
+    width: 50%;
+    height: auto;
+    background-color: #04385a66;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+
+    font-size:53px ;
+    font-weight: 800;
+    color: white;
+}
+
+.objectifSousBloc02{
+
+    width: 50%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+}
+
+.objecticDescription{
+    color: #0877BF;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.pubilcMainDiv{
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    align-items: center;
+    background-color: #FFFBEB;
+    min-height: 300px;
+}
+
+.publicTitreDiv{
+    position: absolute;
+    top: -35px;
+    width: 410px;
+    height: 75px;
+    border-radius: 80px 80px 20px 20px;
+    background: #FFC700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 48.41px;
+    text-align: center;
+    color: #0E8135;  
+
+}
+
+.publicBolc01{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.imagePublicbloc01{
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+    background-color: #0E8135;
+}
+
+.publicTextMainDiv{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.publicTitre01{
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 60.51px;
+    text-align: left;
+    color: #FFC700;
+}
+
+.publicTitre02{
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.41px;
+    text-align: center;
+
+}
+
+.publicTexte01{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36.31px;
+    text-align: left;
+
+}
+
+.publicTexte02{
+font-size: 22px;
+font-weight: 500;
+line-height: 29.05px;
+text-align: left;
+
+}
+
+.publicTexte03{
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 29.05px;
+    text-align: center;
+    
+    }
+
+.publicBolc02{
+    margin-top: 15px;
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.SouspublicBolc{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.SouspublicBolcItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    width: 20%;
+}
+
+.imageSousblocItem{
+    background-size: cover;
+    background-position: center;
+    width: 150px;
+    height: 150px;
+}
+
+.blocBoutonAction{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content: flex-start;
+}
+
+.partenaireMainDiv{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.partenaireTitreDiv{
+    position: absolute;
+    top: -22px;
+    width: 200px;
+    height: 45px;
+    border-radius: 80px 80px 20px 20px;
+    background: #529E6C;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 800;
+    color: #FFFFFF;
+
+}
+
+.parteniareTexte{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24.2px;
+    text-align: center;
+
+}
+
+.partenaireLogoMainDiv{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.imgageLogoPartenaire{
+    max-width: 100px;
+    height: 62px;
+}
+
+
+/* Styles pour les smartphones */
+@media (min-width: 769px) {
+
+}
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+.homeHeroDiv{
+    padding: 30px;
+}
+
+.homeHeroMainDivTexte{
+    min-width: 80%;
+    max-width: 90%;
+}
+
+.homeHeroMainDivChrono{
+    width: 75vw;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.homeHeroMainDivChronoDivTimer{
+    font-size:1.1rem;
+    text-align: center;
+}
+
+.homeHeroMainDivChronoDivText{
+    font-size: 14px;
+}
+
+.homeHeroMainDivChrono{
+    height: max-content;
+}
+
+.homeHeroMainH1Texte{
+    font-size:20px;
+    font-weight: 700;
+    line-height: 25px; 
+    /* text-align: center; */
+}
+
+.homeHeroMainspan01{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.homeHeroMainspan02{
+    font-size: 14px;
+    color: white;
+    text-decoration: underline;
+}
+
+.contextTitreDiv{
+    width: 80vw;
+    height: 60px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.contextParagraphe{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: justify;
+
+}
+
+.contextDivRedMoreOrNot{
+    font-size: 15px;
+}
+
+.activiteMainDiv{
+    padding-top: 40px;
+}
+
+.activiteTitreDiv{
+    width: 80vw;
+    font-size: 20px;
+    font-weight: 600;
+    height: 60px;
+    padding: 0;
+}
+
+.activiteDivText{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: center;
+}
+
+.activiteSouBloc{
+    width: 100%;
+}
+
+.activiteSouBlocTitre{
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 31px;
+    text-align: left;
+    color: #0877BF;
+
+}
+
+.objectifSousBloc01{
+    width: 100%;
+    height: 65vh;
+    font-size: 25px;
+    font-weight: 600;
+}
+.objectifSousBloc02{
+    width: 100%;
+    font-size: 15px;
+}
+.objecticDescription{
+    font-size: 18px
+}
+
+.publicTextMainDiv{
+    width: 100%;
+}
+
+.SouspublicBolcItem{
+    width: 100%;
+}
+
+.publicTitreDiv{
+    position: absolute;
+    top: -25px;
+    width: 80vw;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.blocBoutonAction{
+   
+    gap: 5px;
+    justify-content: space-evenly;
+}
+
+.imgageLogoPartenaire{
+    max-width: 65px;
+    height: 22px;
+}
+
+.programmeTitreDiv{
+    font-size: 20px;
+    height: 50px;
+    top: -15px;
+    padding-right: 10px;
+}
+.programmeTexte01{
+    font-size: 20px;
+}
+
+
+.programmeFormat{
+    width:80vw ;
+}
+
+}
+
+
+
+@media (max-width: 376px) {
+    .homeHeroMainDivChronoDivTimer{
+        font-size:1.1rem;
+        color: green;
+        text-align: center;
+    }
+    
+}

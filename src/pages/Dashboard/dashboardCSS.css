@@ -1,0 +1,383 @@
+/* ============================================
+   SECTION PRÉSENTATION
+   ============================================ */
+.presentationRow {
+    border-radius: 12px;
+    margin: 20px;
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.textePresentationDashboardDiv {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.textePresentationDashboardspan {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #374151;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   SECTION STATISTIQUES
+   ============================================ */
+.statsRow {
+    border-radius: 12px;
+    margin: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.statsTitle {
+    margin: 5px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mainStatBlocDashboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+/* Cartes de statistiques modernisées */
+.statItemDashbord {
+    height: 120px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    border-radius: 16px;
+    font-weight: 600;
+    min-width: 250px;
+    max-width: 500px;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.statItemDashbord::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.statItemDashbord:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Couleurs spécifiques pour chaque carte */
+.statCardCours {
+    background: linear-gradient(135deg, #ffeee8 0%, #ffe0d6 100%);
+}
+
+.statCardCours .icnDashbordContainer {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+}
+
+.statCardQCM {
+    background: linear-gradient(135deg, #ebebff 0%, #e0e0ff 100%);
+}
+
+.statCardQCM .icnDashbordContainer {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.statCardModule {
+    background: linear-gradient(135deg, #e1f7e3 0%, #d4f0d8 100%);
+}
+
+.statCardModule .icnDashbordContainer {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.statCardQuestion {
+    background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+}
+
+.statCardQuestion .icnDashbordContainer {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Conteneur d'icône modernisé */
+.icnDashbordContainer {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.statIcon {
+    font-size: 32px !important;
+    color: white !important;
+}
+
+.texteStatDashbord {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 16px;
+    flex: 1;
+}
+
+.numberStatDashboard {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+}
+
+.texteStatDashboard {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   SECTION MODULES
+   ============================================ */
+.modulesRow {
+    border-radius: 12px;
+    margin: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    justify-content: center;
+    background-color: #f9fafb;
+}
+
+.modulesContainer {
+    width: 100%;
+}
+
+.modulesTitle {
+    margin: 5px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+}
+
+.maincontaintModulesDiv {
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Cartes modules modernisées */
+.mainModuleBloc {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 320px;
+    height: 380px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mainModuleBloc:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.imageIlliustrationModuleDiv {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+.imageIlliustrationModuleDiv::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+.titreModuleDashboard {
+    width: 100%;
+    min-height: 70px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #ffffff;
+}
+
+.titreModuleDashboard span {
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.actionButton {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.nonbreChapitreModuledashboardDiv {
+    padding: 8px 16px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nonbreChapitreModuledashboardText {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (min-width: 769px) {
+    .textePresentationDashboardDiv {
+        text-align: left;
+    }
+}
+
+/* Styles pour tablettes et smartphones */
+@media (max-width: 768px) {
+    .presentationRow {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .statsRow {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .modulesRow {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .mainStatBlocDashboard {
+        gap: 12px;
+    }
+
+    .textePresentationDashboardDiv {
+        text-align: justify;
+    }
+
+    .textePresentationDashboardspan {
+        font-size: 15px;
+    }
+
+    .statsTitle {
+        font-size: 20px;
+    }
+
+    .modulesTitle {
+        font-size: 20px;
+    }
+
+    .statItemDashbord {
+        min-width: calc(50% - 6px);
+        height: 100px;
+        padding: 15px;
+    }
+
+    .icnDashbordContainer {
+        width: 50px;
+        height: 50px;
+    }
+
+    .statIcon {
+        font-size: 26px !important;
+    }
+
+    .numberStatDashboard {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .texteStatDashboard {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .texteStatDashbord {
+        margin-left: 12px;
+        gap: 2px;
+    }
+
+    .maincontaintModulesDiv {
+        gap: 15px;
+    }
+
+    .mainModuleBloc {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 400px) {
+    .mainModuleBloc {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .statItemDashbord {
+        min-width: 100%;
+    }
+
+    .presentationRow,
+    .statsRow,
+    .modulesRow {
+        margin: 10px;
+        padding: 15px;
+    }
+}

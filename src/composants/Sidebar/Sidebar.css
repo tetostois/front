@@ -1,0 +1,293 @@
+/* Modern Sidebar Styles */
+
+/* Top Navbar */
+.modernSidebarNavbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 1200;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modernSidebarNavbarLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.modernSidebarMenuButton {
+    color: #fff !important;
+}
+
+.modernSidebarLogo {
+    display: flex;
+    align-items: center;
+}
+
+.modernSidebarLogoImage {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.modernSidebarNavbarRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.modernSidebarUserInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modernSidebarUserInfo:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.modernSidebarUserName {
+    color: #fff !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Sidebar Drawer */
+.modernSidebarDrawer {
+    margin-top: 64px;
+}
+
+.modernSidebarDrawer .MuiDrawer-paper {
+    top: 64px !important;
+    height: calc(100vh - 64px) !important;
+}
+
+.modernSidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    min-height: 64px;
+    background: rgba(102, 126, 234, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modernSidebarHeaderTitle {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+}
+
+.modernSidebarContent {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.modernSidebarContent::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modernSidebarContent::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.modernSidebarContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.modernSidebarContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* List Items */
+.modernSidebarListItem {
+    margin: 4px 8px;
+}
+
+.modernSidebarListItemButton {
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.modernSidebarListItemButton.modernSidebarActive {
+    background: rgba(102, 126, 234, 0.2) !important;
+}
+
+.modernSidebarSubListItemButton {
+    border-radius: 8px !important;
+    margin: 2px 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.modernSidebarSubListItemButton.modernSidebarSubActive {
+    background: rgba(102, 126, 234, 0.15) !important;
+}
+
+/* Legacy styles for backward compatibility */
+.sidbar {
+    width: 250px;
+    height: 100%;
+    left: 0px;
+    top: 50px;
+    color: white;
+    flex-direction: column;
+    background: #131212;
+    display: flex;
+    transition: 800ms;
+    position: fixed;
+    font-weight: 600;
+}
+
+.sidbar.active {
+    left: -250px;
+    transition: 1100ms;
+}
+
+.navbar {
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    margin-top: 0px;
+    width: 100%;
+    height: 50px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    background: #424141;
+    position: fixed;
+    z-index: 5;
+}
+
+.menu-bars {
+    margin-left: 0rem;
+    font-size: 1.5rem;
+    background: none;
+    color: white;
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    list-style: none;
+    border-top: #131212 solid 5px;
+}
+
+.navbar span {
+    margin-left: 16px;
+    margin-right: auto;
+}
+
+.nav-text nav {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.nav-selected {
+    border-bottom: #585454 solid 2px;
+    background-color: #303030;
+}
+
+.nav-text :hover {
+    background-color: #303030;
+}
+
+.submenu-text {
+    color: aqua;
+    margin-left: -15px;
+    background-color: #303030;
+    transition: 600ms;
+}
+
+.submenu-text.close {
+    margin-left: -500px;
+    transition: 1000ms;
+}
+
+.submenu-text a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 14px;
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    transition: 500ms;
+}
+
+.submenu-text.close a {
+    height: 0px;
+    transition: 500ms;
+}
+
+.scrollOpen {
+    transition: 800ms;
+}
+
+.scrollOpen.close {
+    display: none;
+    transition: 800ms;
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+    .modernSidebarNavbar {
+        height: 56px;
+        padding: 0 12px;
+    }
+
+    .modernSidebarLogoImage {
+        height: 32px;
+    }
+
+    .modernSidebarUserName {
+        display: none;
+    }
+
+    .modernSidebarHeader {
+        min-height: 56px;
+        padding: 12px;
+    }
+
+    .modernSidebarHeaderTitle {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .modernSidebarNavbar {
+        height: 56px;
+        padding: 0 8px;
+    }
+
+    .modernSidebarLogoImage {
+        height: 28px;
+    }
+}

@@ -1,0 +1,6 @@
+.imgTransition {
+  /* background-image: url(/public/images/footerImage.png); */
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}

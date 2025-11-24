@@ -1,0 +1,189 @@
+.aboutHeroDiv{
+    min-height: 68vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1px;
+    color: white;
+    
+}
+
+.quiSommeNousTest01{
+    font-size: 20px;
+}
+
+.quiSommeNousTest02{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.aboutResumeDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFBEB;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    padding-top: 40px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.aboutResumeTitreDiv{
+    position:absolute;
+    top: -25px;
+    width: 300px;
+    height: 50px;
+    border-radius: 80px 80px 20px 20px;
+    background: #FFC700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 48.41px;
+    text-align: center;
+    color: #0E8135;  
+}
+
+.aboutResumetexteDiv{
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.aboutAgendaDiv{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+}
+
+.aboutAgendaTitre{
+    font-weight: 700;
+    font-size: 28px;
+    padding-bottom: 15px;
+}
+
+.aboutAgendaItem{
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 3px;
+}
+
+.aboutObjectifDiv{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap:10px;
+    margin-bottom: 30px;
+    
+}
+
+
+.aboutSousObjectifDiv{
+    margin-top: 20px;
+    width: 40%;
+    padding: 20px;
+    padding-left: 25px;
+    width: 40%;
+    background-color: white;
+    border: 3px solid #FFC700;
+    border-radius: 0px 60px 0px 50px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.aboutObjectifTitre{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.aboutObjectifTexte{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.color001{
+    color: #990599;
+    color:#059ea7 ;
+}
+
+/* Styles pour les tablettes et ordinateur */
+@media (min-width: 769px) {
+
+    /* Styles pour les tablettes */
+
+    .imgApropos {
+        height: 150px;
+        width: 100%;
+
+        background-size: cover;
+        /* Ajustez le dimensionnement de l'image */
+        background-repeat: no-repeat;
+        /* background-color: red; */
+    }
+
+}
+
+.quisommenous{
+    color: black;
+     font-size: 20px
+}
+
+.programmeLeadership{
+    color: Red;
+    font-size: 40px;
+    line-height: 28px;
+}
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+
+    /* Styles pour les smartphones */
+    .quiSommeNousTest01{
+        font-size: 13px;
+    }
+    
+    .quiSommeNousTest02{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+  .aboutHeroDiv{
+    min-height: 40vh;
+  }
+
+
+  .aboutAgendaTitre{
+    font-size: 23px;
+  }
+
+  .aboutSousObjectifDiv{
+    width: 90vw;
+  }
+
+}
+
+
+
+
