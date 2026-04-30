@@ -145,7 +145,7 @@ const FormConnexion = ({
 
             <fieldset>
                <legend>
-                  Informations de <span style={{ color: "#667eea", fontWeight: "bold" }}>Connexion</span>
+                  Informations de <span style={{ color: "#16a34a", fontWeight: "bold" }}>Connexion</span>
                </legend>
                {error.textError && (
                   <div style={{ 
@@ -197,7 +197,7 @@ const FormConnexion = ({
                            type="text"
                            required
                            placeholder="exemple@email.com ou +237 6XX XXX XXX"
-                           value={formConnexion.emailOrPhone}
+                           value={formConnexion.login ?? ""}
                            onChange={(event) =>
                               setFormConnexion((prevForm) => ({ ...prevForm, login: event.target.value }))
                            }
@@ -252,7 +252,7 @@ const FormConnexion = ({
                               color: "#9ca3af",
                               transition: "color 0.2s ease"
                            }}
-                           onMouseEnter={(e) => e.currentTarget.style.color = "#667eea"}
+                           onMouseEnter={(e) => e.currentTarget.style.color = "#16a34a"}
                            onMouseLeave={(e) => e.currentTarget.style.color = "#9ca3af"}
                         >
                            {showPassWord ? (
@@ -265,7 +265,7 @@ const FormConnexion = ({
                      <div style={{ marginTop: "8px" }}>
                         <span
                            style={{ 
-                              color: "#667eea", 
+                              color: "#16a34a", 
                               fontSize: "13px", 
                               fontWeight: 500,
                               cursor: "pointer",
@@ -274,8 +274,8 @@ const FormConnexion = ({
                            onClick={() => {
                               navigation("/resetpassword");
                            }}
-                           onMouseEnter={(e) => e.currentTarget.style.color = "#764ba2"}
-                           onMouseLeave={(e) => e.currentTarget.style.color = "#667eea"}
+                           onMouseEnter={(e) => e.currentTarget.style.color = "#15803d"}
+                           onMouseLeave={(e) => e.currentTarget.style.color = "#16a34a"}
                         >
                            {isFrench ? "Mot de passe oublié ?" : "Forgot your password?"}
                         </span>
@@ -297,13 +297,13 @@ const FormConnexion = ({
                      borderRadius: "12px",
                      fontSize: "16px",
                      fontWeight: 600,
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                     boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                     boxShadow: "0 4px 15px rgba(22, 163, 74, 0.4)",
                      textTransform: "none",
                      transition: "all 0.3s ease",
                      "&:hover": {
-                        background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
-                        boxShadow: "0 6px 20px rgba(102, 126, 234, 0.5)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                        boxShadow: "0 6px 20px rgba(22, 163, 74, 0.5)",
                         transform: "translateY(-2px)"
                      },
                      "&:disabled": {
@@ -325,12 +325,12 @@ const FormConnexion = ({
                   {isFrench ? "Vous n'avez pas de compte ? " : "Don't have an account? "}
                   <Link to={"/inscription"} style={{ textDecoration: "none" }}>
                      <span style={{ 
-                        color: "#667eea", 
+                        color: "#16a34a", 
                         fontWeight: 600,
                         transition: "color 0.2s ease"
                      }}
-                     onMouseEnter={(e) => e.currentTarget.style.color = "#764ba2"}
-                     onMouseLeave={(e) => e.currentTarget.style.color = "#667eea"}
+                     onMouseEnter={(e) => e.currentTarget.style.color = "#15803d"}
+                     onMouseLeave={(e) => e.currentTarget.style.color = "#16a34a"}
                      >
                         {isFrench ? "Créez votre compte" : "Create your account"}
                      </span>

@@ -66,7 +66,7 @@ export default function ShowProfesseur() {
         if (!etat) return { bg: "#edf2f7", color: "#4a5568", border: "#cbd5e0" };
         const etatUpper = etat.toUpperCase();
         if (etatUpper.includes("ACTIF") || etatUpper.includes("ACTIVE")) {
-            return { bg: "#e6fffa", color: "#234e52", border: "#38f9d7" };
+            return { bg: "#e6fffa", color: "#234e52", border: "#16a34a" };
         } else if (etatUpper.includes("INACTIF") || etatUpper.includes("INACTIVE") || etatUpper.includes("BLOQUE")) {
             return { bg: "#fed7d7", color: "#742a2a", border: "#fa709a" };
         }
@@ -183,7 +183,7 @@ export default function ShowProfesseur() {
                         onClick={handleEdit}
                         disabled={!professeur.matricule}
                         sx={{
-                            background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 700,
                             textTransform: "none",
@@ -191,7 +191,7 @@ export default function ShowProfesseur() {
                             py: 1.5,
                             boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                             "&:hover": {
-                                background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                 boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                             },
                             "&:disabled": {
@@ -210,7 +210,7 @@ export default function ShowProfesseur() {
                         sx={{
                             background: professeur.etat?.toUpperCase().includes("ACTIF")
                                 ? "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
-                                : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 700,
                             textTransform: "none",
@@ -218,14 +218,14 @@ export default function ShowProfesseur() {
                             py: 1.5,
                             boxShadow: professeur.etat?.toUpperCase().includes("ACTIF")
                                 ? "0 4px 16px rgba(250, 112, 154, 0.3)"
-                                : "0 4px 16px rgba(102, 126, 234, 0.3)",
+                                : "0 4px 16px rgba(22, 163, 74, 0.3)",
                             "&:hover": {
                                 background: professeur.etat?.toUpperCase().includes("ACTIF")
                                     ? "linear-gradient(135deg, #fee140 0%, #fa709a 100%)"
-                                    : "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
+                                    : "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                 boxShadow: professeur.etat?.toUpperCase().includes("ACTIF")
                                     ? "0 6px 20px rgba(250, 112, 154, 0.4)"
-                                    : "0 6px 20px rgba(102, 126, 234, 0.4)"
+                                    : "0 6px 20px rgba(22, 163, 74, 0.4)"
                             },
                             "&:disabled": {
                                 background: "#cbd5e0",
@@ -247,7 +247,7 @@ export default function ShowProfesseur() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                         <Box sx={{ textAlign: "center" }}>
-                            <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                             <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                                 {isFrench ? "Chargement des détails..." : "Loading details..."}
                             </Typography>
@@ -298,7 +298,7 @@ const InformationGeneral = ({ professeur, statusColors, isFrench }) => {
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -316,22 +316,22 @@ const InformationGeneral = ({ professeur, statusColors, isFrench }) => {
                         <InfoRow
                             label={isFrench ? "Matricule" : "ID"}
                             value={professeur.matricule}
-                            icon={<BadgeIcon sx={{ color: "#667eea" }} />}
+                            icon={<BadgeIcon sx={{ color: "#16a34a" }} />}
                         />
                         <InfoRow
                             label={isFrench ? "Nom" : "Last Name"}
                             value={professeur.nom}
-                            icon={<PersonIcon sx={{ color: "#667eea" }} />}
+                            icon={<PersonIcon sx={{ color: "#16a34a" }} />}
                         />
                         <InfoRow
                             label={isFrench ? "Prénom" : "First Name"}
                             value={professeur.prenom}
-                            icon={<PersonIcon sx={{ color: "#667eea" }} />}
+                            icon={<PersonIcon sx={{ color: "#16a34a" }} />}
                         />
                         <InfoRow
                             label="Email"
                             value={professeur.email}
-                            icon={<EmailIcon sx={{ color: "#43e97b" }} />}
+                            icon={<EmailIcon sx={{ color: "#16a34a" }} />}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -351,12 +351,12 @@ const InformationGeneral = ({ professeur, statusColors, isFrench }) => {
                         <InfoRow
                             label={isFrench ? "Profession" : "Profession"}
                             value={professeur.profession}
-                            icon={<WorkIcon sx={{ color: "#667eea" }} />}
+                            icon={<WorkIcon sx={{ color: "#16a34a" }} />}
                         />
                         <InfoRow
                             label={isFrench ? "Région" : "Region"}
                             value={professeur.region?.nom || "-"}
-                            icon={<LocationOnIcon sx={{ color: "#43e97b" }} />}
+                            icon={<LocationOnIcon sx={{ color: "#16a34a" }} />}
                         />
                         <InfoRow
                             label={isFrench ? "Téléphone" : "Phone"}
@@ -405,8 +405,8 @@ const InfoRow = ({ label, value, icon }) => (
             alignItems: "center",
             p: 2,
             borderRadius: "12px",
-            background: "linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)",
-            border: "1px solid rgba(102, 126, 234, 0.1)",
+            background: "linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(21, 128, 61, 0.05) 100%)",
+            border: "1px solid rgba(22, 163, 74, 0.1)",
             mb: 2
         }}
     >
@@ -414,7 +414,7 @@ const InfoRow = ({ label, value, icon }) => (
             sx={{
                 p: 1,
                 borderRadius: "10px",
-                backgroundColor: "rgba(102, 126, 234, 0.1)",
+                backgroundColor: "rgba(22, 163, 74, 0.1)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
@@ -446,7 +446,7 @@ const ModulesAssocies = ({ formProf, setUpdate, isFrench }) => {
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -481,7 +481,7 @@ const ModulesAssocies = ({ formProf, setUpdate, isFrench }) => {
                             <TableHead>
                                 <TableRow
                                     sx={{
-                                        background: "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)"
+                                        background: "linear-gradient(135deg, rgba(22, 163, 74, 0.1) 0%, rgba(21, 128, 61, 0.1) 100%)"
                                     }}
                                 >
                                     <TableCell sx={{ fontWeight: 700, color: "#1a202c" }}>N°</TableCell>
@@ -499,7 +499,7 @@ const ModulesAssocies = ({ formProf, setUpdate, isFrench }) => {
                                         key={module.idModule || index}
                                         sx={{
                                             "&:hover": {
-                                                backgroundColor: "rgba(102, 126, 234, 0.05)",
+                                                backgroundColor: "rgba(22, 163, 74, 0.05)",
                                                 cursor: "pointer",
                                                 transform: "scale(1.01)",
                                                 transition: "all 0.2s ease"
@@ -512,7 +512,7 @@ const ModulesAssocies = ({ formProf, setUpdate, isFrench }) => {
                                                 label={index + 1}
                                                 size="small"
                                                 sx={{
-                                                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                     color: "#fff",
                                                     fontWeight: 700,
                                                     minWidth: 40
@@ -589,7 +589,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, isFrench }) => {
                 startIcon={<AddIcon />}
                 onClick={handleClickOpen}
                 sx={{
-                    background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     textTransform: "none",
@@ -598,7 +598,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, isFrench }) => {
                     borderRadius: "12px",
                     boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                     "&:hover": {
-                        background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                         boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                     }
                 }}
@@ -619,7 +619,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, isFrench }) => {
             >
                 <DialogTitle
                     sx={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         color: "#fff",
                         fontWeight: 700,
                         display: "flex",
@@ -667,11 +667,11 @@ const AjoutModuleToProf = ({ formProf, setUpdate, isFrench }) => {
                                       sx={{
                                           p: 2,
                                           borderRadius: "12px",
-                                          border: "1px solid rgba(102, 126, 234, 0.2)",
+                                          border: "1px solid rgba(22, 163, 74, 0.2)",
                                           transition: "all 0.2s ease",
                                           "&:hover": {
-                                              borderColor: "#667eea",
-                                              boxShadow: "0 4px 12px rgba(102, 126, 234, 0.15)"
+                                              borderColor: "#16a34a",
+                                              boxShadow: "0 4px 12px rgba(22, 163, 74, 0.15)"
                                           }
                                       }}
                                   >
@@ -711,13 +711,13 @@ const AjoutModuleToProf = ({ formProf, setUpdate, isFrench }) => {
                         onClick={handleSave}
                         variant="contained"
                         sx={{
-                            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 600,
                             textTransform: "none",
                             px: 3,
                             "&:hover": {
-                                background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)"
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)"
                             }
                         }}
                     >

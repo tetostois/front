@@ -7,13 +7,13 @@ import {
    Card,
    CardContent,
    CircularProgress,
-   TextField,
    Button,
    Divider,
    Chip,
    Alert,
    Grid
 } from "@mui/material";
+import { FormTextInput } from "../../../composants/UiInputs";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import SendIcon from "@mui/icons-material/Send";
@@ -103,7 +103,7 @@ export default function ModuleQRO() {
                      onClick={() => navigation("/dashboard")}
                      sx={{
                         textTransform: "none",
-                        color: "#667eea"
+                        color: "#16a34a"
                      }}
                   >
                      {isFrench ? "Retour" : "Back"}
@@ -167,8 +167,8 @@ export default function ModuleQRO() {
                                        }
                                        sx={{
                                           mb: 2,
-                                          backgroundColor: "rgba(102, 126, 234, 0.1)",
-                                          color: "#667eea",
+                                          backgroundColor: "rgba(22, 163, 74, 0.1)",
+                                          color: "#16a34a",
                                           fontWeight: 600
                                        }}
                                     />
@@ -199,7 +199,7 @@ export default function ModuleQRO() {
                                           <PersonIcon
                                              sx={{
                                                 fontSize: 20,
-                                                color: "#667eea",
+                                                color: "#16a34a",
                                                 mr: 1
                                              }}
                                           />
@@ -256,7 +256,7 @@ export default function ModuleQRO() {
                                           )}
                                        </Card>
 
-                                       <TextField
+                                       <FormTextInput
                                           fullWidth
                                           multiline
                                           rows={3}
@@ -272,7 +272,7 @@ export default function ModuleQRO() {
                                                 e.target.value
                                              )
                                           }
-                                          sx={{ mb: 1 }}
+                                          className="mb-1"
                                        />
                                        <Button
                                           variant="contained"
@@ -287,7 +287,7 @@ export default function ModuleQRO() {
                                           }
                                           sx={{
                                              textTransform: "none",
-                                             background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                             background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                              "&:hover": {
                                                 background: "linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%)"
                                              }

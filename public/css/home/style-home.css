@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /*
 Theme Name: Thème de Programme Leadership
 Theme URI: http://www.cdatagrid.com
@@ -25,8 +25,8 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, em, fo
   font-style: inherit;
 }
 ::selection {
-  color: #ffffff;
-  background: #b3dca1;
+  color: #0f172a;
+  background: rgba(22, 163, 74, 0.28);
 }
 *, ::after, ::before {
   box-sizing: border-box;

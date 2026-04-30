@@ -6,11 +6,11 @@
   /* border-top: 4px solid green; */
   /*background: #f5f7f7;*/
   /*background: #cdd1d1; avant c'etait ca*/
-  background: #f8f8f9;
+  background: #f8fafc;
   transition: all 0.3s ease;
   position: relative;
   bottom: 0px;
-  background-color: #f8f8f9;
+  background-color: #f8fafc;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
@@ -126,7 +126,8 @@ CSS qui influance les composant de connexion et d'inscription
   padding: 5px;
 }
 
-fieldset {
+/* Ne pas cibler les fieldset MUI (OutlinedInput / notched outline) */
+fieldset:not(.MuiOutlinedInput-notchedOutline) {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

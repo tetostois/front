@@ -10,15 +10,6 @@ import {
     CircularProgress,
     Backdrop,
     LinearProgress,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Chip,
-    Avatar
 } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -27,6 +18,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { MessageErrorServeur } from '../../../../composants/MessageComponent';
+import StatMetricCard from '../../../../composants/StatMetricCard';
 
 export default function StatEtudiant() {
     const { language } = useContext(AppContext);
@@ -107,32 +99,40 @@ export default function StatEtudiant() {
         ? [
               {
                   id: 'total',
-                  title: isFrench ? 'Total Étudiants' : 'Total Students',
+                  title: isFrench ? 'Étudiants' : 'Students',
+                  subtitle: isFrench ? 'Inscrits (total)' : 'Registered (total)',
                   value: dashboardData.etudiantInscrit || 0,
                   icon: PeopleIcon,
-                  color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  iconBg: '#dbeafe',
+                  accent: '#2563eb',
               },
               {
                   id: 'actifs',
-                  title: isFrench ? 'Étudiants Actifs' : 'Active Students',
+                  title: isFrench ? 'Actifs' : 'Active',
+                  subtitle: isFrench ? 'Connexion sous 30 jours' : 'Logged in within 30 days',
                   value: stats?.activeStudents || 0,
                   icon: TrendingUpIcon,
-                  color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+                  iconBg: '#d1fae5',
+                  accent: '#059669',
               },
               {
                   id: 'confirmes',
-                  title: isFrench ? 'Comptes Confirmés' : 'Confirmed Accounts',
+                  title: isFrench ? 'Confirmés' : 'Confirmed',
+                  subtitle: isFrench ? 'Comptes validés' : 'Validated accounts',
                   value: stats?.confirmedStudents || 0,
                   icon: CheckCircleIcon,
-                  color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+                  iconBg: '#e0f2fe',
+                  accent: '#0284c7',
               },
               {
                   id: 'cours',
-                  title: isFrench ? 'Cours Lus' : 'Courses Read',
+                  title: isFrench ? 'Cours lus' : 'Courses read',
+                  subtitle: isFrench ? 'Progression globale' : 'Overall progress',
                   value: dashboardData.courLu || 0,
                   icon: SchoolIcon,
-                  color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
-              }
+                  iconBg: '#ffedd5',
+                  accent: '#ea580c',
+              },
           ]
         : [];
 
@@ -140,19 +140,21 @@ export default function StatEtudiant() {
         <Box className="adminPageContainer">
             {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <AssessmentIcon className="adminPageHeaderIcon" />
-                    </Box>
-                    <Box>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Statistiques des Étudiants' : 'Student Statistics'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Analyse détaillée de la performance et de l\'engagement des étudiants'
-                                : 'Detailed analysis of student performance and engagement'}
-                        </Typography>
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <AssessmentIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Statistiques des Étudiants' : 'Student Statistics'}
+                            </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Analyse détaillée de la performance et de l\'engagement des étudiants'
+                                    : 'Detailed analysis of student performance and engagement'}
+                            </Typography>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -162,7 +164,7 @@ export default function StatEtudiant() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des statistiques...' : 'Loading statistics...'}
                             </Typography>
@@ -177,68 +179,18 @@ export default function StatEtudiant() {
                 <Box className="adminPageContent">
                     {/* Statistics Cards */}
                     <Grid container spacing={3} sx={{ mb: 4 }}>
-                        {statsCards.map((stat) => {
-                            const IconComponent = stat.icon;
-                            return (
-                                <Grid item xs={12} sm={6} md={3} key={stat.id}>
-                                    <Card
-                                        sx={{
-                                            background: stat.color,
-                                            borderRadius: '20px',
-                                            boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                                            transition: 'all 0.3s ease',
-                                            '&:hover': {
-                                                transform: 'translateY(-8px)',
-                                                boxShadow: '0 12px 24px rgba(0,0,0,0.15)'
-                                            }
-                                        }}
-                                    >
-                                        <CardContent sx={{ p: 3, textAlign: 'center' }}>
-                                            <Box
-                                                sx={{
-                                                    width: 56,
-                                                    height: 56,
-                                                    background: 'rgba(255, 255, 255, 0.2)',
-                                                    borderRadius: '14px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    margin: '0 auto 16px',
-                                                    backdropFilter: 'blur(10px)'
-                                                }}
-                                            >
-                                                <IconComponent sx={{ fontSize: 32, color: '#fff' }} />
-                                            </Box>
-                                            <Typography
-                                                variant="h3"
-                                                sx={{
-                                                    fontFamily: 'Poppins, sans-serif',
-                                                    fontWeight: 700,
-                                                    color: '#fff',
-                                                    mb: 1,
-                                                    textShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                                                }}
-                                            >
-                                                {stat.value}
-                                            </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                sx={{
-                                                    fontFamily: 'Inter, sans-serif',
-                                                    color: 'rgba(255, 255, 255, 0.95)',
-                                                    fontWeight: 500,
-                                                    fontSize: 14,
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: 0.5
-                                                }}
-                                            >
-                                                {stat.title}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            );
-                        })}
+                        {statsCards.map((stat) => (
+                            <Grid item xs={12} sm={6} md={3} key={stat.id}>
+                                <StatMetricCard
+                                    title={stat.title}
+                                    subtitle={stat.subtitle}
+                                    value={stat.value}
+                                    icon={stat.icon}
+                                    iconBg={stat.iconBg}
+                                    accent={stat.accent}
+                                />
+                            </Grid>
+                        ))}
                     </Grid>
 
                     {/* Distribution Charts */}
@@ -246,9 +198,16 @@ export default function StatEtudiant() {
                         {/* Répartition par Profil */}
                         {stats && Object.keys(stats.profileDistribution).length > 0 && (
                             <Grid item xs={12} md={6}>
-                                <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+                                <Card
+                                    elevation={0}
+                                    sx={{
+                                        borderRadius: '12px',
+                                        border: '1px solid #e2e8f0',
+                                        boxShadow: '0 4px 6px -1px rgba(15, 23, 42, 0.06)',
+                                    }}
+                                >
                                     <CardContent>
-                                        <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#1a202c' }}>
+                                        <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#0f172a' }}>
                                             {isFrench ? 'Répartition par Profil' : 'Distribution by Profile'}
                                         </Typography>
                                         {Object.entries(stats.profileDistribution).map(([profile, count]) => {
@@ -267,13 +226,13 @@ export default function StatEtudiant() {
                                                         variant="determinate"
                                                         value={percentage}
                                                         sx={{
-                                                            height: 8,
-                                                            borderRadius: 4,
-                                                            backgroundColor: '#e0e0e0',
+                                                            height: 6,
+                                                            borderRadius: 999,
+                                                            backgroundColor: '#e2e8f0',
                                                             '& .MuiLinearProgress-bar': {
-                                                                background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                                                                borderRadius: 4
-                                                            }
+                                                                background: 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)',
+                                                                borderRadius: 999,
+                                                            },
                                                         }}
                                                     />
                                                 </Box>
@@ -287,9 +246,16 @@ export default function StatEtudiant() {
                         {/* Répartition par Région */}
                         {stats && Object.keys(stats.regionDistribution).length > 0 && (
                             <Grid item xs={12} md={6}>
-                                <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+                                <Card
+                                    elevation={0}
+                                    sx={{
+                                        borderRadius: '12px',
+                                        border: '1px solid #e2e8f0',
+                                        boxShadow: '0 4px 6px -1px rgba(15, 23, 42, 0.06)',
+                                    }}
+                                >
                                     <CardContent>
-                                        <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#1a202c' }}>
+                                        <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#0f172a' }}>
                                             {isFrench ? 'Répartition par Région' : 'Distribution by Region'}
                                         </Typography>
                                         {Object.entries(stats.regionDistribution)
@@ -301,7 +267,7 @@ export default function StatEtudiant() {
                                                     <Box key={region} sx={{ mb: 2 }}>
                                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                                <LocationOnIcon sx={{ fontSize: 16, color: '#667eea' }} />
+                                                                <LocationOnIcon sx={{ fontSize: 16, color: '#16a34a' }} />
                                                                 <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                                                     {region}
                                                                 </Typography>
@@ -314,13 +280,13 @@ export default function StatEtudiant() {
                                                             variant="determinate"
                                                             value={percentage}
                                                             sx={{
-                                                                height: 8,
-                                                                borderRadius: 4,
-                                                                backgroundColor: '#e0e0e0',
+                                                                height: 6,
+                                                                borderRadius: 999,
+                                                                backgroundColor: '#e2e8f0',
                                                                 '& .MuiLinearProgress-bar': {
-                                                                    background: 'linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)',
-                                                                    borderRadius: 4
-                                                                }
+                                                                    background: 'linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%)',
+                                                                    borderRadius: 999,
+                                                                },
                                                             }}
                                                         />
                                                     </Box>
@@ -334,38 +300,46 @@ export default function StatEtudiant() {
 
                     {/* Performance Summary */}
                     {dashboardData && (
-                        <Card sx={{ mt: 3, borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+                        <Card
+                            elevation={0}
+                            sx={{
+                                mt: 3,
+                                borderRadius: '12px',
+                                border: '1px solid #e2e8f0',
+                                boxShadow: '0 4px 6px -1px rgba(15, 23, 42, 0.06)',
+                            }}
+                        >
                             <CardContent>
-                                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#1a202c' }}>
+                                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#0f172a' }}>
                                     {isFrench ? 'Résumé des Performances' : 'Performance Summary'}
                                 </Typography>
                                 <Grid container spacing={3}>
                                     <Grid item xs={12} md={4}>
                                         <Box>
-                                            <Typography variant="body2" sx={{ color: '#718096', mb: 1 }}>
+                                            <Typography variant="body2" sx={{ color: '#64748b', mb: 1 }}>
                                                 {isFrench ? 'QCM Validés' : 'Validated QCMs'}
                                             </Typography>
-                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#667eea' }}>
+                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#16a34a' }}>
                                                 {dashboardData.qcmValide || 0}
                                             </Typography>
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Box>
-                                            <Typography variant="body2" sx={{ color: '#718096', mb: 1 }}>
+                                            <Typography variant="body2" sx={{ color: '#64748b', mb: 1 }}>
                                                 {isFrench ? 'Taux de Réussite QCM' : 'QCM Success Rate'}
                                             </Typography>
-                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#43e97b' }}>
+                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#059669' }}>
                                                 {dashboardData.tauxReuissite?.toFixed(1) || 0}%
                                             </Typography>
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Box>
-                                            <Typography variant="body2" sx={{ color: '#718096', mb: 1 }}>
+                                            <Typography variant="body2" sx={{ color: '#64748b', mb: 1 }}>
                                                 {isFrench ? 'Questions Posées' : 'Questions Asked'}
                                             </Typography>
-                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#fa709a' }}>
+                                            <Typography variant="h4" sx={{ fontWeight: 700, color: '#7c3aed' }}>
                                                 {dashboardData.questionPose || 0}
                                             </Typography>
                                         </Box>

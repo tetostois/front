@@ -1,94 +1,33 @@
 import React from 'react';
-import { TextField } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { FormTextInput } from '../UiInputs';
 
 /**
- * Composant TextField personnalisé pour le dashboard admin
- * Force toujours la visibilité du texte saisi
+ * Compatibilité : ancien nom « AdminTextField » (MUI).
+ * Délègue vers FormTextInput (Tailwind). Ignore sx, variant, size MUI.
  */
-const StyledAdminTextField = styled(TextField)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    '& input': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-    '& textarea': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-    '&.Mui-focused input': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-    '&.Mui-focused textarea': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-    '&.Mui-error input': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-    '&.Mui-error textarea': {
-      color: '#1a202c !important',
-      WebkitTextFillColor: '#1a202c !important',
-    },
-  },
-  '& .MuiInputBase-input': {
-    color: '#1a202c !important',
-    WebkitTextFillColor: '#1a202c !important',
-  },
-  '& .MuiInputBase-inputMultiline': {
-    color: '#1a202c !important',
-    WebkitTextFillColor: '#1a202c !important',
-  },
-  '& .MuiOutlinedInput-input': {
-    color: '#1a202c !important',
-    WebkitTextFillColor: '#1a202c !important',
-  },
-  '& input': {
-    color: '#1a202c !important',
-    WebkitTextFillColor: '#1a202c !important',
-    caretColor: '#667eea !important',
-  },
-  '& textarea': {
-    color: '#1a202c !important',
-    WebkitTextFillColor: '#1a202c !important',
-    caretColor: '#667eea !important',
-  },
-}));
-
 export default function AdminTextField(props) {
+  const {
+    sx: _sx,
+    variant: _variant,
+    size: _size,
+    InputProps,
+    inputProps,
+    SelectProps: _sp,
+    children: _ch,
+    ...rest
+  } = props;
+
+  const mergedInputProps = {
+    ...(InputProps?.inputProps || {}),
+    ...(inputProps || {}),
+  };
+
   return (
-    <StyledAdminTextField
-      {...props}
-      sx={{
-        ...props.sx,
-        '& .MuiOutlinedInput-root': {
-          ...(props.sx?.['& .MuiOutlinedInput-root'] || {}),
-          '& input': {
-            color: '#1a202c !important',
-            WebkitTextFillColor: '#1a202c !important',
-            ...(props.sx?.['& .MuiOutlinedInput-root']?.['& input'] || {}),
-          },
-          '& textarea': {
-            color: '#1a202c !important',
-            WebkitTextFillColor: '#1a202c !important',
-            ...(props.sx?.['& .MuiOutlinedInput-root']?.['& textarea'] || {}),
-          },
-        },
-        '& input': {
-          color: '#1a202c !important',
-          WebkitTextFillColor: '#1a202c !important',
-          ...(props.sx?.['& input'] || {}),
-        },
-        '& textarea': {
-          color: '#1a202c !important',
-          WebkitTextFillColor: '#1a202c !important',
-          ...(props.sx?.['& textarea'] || {}),
-        },
-      }}
+    <FormTextInput
+      {...rest}
+      inputProps={mergedInputProps}
+      startAdornment={InputProps?.startAdornment}
+      endAdornment={InputProps?.endAdornment}
     />
   );
 }
-
-

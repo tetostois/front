@@ -33,8 +33,8 @@ export default function ProfesseurDashboard() {
          icon: <MenuBookIcon sx={{ fontSize: 40 }} />,
          value: data?.moduleTotal || 0,
          label: isFrench ? "Modules assignés" : "Assigned Modules",
-         color: "#667eea",
-         bgColor: "rgba(102, 126, 234, 0.1)"
+         color: "#16a34a",
+         bgColor: "rgba(22, 163, 74, 0.1)"
       },
       {
          icon: <QuestionAnswerIcon sx={{ fontSize: 40 }} />,
@@ -185,8 +185,8 @@ export default function ProfesseurDashboard() {
                                              cursor: "pointer",
                                              transition: "all 0.3s ease",
                                              "&:hover": {
-                                                borderColor: "#667eea",
-                                                boxShadow: "0 4px 12px rgba(102, 126, 234, 0.15)"
+                                                borderColor: "#16a34a",
+                                                boxShadow: "0 4px 12px rgba(22, 163, 74, 0.15)"
                                              }
                                           }}
                                           onClick={() =>
@@ -204,7 +204,7 @@ export default function ProfesseurDashboard() {
                                                 <MenuBookIcon
                                                    sx={{
                                                       fontSize: 24,
-                                                      color: "#667eea",
+                                                      color: "#16a34a",
                                                       mr: 1
                                                    }}
                                                 />

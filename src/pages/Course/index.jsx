@@ -36,7 +36,7 @@ import HeaderContent from "../../composants/HeaderContent";
 import { chapitre, chapitre as chapitreEnDur } from "../../utils/data/index.ts";
 import ReactPlayer from "react-player";
 import Footer from "../../composants/Footer/index.jsx";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { AppContext } from "../../context/index.jsx";
 import { useFetch } from "../../utils/hooks/FetchData/index.jsx";
@@ -47,14 +47,69 @@ import {
 import "./courseCSS.css";
 import { SceletonBigArticle } from "../../composants/Sceletons/index.jsx";
 import SaveComponent from "../../composants/SaveComponent/index.jsx";
-import { ErrorRounded } from "@mui/icons-material";
 //import { Button } from 'bootstrap'
+
+/** Chemins relatifs /elearningapi/... → URL absolue vers l’API (évite localhost:3000 pour les médias). */
+function resolveVideoUrl(raw, serveurURL) {
+   if (!raw || typeof raw !== "string") return raw;
+   const t = raw.trim();
+   if (t.startsWith("http://") || t.startsWith("https://")) return t;
+   try {
+      const base =
+         serveurURL && serveurURL.startsWith("http") ? serveurURL : "http://localhost:9006/elearningapi";
+      return new URL(t, base).href;
+   } catch {
+      return raw;
+   }
+}
+
+/** Sommaire latéral (ancres vers les sections du chapitre). */
+function CourseTocAside({ chapitre, isfrench }) {
+   const items = [];
+   if (chapitre.video) items.push({ id: "course-section-video", label: isfrench ? "Vidéo" : "Video" });
+   if (chapitre.preanbule) items.push({ id: "course-section-preamble", label: isfrench ? "Préambule" : "Preamble" });
+   if (chapitre.texte) items.push({ id: "course-section-text", label: isfrench ? "Cours" : "Lesson" });
+   if (chapitre.blocs && chapitre.blocs.length > 0)
+      items.push({ id: "course-section-blocs", label: isfrench ? "Sections détaillées" : "Detailed sections" });
+   if (chapitre.qcms && chapitre.qcms.length > 0) items.push({ id: "course-section-qcm", label: "QCM" });
+   if (chapitre.qros && chapitre.qros.length > 0)
+      items.push({ id: "course-section-qro", label: isfrench ? "Questions ouvertes" : "Open questions" });
+
+   if (items.length === 0) return null;
+
+   return (
+      <Box
+         component="nav"
+         className="courseTocAside"
+         aria-label={isfrench ? "Sur cette page" : "On this page"}
+      >
+         <Typography variant="subtitle2" component="p" className="courseTocTitle">
+            {isfrench ? "Sur cette page" : "On this page"}
+         </Typography>
+         <ul className="courseTocList">
+            {items.map((it) => (
+               <li key={it.id}>
+                  <a
+                     href={`#${it.id}`}
+                     className="courseTocLink"
+                     onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById(it.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                     }}
+                  >
+                     {it.label}
+                  </a>
+               </li>
+            ))}
+         </ul>
+      </Box>
+   );
+}
 
 export default function Course() {
    const { isOnline, language, user } = useContext(AppContext);
    const { idChapitre } = useParams();
    const { isLoading, data, error } = useFetch("/etudiant/chapitre/" + (user ? user.id : 0) + "/" + idChapitre, "GET");
-   const divTest = <div style={{ height: "100%", width: "100%", backgroundColor: "white" }}></div>;
    var isfrench = language === "FR";
    return (
       <>
@@ -89,7 +144,7 @@ export default function Course() {
                   </Typography>
                </Breadcrumbs>
             </Box>
-            <Row fluid style={{ width: "100vw", margin: 0, padding: 0 }}>
+            <Box component="main" className="coursePageOuter" sx={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>
                {isLoading ? (
                   <SceletonBigArticle />
                ) : error ? (
@@ -97,8 +152,7 @@ export default function Course() {
                ) : (
                   <ViewChapitreNew chapitre={data} />
                )}
-            </Row>
-            {}
+            </Box>
             <Footer />
          </Container>
       </>
@@ -108,13 +162,14 @@ export default function Course() {
 const ViewChapitreNew = ({ chapitre }) => {
    chapitre = chapitre ? chapitre : {};
    const [showAnswer, setShowAnswer] = useState(false);
-   const { isOnline, language, user } = useContext(AppContext);
+   const { isOnline, language, user, serveurURL } = useContext(AppContext);
    var isfrench = language === "FR";
    const [valider, setValider] = useState(false);
    const [isLoading, setIsLoading] = useState(true);
    const [errorVideo, setErrorVideo] = useState(false);
 
    const [activeQCM, setActiveQCM] = useState([]);
+   const videoUrl = chapitre.video ? resolveVideoUrl(chapitre.video, serveurURL) : "";
 
    const handleVideoLoad = () => {
       setIsLoading(false);
@@ -130,47 +185,29 @@ const ViewChapitreNew = ({ chapitre }) => {
    };
 
    return (
-      <div className="bigcontaintCour">
-         <Card className="maindivContaintchapitre">
-            <CardContent>
+      <div className="coursePageShell">
+         <Box className="courseHeroBanner">
+            <Box className="courseHeroInner">
                {chapitre.module?.titre && (
-                  <Box className="titreModuleDiv">
-                     <Chip 
-                        label={chapitre.module.titre}
-                        className="moduleChip"
-                        icon={<MenuBookIcon />}
-                        size="small"
-                     />
-                  </Box>
+                  <Chip
+                     label={chapitre.module.titre}
+                     className="moduleChip courseHeroChip"
+                     icon={<MenuBookIcon />}
+                     size="small"
+                  />
                )}
-               <Box className="titreChapitreDiv">
-                  <Typography variant="h4" className="titrechapitreText">
-                     {chapitre.titre}
-                  </Typography>
-               </Box>
-               {chapitre.preanbule && (
-                  <Box className="preanbulediv">
-                     <Alert 
-                        severity="info" 
-                        icon={<InfoOutlinedIcon />}
-                        sx={{ 
-                           marginBottom: 3,
-                           borderRadius: 2,
-                           backgroundColor: 'rgba(102, 126, 234, 0.08)',
-                           border: '1px solid rgba(102, 126, 234, 0.2)'
-                        }}
-                     >
-                        <AlertTitle sx={{ fontWeight: 600, fontFamily: 'Poppins, sans-serif' }}>
-                           {isfrench ? "Préambule" : "Preamble"}
-                        </AlertTitle>
-                        <Typography sx={{ fontFamily: 'Inter, sans-serif', lineHeight: 1.7 }}>
-                           {chapitre.preanbule}
-                        </Typography>
-                     </Alert>
-                  </Box>
-               )}
+               <Typography component="h1" variant="h4" className="courseHeroTitle">
+                  {chapitre.titre}
+               </Typography>
+            </Box>
+         </Box>
+
+         <div className="courseBodyGrid">
+            <div className="courseMainColumn">
+               <Card className="maindivContaintchapitre">
+                  <CardContent>
                {chapitre.video && (
-                  <Box className="videoContainer">
+                  <Box id="course-section-video" className="courseSectionAnchor videoContainer">
                      {isLoading && (
                         <Box className="videoLoadingContainer">
                            <CircularProgress size={60} />
@@ -191,7 +228,7 @@ const ViewChapitreNew = ({ chapitre }) => {
                      {!errorVideo && (
                         <Box className="reactplayerWrapper">
                            <ReactPlayer
-                              url={chapitre.video}
+                              url={videoUrl}
                               className="reactplayer"
                               controls={true}
                               width="100%"
@@ -204,18 +241,40 @@ const ViewChapitreNew = ({ chapitre }) => {
                   </Box>
                )}
 
+               {chapitre.preanbule && (
+                  <Box id="course-section-preamble" className="courseSectionAnchor preanbulediv">
+                     <Alert
+                        severity="info"
+                        icon={<InfoOutlinedIcon />}
+                        sx={{
+                           marginBottom: 3,
+                           borderRadius: 2,
+                           backgroundColor: "rgba(22, 163, 74, 0.08)",
+                           border: "1px solid rgba(22, 163, 74, 0.2)",
+                        }}
+                     >
+                        <AlertTitle sx={{ fontWeight: 600, fontFamily: "Poppins, sans-serif" }}>
+                           {isfrench ? "Préambule" : "Preamble"}
+                        </AlertTitle>
+                        <Typography sx={{ fontFamily: "Inter, sans-serif", lineHeight: 1.7 }}>
+                           {chapitre.preanbule}
+                        </Typography>
+                     </Alert>
+                  </Box>
+               )}
+
                {chapitre.texte && (
-                  <Box className="texteChapitre">
-                     <Typography 
-                        dangerouslySetInnerHTML={{ __html: chapitre.texte }} 
+                  <Box id="course-section-text" className="courseSectionAnchor texteChapitre">
+                     <Typography
+                        dangerouslySetInnerHTML={{ __html: chapitre.texte }}
                         className="texteCour"
-                        sx={{ fontFamily: 'Inter, sans-serif', lineHeight: 1.8 }}
+                        sx={{ fontFamily: "Inter, sans-serif", lineHeight: 1.8 }}
                      />
                   </Box>
                )}
 
                {chapitre.blocs && chapitre.blocs.length > 0 && (
-                  <Box className="blocsContainer">
+                  <Box id="course-section-blocs" className="courseSectionAnchor blocsContainer">
                      <Divider sx={{ marginY: 4 }}>
                         <Chip 
                            label={isfrench ? "Contenu détaillé" : "Detailed content"}
@@ -241,7 +300,7 @@ const ViewChapitreNew = ({ chapitre }) => {
                            </AccordionSummary>
                            <AccordionDetails className="blocAccordionDetails">
                               <Box className="bloc">
-                                 {bloc.video && <LecteurVideo urlVideo={bloc.video} />}
+                                 {bloc.video && <LecteurVideo urlVideo={bloc.video} serveurURL={serveurURL} />}
                                  {bloc.texte && (
                                     <Box className="texteChapitre">
                                        <Typography 
@@ -274,7 +333,7 @@ const ViewChapitreNew = ({ chapitre }) => {
                )}
 
                {chapitre.qcms && chapitre.qcms.length > 0 && (
-                  <Box className="qcmContainer">
+                  <Box id="course-section-qcm" className="courseSectionAnchor qcmContainer">
                      <Divider sx={{ marginY: 4 }}>
                         <Chip 
                            label={isfrench ? "Questionnaire à choix multiples" : "Multiple Choice Questions"}
@@ -288,8 +347,8 @@ const ViewChapitreNew = ({ chapitre }) => {
                         sx={{ 
                            marginBottom: 3,
                            borderRadius: 2,
-                           backgroundColor: 'rgba(102, 126, 234, 0.08)',
-                           border: '1px solid rgba(102, 126, 234, 0.2)'
+                           backgroundColor: 'rgba(22, 163, 74, 0.08)',
+                           border: '1px solid rgba(22, 163, 74, 0.2)'
                         }}
                      >
                         <Typography sx={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', fontStyle: 'italic' }}>
@@ -321,7 +380,15 @@ const ViewChapitreNew = ({ chapitre }) => {
                )}
             </CardContent>
          </Card>
-         <QROBloc chapitre={chapitre} />
+               <Box
+                  id={chapitre.qros && chapitre.qros.length > 0 ? "course-section-qro" : undefined}
+                  className="courseQroColumnWrap"
+               >
+                  <QROBloc chapitre={chapitre} />
+               </Box>
+            </div>
+            <CourseTocAside chapitre={chapitre} isfrench={isfrench} />
+         </div>
       </div>
    );
 };
@@ -390,9 +457,9 @@ const DisplayQCM = ({ qcm, index, activeQCM, setActiveQCM, showAnswer }) => {
                         onChange={(event) => changeValueSelected(event, proposition.id)}
                         className="qcmCheckbox"
                         sx={{
-                           color: showAnswer && proposition.etat > 0 ? '#48bb78' : showAnswer && proposition.etat <= 0 ? '#f56565' : '#667eea',
+                           color: showAnswer && proposition.etat > 0 ? '#48bb78' : showAnswer && proposition.etat <= 0 ? '#f56565' : '#16a34a',
                            '&.Mui-checked': {
-                              color: showAnswer && proposition.etat > 0 ? '#48bb78' : showAnswer && proposition.etat <= 0 ? '#f56565' : '#667eea',
+                              color: showAnswer && proposition.etat > 0 ? '#48bb78' : showAnswer && proposition.etat <= 0 ? '#f56565' : '#16a34a',
                            }
                         }}
                      />
@@ -456,17 +523,17 @@ const Validation = ({ activeQCM, setShowAnswer, idChapitre }) => {
             onClick={handleClickOpen}
             startIcon={<CheckCircleOutlineIcon />}
             sx={{
-               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+               background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                fontWeight: 600,
                textTransform: 'none',
                fontSize: '16px',
                padding: '12px 32px',
                borderRadius: '12px',
-               boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+               boxShadow: '0 4px 12px rgba(22, 163, 74, 0.3)',
                '&:hover': {
-                  background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                  background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 16px rgba(102, 126, 234, 0.4)',
+                  boxShadow: '0 8px 16px rgba(22, 163, 74, 0.4)',
                },
                transition: 'all 0.3s ease'
             }}
@@ -622,8 +689,8 @@ const QROBloc = ({ chapitre }) => {
                      sx={{ 
                         marginBottom: 3,
                         borderRadius: 2,
-                        backgroundColor: 'rgba(102, 126, 234, 0.08)',
-                        border: '1px solid rgba(102, 126, 234, 0.2)'
+                        backgroundColor: 'rgba(22, 163, 74, 0.08)',
+                        border: '1px solid rgba(22, 163, 74, 0.2)'
                      }}
                   >
                      <Typography sx={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', fontStyle: 'italic' }}>
@@ -664,17 +731,17 @@ const QROBloc = ({ chapitre }) => {
                         onClick={validationReponseQro}
                         startIcon={<QuestionAnswerIcon />}
                         sx={{
-                           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                           background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                            fontWeight: 600,
                            textTransform: 'none',
                            fontSize: '16px',
                            padding: '12px 32px',
                            borderRadius: '12px',
-                           boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                           boxShadow: '0 4px 12px rgba(22, 163, 74, 0.3)',
                            '&:hover': {
-                              background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                              background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                               transform: 'translateY(-2px)',
-                              boxShadow: '0 8px 16px rgba(102, 126, 234, 0.4)',
+                              boxShadow: '0 8px 16px rgba(22, 163, 74, 0.4)',
                            },
                            transition: 'all 0.3s ease'
                         }}
@@ -685,7 +752,6 @@ const QROBloc = ({ chapitre }) => {
                </CardContent>
             </Card>
          )}
-         {save && <span>save is true</span>}
          {save && (
             <SaveComponent
                setSave={setSave}
@@ -829,7 +895,7 @@ const DisplayQRO = ({ qro, index, formLinksQRO, setFormLinksQRO, update }) => {
    );
 };
 
-const LecteurVideo = ({ urlVideo }) => {
+const LecteurVideo = ({ urlVideo, serveurURL: serveurURLProp }) => {
    const [isLoading, setIsLoading] = useState(true);
    const [errorVideo, setErrorVideo] = useState(false);
 
@@ -841,7 +907,9 @@ const LecteurVideo = ({ urlVideo }) => {
       setErrorVideo(true);
       setIsLoading(false);
    };
-   const { language } = useContext(AppContext);
+   const { language, serveurURL: serveurURLCtx } = useContext(AppContext);
+   const serveurURL = serveurURLProp ?? serveurURLCtx;
+   const resolvedUrl = urlVideo ? resolveVideoUrl(urlVideo, serveurURL) : "";
    var isfrench = language === "FR";
    
    return (
@@ -866,7 +934,7 @@ const LecteurVideo = ({ urlVideo }) => {
          {!errorVideo && (
             <Box className="reactplayerWrapper">
                <ReactPlayer
-                  url={urlVideo}
+                  url={resolvedUrl}
                   className="reactplayer"
                   controls={true}
                   width="100%"

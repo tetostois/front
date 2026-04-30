@@ -106,7 +106,13 @@ export function useFetch(url, method, body, param, update, isMultipart) {
                console.error(`HTTP Error: ${response.status} ${response.statusText} for ${method} ${allPath}`);
                const errorData = await response.json().catch(() => ({ message: `HTTP ${response.status}: ${response.statusText}` }));
                setData(errorData);
-               setError(true);
+               // 406 = ElearningException (ex. login refusé) : corps ErrorAPI avec message — pas une panne serveur
+               const isErrorApiBody =
+                  response.status === 406 &&
+                  errorData &&
+                  typeof errorData.errorAPI !== "undefined" &&
+                  errorData.errorAPI;
+               setError(!isErrorApiBody);
                return;
             }
             

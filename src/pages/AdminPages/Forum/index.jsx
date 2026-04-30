@@ -103,7 +103,7 @@ export default function Forum() {
                             sx={{
                                 width: 32,
                                 height: 32,
-                                bgcolor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                bgcolor: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                 fontSize: 12,
                                 fontWeight: 600
                             }}
@@ -172,8 +172,8 @@ export default function Forum() {
                 </TableCell>
                 <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <ReplyIcon sx={{ fontSize: 16, color: '#667eea' }} />
-                        <Typography variant="body2" sx={{ color: '#667eea', fontWeight: 500 }}>
+                        <ReplyIcon sx={{ fontSize: 16, color: '#16a34a' }} />
+                        <Typography variant="body2" sx={{ color: '#16a34a', fontWeight: 500 }}>
                             {repliesCount}
                         </Typography>
                     </Box>
@@ -187,11 +187,11 @@ export default function Forum() {
                         sx={{
                             textTransform: 'none',
                             borderRadius: '8px',
-                            borderColor: '#667eea',
-                            color: '#667eea',
+                            borderColor: '#16a34a',
+                            color: '#16a34a',
                             '&:hover': {
-                                borderColor: '#764ba2',
-                                backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                borderColor: '#15803d',
+                                backgroundColor: 'rgba(22, 163, 74, 0.1)'
                             }
                         }}
                     >

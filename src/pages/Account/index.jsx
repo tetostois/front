@@ -1,44 +1,76 @@
 import React, { useContext, useState } from "react";
 import Header from "../../composants/Header";
+import HeaderContent from "../../composants/HeaderContent";
 import Footer from "../../composants/Footer";
-import { Container, Row, Col } from "react-bootstrap";
-import { 
-   Box, 
-   Card, 
-   CardContent, 
-   Typography, 
-   Divider, 
-   Button, 
-   TextField, 
-   Dialog, 
-   DialogTitle, 
-   DialogContent, 
+import { Link } from "react-router-dom";
+import {
+   Box,
+   Breadcrumbs,
+   Card,
+   CardContent,
+   Typography,
+   Divider,
+   Button,
+   Dialog,
+   DialogTitle,
+   DialogContent,
    DialogActions,
    Alert,
    IconButton,
    Chip,
-   Grid
+   Grid,
 } from "@mui/material";
-import { 
-   AccountCircle, 
-   Email, 
-   Phone, 
-   Business, 
-   Badge, 
-   Edit, 
-   Lock, 
-   Save, 
-   Close,
+import HomeIcon from "@mui/icons-material/Home";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import PersonIcon from "@mui/icons-material/Person";
+import { FormTextInput } from "../../composants/UiInputs";
+import {
+   Email,
+   Phone,
+   Business,
+   Badge,
+   Lock,
+   Save,
    Person,
-   CalendarToday,
-   LocationOn
 } from "@mui/icons-material";
 import { AppContext } from "../../context";
-import { useFetch } from "../../utils/hooks/FetchData";
-import { MessageErrorServeur } from "../../composants/MessageComponent";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import "./accountCSS.css";
+
+function AccountTocAside({ isFrench }) {
+   const items = [
+      { id: "account-section-profile", label: isFrench ? "Informations personnelles" : "Personal information" },
+      { id: "account-section-security", label: isFrench ? "Sécurité" : "Security" },
+   ];
+   return (
+      <Box
+         component="nav"
+         className="accountTocAside"
+         aria-label={isFrench ? "Sur cette page" : "On this page"}
+      >
+         <Typography variant="subtitle2" component="p" className="accountTocTitle">
+            {isFrench ? "Sur cette page" : "On this page"}
+         </Typography>
+         <ul className="accountTocList">
+            {items.map((it) => (
+               <li key={it.id}>
+                  <a
+                     href={`#${it.id}`}
+                     className="accountTocLink"
+                     onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById(it.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                     }}
+                  >
+                     {it.label}
+                  </a>
+               </li>
+            ))}
+         </ul>
+      </Box>
+   );
+}
 
 export default function Account() {
    const { user, language, serveurURL } = useContext(AppContext);
@@ -58,16 +90,6 @@ export default function Account() {
    const [passwordSuccess, setPasswordSuccess] = useState(false);
    const [savingPassword, setSavingPassword] = useState(false);
    const [codeSent, setCodeSent] = useState(false);
-
-   const formatDate = (dateString) => {
-      if (!dateString) return "-";
-      const date = new Date(dateString);
-      return date.toLocaleDateString(isFrench ? "fr-FR" : "en-US", {
-         year: "numeric",
-         month: "long",
-         day: "numeric"
-      });
-   };
 
    const handleRequestCode = async () => {
       setPasswordError(null);
@@ -159,15 +181,17 @@ export default function Account() {
       return (
          <>
             <Header />
-            <Container fluid className="accountContainer">
-               <Box className="accountEmptyState">
-                  <Alert severity="warning">
-                     {isFrench 
-                        ? "Vous devez être connecté pour accéder à cette page" 
-                        : "You must be logged in to access this page"}
-                  </Alert>
-               </Box>
-            </Container>
+            <Box component="main" className="accountPageOuter">
+               <div className="accountPageShell accountPageShell--empty">
+                  <Box className="accountEmptyState">
+                     <Alert severity="warning">
+                        {isFrench
+                           ? "Vous devez être connecté pour accéder à cette page"
+                           : "You must be logged in to access this page"}
+                     </Alert>
+                  </Box>
+               </div>
+            </Box>
             <Footer />
          </>
       );
@@ -176,34 +200,65 @@ export default function Account() {
    return (
       <>
          <Header />
-         <Container fluid className="accountContainer">
-            <Row className="accountHeaderRow">
-               <Col xs={12}>
-                  <Box className="accountHeader">
-                     <AccountCircle sx={{ fontSize: 64, color: "#667eea" }} />
-                     <Typography variant="h4" className="accountTitle">
-                        {isFrench ? "Mon Compte" : "My Account"}
+         <HeaderContent />
+         <Box className="breadcrumbContainer">
+            <Breadcrumbs
+               separator={<NavigateNextIcon fontSize="small" />}
+               aria-label="breadcrumb"
+               sx={{
+                  "& .MuiBreadcrumbs-separator": { margin: "0 8px" },
+               }}
+            >
+               <Link to="/dashboard" className="breadcrumbLink">
+                  <HomeIcon sx={{ fontSize: 18, marginRight: 0.5, verticalAlign: "middle" }} />
+                  {isFrench ? "Tableau de bord" : "Dashboard"}
+               </Link>
+               <Typography className="breadcrumbCurrent" color="text.primary">
+                  <PersonIcon sx={{ fontSize: 18, marginRight: 0.5, verticalAlign: "middle" }} />
+                  {isFrench ? "Mon compte" : "My account"}
+               </Typography>
+            </Breadcrumbs>
+         </Box>
+         <Box component="main" className="accountPageOuter">
+            <div className="accountPageShell">
+               <Box className="accountHeroBanner">
+                  <Box className="accountHeroInner">
+                     <Chip
+                        className="accountHeroChip"
+                        label={user.profession || (isFrench ? "Profil" : "Profile")}
+                        size="small"
+                        sx={{
+                           background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                           color: "#fff",
+                           fontWeight: 600,
+                        }}
+                     />
+                     <Typography component="h1" variant="h4" className="accountHeroTitle">
+                        {user.prenom} {user.nom}
                      </Typography>
-                     <Typography variant="body1" className="accountSubtitle">
-                        {isFrench 
-                           ? "Gérez vos informations personnelles et vos paramètres" 
-                           : "Manage your personal information and settings"}
+                     <Typography variant="body1" className="accountHeroSubtitle">
+                        {isFrench
+                           ? "Mon compte — informations personnelles et sécurité"
+                           : "My account — profile and security"}
                      </Typography>
                   </Box>
-               </Col>
-            </Row>
+               </Box>
 
-            <Row className="accountContentRow">
-               <Col xs={12} md={8}>
-                  <Card className="accountInfoCard">
+               <div className="accountBodyGrid">
+                  <div className="accountMainColumn">
+                     <Card
+                        id="account-section-profile"
+                        className="accountInfoCard accountSectionAnchor"
+                        elevation={0}
+                     >
                      <CardContent>
                         <Box className="cardHeader">
-                           <Typography variant="h5" className="cardTitle">
-                              {isFrench ? "Informations Personnelles" : "Personal Information"}
+                           <Typography variant="h5" component="h2" className="cardTitle">
+                              {isFrench ? "Informations personnelles" : "Personal information"}
                            </Typography>
-                           <Chip 
-                              label={user.profession || (isFrench ? "Non spécifié" : "Not specified")} 
-                              color="primary" 
+                           <Chip
+                              label={user.profession || (isFrench ? "Non spécifié" : "Not specified")}
+                              color="primary"
                               size="small"
                            />
                         </Box>
@@ -284,52 +339,64 @@ export default function Account() {
                         </Grid>
                      </CardContent>
                   </Card>
-               </Col>
+                  </div>
 
-               <Col xs={12} md={4}>
-                  <Card className="accountActionsCard">
-                     <CardContent>
-                        <Typography variant="h6" className="cardTitle">
-                           {isFrench ? "Actions" : "Actions"}
-                        </Typography>
-                        <Divider sx={{ marginY: 2 }} />
-                        <Button
-                           fullWidth
-                           variant="contained"
-                           startIcon={<Lock />}
-                           onClick={() => setOpenPasswordDialog(true)}
-                           className="actionButton"
-                           sx={{
-                              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                              borderRadius: "12px",
-                              padding: "12px 24px",
-                              textTransform: "none",
-                              fontWeight: 600,
-                              fontSize: "16px",
-                              marginBottom: 2,
-                              "&:hover": {
-                                 background: "linear-gradient(135deg, #5568d3 0%, #6a3d8f 100%)",
-                                 transform: "translateY(-2px)",
-                                 boxShadow: "0 8px 16px rgba(102, 126, 234, 0.3)"
-                              }
-                           }}
-                        >
-                           {isFrench ? "Changer le mot de passe" : "Change Password"}
-                        </Button>
-                     </CardContent>
-                  </Card>
-               </Col>
-            </Row>
-         </Container>
+                  <aside className="accountAsideColumn">
+                     <AccountTocAside isFrench={isFrench} />
+                     <Card
+                        id="account-section-security"
+                        className="accountActionsCard accountSectionAnchor"
+                        elevation={0}
+                     >
+                        <CardContent>
+                           <Typography variant="h6" component="h2" className="cardTitle">
+                              {isFrench ? "Sécurité" : "Security"}
+                           </Typography>
+                           <Typography variant="body2" color="text.secondary" sx={{ mb: 2, mt: 0.5 }}>
+                              {isFrench
+                                 ? "Mettez à jour votre mot de passe pour protéger votre compte."
+                                 : "Update your password to keep your account safe."}
+                           </Typography>
+                           <Divider sx={{ marginY: 2 }} />
+                           <Button
+                              fullWidth
+                              variant="contained"
+                              startIcon={<Lock />}
+                              onClick={() => setOpenPasswordDialog(true)}
+                              className="actionButton"
+                              sx={{
+                                 background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                                 borderRadius: "12px",
+                                 padding: "12px 24px",
+                                 textTransform: "none",
+                                 fontWeight: 600,
+                                 fontSize: "16px",
+                                 "&:hover": {
+                                    background: "linear-gradient(135deg, #15803d 0%, #166534 100%)",
+                                    transform: "translateY(-2px)",
+                                    boxShadow: "0 8px 16px rgba(22, 163, 74, 0.3)",
+                                 },
+                              }}
+                           >
+                              {isFrench ? "Changer le mot de passe" : "Change Password"}
+                           </Button>
+                        </CardContent>
+                     </Card>
+                  </aside>
+               </div>
+            </div>
+         </Box>
 
          {/* Dialog pour changer le mot de passe */}
          <Dialog 
             open={openPasswordDialog} 
             onClose={() => {
                setOpenPasswordDialog(false);
-               setPasswordForm({ oldPassword: "", newPassword: "", confirmPassword: "" });
+               setPasswordForm({ code: "", newPassword: "", confirmPassword: "" });
                setPasswordError(null);
                setPasswordSuccess(false);
+               setPasswordStep(1);
+               setCodeSent(false);
             }}
             maxWidth="sm"
             fullWidth
@@ -342,7 +409,7 @@ export default function Account() {
          >
             <DialogTitle>
                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <Lock sx={{ color: "#667eea" }} />
+                  <Lock sx={{ color: "#16a34a" }} />
                   <Typography variant="h6" sx={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
                      {isFrench ? "Changer le mot de passe" : "Change Password"}
                   </Typography>
@@ -376,60 +443,45 @@ export default function Account() {
                               : "Code sent! Check your email."}
                         </Alert>
                      )}
-                     <TextField
+                     <FormTextInput
                         fullWidth
                         label={isFrench ? "Code de réinitialisation" : "Reset Code"}
                         value={passwordForm.code}
                         onChange={(e) => setPasswordForm({ ...passwordForm, code: e.target.value })}
-                        sx={{
-                           "& .MuiOutlinedInput-root": {
-                              borderRadius: "12px"
-                           }
-                        }}
                      />
-                     <TextField
+                     <FormTextInput
                         fullWidth
                         label={isFrench ? "Nouveau mot de passe" : "New Password"}
                         type={showPassword.new ? "text" : "password"}
                         value={passwordForm.newPassword}
                         onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
-                        InputProps={{
-                           endAdornment: (
-                              <IconButton
-                                 onClick={() => setShowPassword({ ...showPassword, new: !showPassword.new })}
-                                 edge="end"
-                              >
-                                 {showPassword.new ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
-                              </IconButton>
-                           )
-                        }}
-                        sx={{
-                           "& .MuiOutlinedInput-root": {
-                              borderRadius: "12px"
-                           }
-                        }}
+                        endAdornment={
+                           <IconButton
+                              onClick={() => setShowPassword({ ...showPassword, new: !showPassword.new })}
+                              edge="end"
+                              size="small"
+                              aria-label="toggle password"
+                           >
+                              {showPassword.new ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
+                           </IconButton>
+                        }
                      />
-                     <TextField
+                     <FormTextInput
                         fullWidth
                         label={isFrench ? "Confirmer le mot de passe" : "Confirm Password"}
                         type={showPassword.confirm ? "text" : "password"}
                         value={passwordForm.confirmPassword}
                         onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
-                        InputProps={{
-                           endAdornment: (
-                              <IconButton
-                                 onClick={() => setShowPassword({ ...showPassword, confirm: !showPassword.confirm })}
-                                 edge="end"
-                              >
-                                 {showPassword.confirm ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
-                              </IconButton>
-                           )
-                        }}
-                        sx={{
-                           "& .MuiOutlinedInput-root": {
-                              borderRadius: "12px"
-                           }
-                        }}
+                        endAdornment={
+                           <IconButton
+                              onClick={() => setShowPassword({ ...showPassword, confirm: !showPassword.confirm })}
+                              edge="end"
+                              size="small"
+                              aria-label="toggle confirm password"
+                           >
+                              {showPassword.confirm ? <VisibilityOutlinedIcon /> : <VisibilityOffOutlinedIcon />}
+                           </IconButton>
+                        }
                      />
                   </Box>
                )}
@@ -458,7 +510,7 @@ export default function Account() {
                      variant="contained"
                      disabled={savingPassword}
                      sx={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         borderRadius: "12px",
                         textTransform: "none",
                         fontWeight: 600,
@@ -478,7 +530,7 @@ export default function Account() {
                      startIcon={<Save />}
                      disabled={savingPassword}
                      sx={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         borderRadius: "12px",
                         textTransform: "none",
                         fontWeight: 600,

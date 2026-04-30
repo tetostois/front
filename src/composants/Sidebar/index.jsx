@@ -25,7 +25,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogoutIcon from "@mui/icons-material/Logout";
-import HomeIcon from "@mui/icons-material/Home";
 import "./Sidebar.css";
 
 function Sidebar({ setLarge, large }) {
@@ -39,8 +38,8 @@ function Sidebar({ setLarge, large }) {
     const getSidebarItems = () => {
         if (!isProfessor) return SidebarDatas;
 
-        const hiddenTitles = ["Contenu de formation", "Professeur", "Media"];
-        const hiddenPaths = ["/mail"];
+        const hiddenTitles = ["Contenu de formation", "Professeur", "Media", "Parametre"];
+        const hiddenPaths = ["/mail", "/setting"];
         const hiddenSubPaths = ["/modules", "/cours", "/professeurs", "/professeur", "/rubrique", "/article"];
 
         return SidebarDatas
@@ -103,9 +102,9 @@ function Sidebar({ setLarge, large }) {
                         onClick={() => setLarge(!large)}
                         className="modernSidebarMenuButton"
                         sx={{
-                            color: "#fff",
+                            color: "#1f2937",
                             "&:hover": {
-                                backgroundColor: "rgba(255, 255, 255, 0.1)"
+                                backgroundColor: "rgba(22, 163, 74, 0.1)"
                             }
                         }}
                     >
@@ -113,33 +112,23 @@ function Sidebar({ setLarge, large }) {
                     </IconButton>
                     <Box className="modernSidebarLogo">
                         <img
-                            alt="Logo IRI"
-                            src="/images/logoprogrammeleadership.png"
+                            alt="Logo du programme leadership"
+                            src="/images/logos02.png"
                             className="modernSidebarLogoImage"
+                            onClick={() => navigation("/dashboard")}
+                            style={{ cursor: "pointer" }}
                         />
                     </Box>
                 </Box>
                 <Box className="modernSidebarNavbarRight">
-                    <Tooltip title={isFrench ? "Accueil" : "Home"}>
-                        <IconButton
-                            onClick={() => navigation("/home/")}
-                            sx={{
-                                color: "#fff",
-                                "&:hover": {
-                                    backgroundColor: "rgba(255, 255, 255, 0.1)"
-                                }
-                            }}
-                        >
-                            <HomeIcon />
-                        </IconButton>
-                    </Tooltip>
                     {user && (
                         <Box className="modernSidebarUserInfo">
                             <Avatar
                                 sx={{
                                     width: 32,
                                     height: 32,
-                                    bgcolor: "rgba(255, 255, 255, 0.2)",
+                                    bgcolor: "#16a34a",
+                                    color: "#fff",
                                     fontSize: 14,
                                     fontWeight: 600
                                 }}
@@ -155,9 +144,9 @@ function Sidebar({ setLarge, large }) {
                         <IconButton
                             onClick={deconnexion}
                             sx={{
-                                color: "#fff",
+                                color: "#dc2626",
                                 "&:hover": {
-                                    backgroundColor: "rgba(255, 255, 255, 0.1)"
+                                    backgroundColor: "rgba(220, 38, 38, 0.08)"
                                 }
                             }}
                         >
@@ -178,9 +167,9 @@ function Sidebar({ setLarge, large }) {
                     "& .MuiDrawer-paper": {
                         width: drawerWidth,
                         boxSizing: "border-box",
-                        backgroundColor: "#1a1a2e",
+                        backgroundColor: "#1e293b",
                         color: "#fff",
-                        borderRight: "1px solid rgba(255, 255, 255, 0.1)"
+                        borderRight: "1px solid rgba(148, 163, 184, 0.2)"
                     }
                 }}
                 className="modernSidebarDrawer"
@@ -222,18 +211,18 @@ function Sidebar({ setLarge, large }) {
                                             sx={{
                                                 minHeight: 48,
                                                 "&:hover": {
-                                                    backgroundColor: "rgba(102, 126, 234, 0.1)"
+                                                    backgroundColor: "rgba(34, 197, 94, 0.12)"
                                                 },
                                                 backgroundColor: isItemActive
-                                                    ? "rgba(102, 126, 234, 0.2)"
+                                                    ? "rgba(34, 197, 94, 0.18)"
                                                     : "transparent",
-                                                borderLeft: isItemActive ? "4px solid #667eea" : "4px solid transparent"
+                                                borderLeft: isItemActive ? "4px solid #22c55e" : "4px solid transparent"
                                             }}
                                         >
                                             <ListItemIcon
                                                 sx={{
                                                     minWidth: 40,
-                                                    color: isItemActive ? "#667eea" : "rgba(255, 255, 255, 0.7)"
+                                                    color: isItemActive ? "#4ade80" : "rgba(248, 250, 252, 0.75)"
                                                 }}
                            >
                               {item.icon}
@@ -270,10 +259,10 @@ function Sidebar({ setLarge, large }) {
                                                                 pl: 6,
                                                                 minHeight: 40,
                                                                 "&:hover": {
-                                                                    backgroundColor: "rgba(102, 126, 234, 0.1)"
+                                                                    backgroundColor: "rgba(34, 197, 94, 0.1)"
                                                                 },
                                                                 backgroundColor: isSubActive
-                                                                    ? "rgba(102, 126, 234, 0.15)"
+                                                                    ? "rgba(34, 197, 94, 0.14)"
                                                                     : "transparent"
                                                             }}
                                                         >
@@ -283,8 +272,8 @@ function Sidebar({ setLarge, large }) {
                                                                     fontSize: 13,
                                                                     fontWeight: isSubActive ? 500 : 400,
                                                                     color: isSubActive
-                                                                        ? "#667eea"
-                                                                        : "rgba(255, 255, 255, 0.8)"
+                                                                        ? "#86efac"
+                                                                        : "rgba(248, 250, 252, 0.85)"
                                                                 }}
                                                             />
                                                         </ListItemButton>

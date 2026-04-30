@@ -19,6 +19,13 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { MessageErrorServeur } from '../../../../composants/MessageComponent';
 import { useFetch } from '../../../../utils/hooks/FetchData';
 import { SaveFormProfesseur, FormProfesseur } from '../CreateProfesseur';
+import {
+    adminBreadcrumbRootSx,
+    adminBreadcrumbLinkSx,
+    adminBreadcrumbCurrentSx,
+    adminCancelButtonSx,
+    adminPrimarySaveButtonSx
+} from '../../../../utils/adminPageStyles';
 
 export default function AlterProfesseur() {
     const { matricule } = useParams();
@@ -64,90 +71,67 @@ export default function AlterProfesseur() {
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <EditIcon className="adminPageHeaderIcon" />
-                    </Box>
-                    <Box>
-                        <Breadcrumbs
-                            separator={<NavigateNextIcon fontSize="small" />}
-                            aria-label="breadcrumb"
-                            sx={{ mb: 1, color: 'rgba(255, 255, 255, 0.8)' }}
-                        >
-                            <MuiLink
-                                component="button"
-                                variant="body2"
-                                onClick={() => navigation('/professeurs')}
-                                sx={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', cursor: 'pointer' }}
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <EditIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Breadcrumbs
+                                separator={<NavigateNextIcon fontSize="small" sx={{ color: '#94a3b8' }} />}
+                                aria-label="breadcrumb"
+                                sx={adminBreadcrumbRootSx}
                             >
-                                {isFrench ? 'Professeurs' : 'Teachers'}
-                            </MuiLink>
-                            <MuiLink
-                                component="button"
-                                variant="body2"
-                                onClick={() => navigation(`/professeur/${matricule}`)}
-                                sx={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', cursor: 'pointer' }}
-                            >
-                                {fetchProfesseur.data?.professeur?.nom || matricule}
-                            </MuiLink>
-                            <Typography variant="body2" sx={{ color: '#fff', fontWeight: 500 }}>
-                                {isFrench ? 'Modifier' : 'Edit'}
+                                <MuiLink
+                                    component="button"
+                                    variant="body2"
+                                    onClick={() => navigation('/professeurs')}
+                                    sx={adminBreadcrumbLinkSx}
+                                >
+                                    {isFrench ? 'Professeurs' : 'Teachers'}
+                                </MuiLink>
+                                <MuiLink
+                                    component="button"
+                                    variant="body2"
+                                    onClick={() => navigation(`/professeur/${matricule}`)}
+                                    sx={adminBreadcrumbLinkSx}
+                                >
+                                    {fetchProfesseur.data?.professeur?.nom || matricule}
+                                </MuiLink>
+                                <Typography variant="body2" sx={adminBreadcrumbCurrentSx}>
+                                    {isFrench ? 'Modifier' : 'Edit'}
+                                </Typography>
+                            </Breadcrumbs>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Modifier un Professeur' : 'Edit Teacher'}
                             </Typography>
-                        </Breadcrumbs>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Modifier un Professeur' : 'Edit Teacher'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Modifiez les informations du professeur'
-                                : 'Modify teacher information'}
-                        </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Modifiez les informations du professeur'
+                                    : 'Modify teacher information'}
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button
-                        variant="outlined"
-                        startIcon={<CancelIcon />}
-                        onClick={handleCancel}
-                        sx={{
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            borderColor: 'rgba(255, 255, 255, 0.5)',
-                            color: '#fff',
-                            '&:hover': {
-                                borderColor: '#fff',
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px'
-                        }}
-                    >
-                        {isFrench ? 'Annuler' : 'Cancel'}
-                    </Button>
-                    <Button
-                        variant="contained"
-                        startIcon={<SaveIcon />}
-                        onClick={handleSave}
-                        disabled={save || fetchProfesseur.isLoading}
-                        sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                            '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
-                                boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
-                            },
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px',
-                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {isFrench ? 'Enregistrer' : 'Save'}
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexShrink: 0, flexWrap: 'wrap' }}>
+                        <Button
+                            variant="outlined"
+                            startIcon={<CancelIcon />}
+                            onClick={handleCancel}
+                            sx={adminCancelButtonSx}
+                        >
+                            {isFrench ? 'Annuler' : 'Cancel'}
+                        </Button>
+                        <Button
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            onClick={handleSave}
+                            disabled={save || fetchProfesseur.isLoading}
+                            sx={adminPrimarySaveButtonSx}
+                        >
+                            {isFrench ? 'Enregistrer' : 'Save'}
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
 
@@ -156,7 +140,7 @@ export default function AlterProfesseur() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des données...' : 'Loading data...'}
                             </Typography>

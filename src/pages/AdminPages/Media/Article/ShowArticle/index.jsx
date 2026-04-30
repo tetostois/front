@@ -18,10 +18,9 @@ import {
    DialogTitle,
    DialogContent,
    DialogActions,
-   TextField,
    Paper,
-   InputAdornment,
 } from "@mui/material";
+import { FormTextInput } from "../../../../../composants/UiInputs";
 import React, { useState, useContext } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { MessageErrorServeur } from "../../../../../composants/MessageComponent";
@@ -104,9 +103,9 @@ export default function ShowArticle() {
                startIcon={<EditIcon />}
                onClick={handleModifierClick}
                sx={{
-                  background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                   "&:hover": {
-                     background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                     background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                      boxShadow: "0 6px 12px rgba(56, 249, 215, 0.3)",
                   },
                   textTransform: "none",
@@ -127,7 +126,7 @@ export default function ShowArticle() {
                <Box className="adminPageLoading">
                   <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                      <Box sx={{ textAlign: "center" }}>
-                        <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                        <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                         <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                            {isFrench ? "Chargement de l'article..." : "Loading article..."}
                         </Typography>
@@ -145,7 +144,7 @@ export default function ShowArticle() {
                      <Card sx={{ borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}>
                         <CardContent sx={{ p: 3 }}>
                            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                              <FolderIcon sx={{ fontSize: 28, color: "#667eea" }} />
+                              <FolderIcon sx={{ fontSize: 28, color: "#16a34a" }} />
                               <Box>
                                  <Typography variant="body2" sx={{ color: "#718096", mb: 0.5 }}>
                                     {isFrench ? "Rubrique" : "Rubrique"}
@@ -189,7 +188,7 @@ export default function ShowArticle() {
                               </Grid>
                               <Grid item xs={12} sm={6}>
                                  <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-                                    <CalendarTodayIcon sx={{ fontSize: 20, color: "#667eea" }} />
+                                    <CalendarTodayIcon sx={{ fontSize: 20, color: "#16a34a" }} />
                                     <Box>
                                        <Typography variant="body2" sx={{ color: "#718096" }}>
                                           {isFrench ? "Créé le" : "Created on"}
@@ -276,7 +275,7 @@ export default function ShowArticle() {
                                  <Chip
                                     label={data.surTitre}
                                     sx={{
-                                       backgroundColor: "#667eea",
+                                       backgroundColor: "#16a34a",
                                        color: "#fff",
                                        fontWeight: 600,
                                        fontSize: "14px",
@@ -347,7 +346,7 @@ export default function ShowArticle() {
                      <Card sx={{ borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}>
                         <CardContent sx={{ p: 3 }}>
                            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-                              <PersonIcon sx={{ fontSize: 24, color: "#667eea" }} />
+                              <PersonIcon sx={{ fontSize: 24, color: "#16a34a" }} />
                               <Typography variant="h6" sx={{ fontWeight: 600, color: "#1a202c" }}>
                                  {isFrench ? "Informations sur l'auteur" : "Author Information"}
                               </Typography>
@@ -382,7 +381,7 @@ export default function ShowArticle() {
                      <Card sx={{ borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}>
                         <CardContent sx={{ p: 3 }}>
                            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-                              <LinkIcon sx={{ fontSize: 24, color: "#667eea" }} />
+                              <LinkIcon sx={{ fontSize: 24, color: "#16a34a" }} />
                               <Typography variant="h6" sx={{ fontWeight: 600, color: "#1a202c" }}>
                                  {isFrench ? "Lien public de l'article" : "Article Public Link"}
                               </Typography>
@@ -417,7 +416,7 @@ export default function ShowArticle() {
                                        }
                                     }}
                                     sx={{
-                                       backgroundColor: "#667eea",
+                                       backgroundColor: "#16a34a",
                                        color: "#fff",
                                        "&:hover": {
                                           backgroundColor: "#5568d3",
@@ -613,7 +612,7 @@ const ViewTitreImageArticle = ({ idImage, image, setUpdate, isFrench }) => {
          >
             <DialogTitle
                sx={{
-                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                   color: "#fff",
                   fontWeight: 600,
                }}
@@ -650,25 +649,14 @@ const ViewTitreImageArticle = ({ idImage, image, setUpdate, isFrench }) => {
                   />
                )}
 
-               <TextField
+               <FormTextInput
                   fullWidth
+                  className="mt-2"
                   label={isFrench ? "Titre de l'image" : "Image Title"}
                   placeholder={isFrench ? "Description de l'image" : "Image description"}
                   value={newTitre}
                   onChange={(e) => {
                      setNewTitre(e.target.value || "");
-                  }}
-                  sx={{
-                     mt: 2,
-                     "& .MuiOutlinedInput-root": {
-                        borderRadius: "12px",
-                        "& input": {
-                           color: "#1a202c",
-                        },
-                     },
-                     "& .MuiInputLabel-root": {
-                        color: "#718096",
-                     },
                   }}
                />
             </DialogContent>
@@ -688,9 +676,9 @@ const ViewTitreImageArticle = ({ idImage, image, setUpdate, isFrench }) => {
                   onClick={handleSave}
                   variant="contained"
                   sx={{
-                     background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                      "&:hover": {
-                        background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                         boxShadow: "0 6px 12px rgba(56, 249, 215, 0.3)",
                      },
                      textTransform: "none",

@@ -51,7 +51,7 @@ export default function ArticlePublic() {
                <Container maxWidth="xl">
                   <Box sx={{ marginBottom: 2 }}>
                      <Box sx={{ display: "flex", alignItems: "center", gap: 2, marginBottom: 2 }}>
-                        <ArticleIcon sx={{ fontSize: 28, color: "#667eea" }} />
+                        <ArticleIcon sx={{ fontSize: 28, color: "#16a34a" }} />
                         <Typography 
                            variant="h6" 
                            sx={{ 
@@ -103,10 +103,10 @@ export default function ArticlePublic() {
                                              color: "#4a5568",
                                              border: "1px solid #e2e8f0",
                                              "&:hover": {
-                                                backgroundColor: "#667eea",
+                                                backgroundColor: "#16a34a",
                                                 color: "white",
                                                 transform: "translateY(-2px)",
-                                                boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                                                boxShadow: "0 4px 12px rgba(22, 163, 74, 0.3)",
                                              },
                                              transition: "all 0.3s ease"
                                           }}
@@ -169,12 +169,12 @@ export default function ArticlePublic() {
                                        display: "flex",
                                        alignItems: "center",
                                        gap: 0.5,
-                                       color: "#667eea",
+                                       color: "#16a34a",
                                        textDecoration: "none",
                                        fontWeight: 500,
                                        fontSize: "14px",
                                        "&:hover": {
-                                          color: "#764ba2",
+                                          color: "#15803d",
                                           textDecoration: "underline"
                                        }
                                     }}
@@ -186,12 +186,12 @@ export default function ArticlePublic() {
                                     component={Link}
                                     to={`/medias/rubrique/${fetchArticle.data.rubrique.id}`}
                                     sx={{
-                                       color: "#667eea",
+                                       color: "#16a34a",
                                        textDecoration: "none",
                                        fontWeight: 500,
                                        fontSize: "14px",
                                        "&:hover": {
-                                          color: "#764ba2",
+                                          color: "#15803d",
                                           textDecoration: "underline"
                                        }
                                     }}
@@ -348,7 +348,7 @@ export const DisplayFullBodyArticle = ({ article, isFrench }) => {
                   height: 40,
                   fontSize: "16px",
                   fontWeight: 700,
-                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                   color: "white",
                   padding: "8px 16px"
                }}
@@ -507,11 +507,11 @@ export const DisplayFullBodyArticle = ({ article, isFrench }) => {
                   marginBottom: 2
                },
                "& a": {
-                  color: "#667eea",
+                  color: "#16a34a",
                   textDecoration: "none",
                   fontWeight: 600,
                   "&:hover": {
-                     color: "#764ba2",
+                     color: "#15803d",
                      textDecoration: "underline"
                   }
                },
@@ -531,7 +531,7 @@ export const DisplayFullBodyArticle = ({ article, isFrench }) => {
                   lineHeight: 1.8
                },
                "& blockquote": {
-                  borderLeft: "4px solid #667eea",
+                  borderLeft: "4px solid #16a34a",
                   paddingLeft: 2,
                   marginLeft: 0,
                   fontStyle: "italic",

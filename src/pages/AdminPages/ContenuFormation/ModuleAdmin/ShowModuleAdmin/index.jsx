@@ -111,7 +111,7 @@ export default function ShowModuleAdmin() {
                         startIcon={<EditIcon />}
                         onClick={handleModifierClick}
                         sx={{
-                            background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 600,
                             textTransform: "none",
@@ -119,7 +119,7 @@ export default function ShowModuleAdmin() {
                             py: 1.5,
                             boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                             "&:hover": {
-                                background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                 boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                             }
                         }}
@@ -154,7 +154,7 @@ export default function ShowModuleAdmin() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                         <Box sx={{ textAlign: "center" }}>
-                            <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                             <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                                 {isFrench ? "Chargement des détails..." : "Loading details..."}
                             </Typography>
@@ -195,7 +195,7 @@ const InformationGeneral = ({ formModule, isFrench }) => {
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -214,23 +214,23 @@ const InformationGeneral = ({ formModule, isFrench }) => {
                             <InfoRow
                                 label={isFrench ? "Titre" : "Title"}
                                 value={module.titre}
-                                icon={<MenuBookIcon sx={{ color: "#667eea" }} />}
+                                icon={<MenuBookIcon sx={{ color: "#16a34a" }} />}
                             />
                             <InfoRow
                                 label={isFrench ? "Titre anglais" : "English Title"}
                                 value={module.titreEn}
-                                icon={<MenuBookIcon sx={{ color: "#667eea" }} />}
+                                icon={<MenuBookIcon sx={{ color: "#16a34a" }} />}
                             />
                             <InfoRow
                                 label={isFrench ? "Description" : "Description"}
                                 value={module.description}
-                                icon={<InfoIcon sx={{ color: "#667eea" }} />}
+                                icon={<InfoIcon sx={{ color: "#16a34a" }} />}
                                 multiline
                             />
                             <InfoRow
                                 label={isFrench ? "Description anglais" : "English Description"}
                                 value={module.descriptionEn}
-                                icon={<InfoIcon sx={{ color: "#667eea" }} />}
+                                icon={<InfoIcon sx={{ color: "#16a34a" }} />}
                                 multiline
                             />
                             <InfoRow
@@ -244,7 +244,7 @@ const InformationGeneral = ({ formModule, isFrench }) => {
                                           })
                                         : "-"
                                 }
-                                icon={<CalendarTodayIcon sx={{ color: "#667eea" }} />}
+                                icon={<CalendarTodayIcon sx={{ color: "#16a34a" }} />}
                             />
                             <InfoRow
                                 label={isFrench ? "Lien (URL) de l'image descriptive" : "Descriptive Image URL"}
@@ -255,7 +255,7 @@ const InformationGeneral = ({ formModule, isFrench }) => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             sx={{
-                                                color: "#43e97b",
+                                                color: "#16a34a",
                                                 textDecoration: "none",
                                                 fontWeight: 600,
                                                 "&:hover": { textDecoration: "underline" }
@@ -267,7 +267,7 @@ const InformationGeneral = ({ formModule, isFrench }) => {
                                         "-"
                                     )
                                 }
-                                icon={<LinkIcon sx={{ color: "#43e97b" }} />}
+                                icon={<LinkIcon sx={{ color: "#16a34a" }} />}
                             />
                         </Box>
                     </Grid>
@@ -294,13 +294,13 @@ const InformationGeneral = ({ formModule, isFrench }) => {
                                 label={isFrench ? "Nombre de Cours / Chapitres" : "Number of Courses / Chapters"}
                                 value={formModule?.nombreCour || 0}
                                 icon={<SchoolIcon />}
-                                color="#667eea"
+                                color="#16a34a"
                             />
                             <StatCard
                                 label={isFrench ? "Nombre total QCM" : "Total QCM Count"}
                                 value={formModule?.nombreQCM || 0}
                                 icon={<QuizIcon />}
-                                color="#43e97b"
+                                color="#16a34a"
                             />
                         </Box>
                     </Grid>
@@ -318,15 +318,15 @@ const InfoRow = ({ label, value, icon, multiline = false }) => (
             alignItems: multiline ? "flex-start" : "center",
             p: 2,
             borderRadius: "12px",
-            background: "linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)",
-            border: "1px solid rgba(102, 126, 234, 0.1)"
+            background: "linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(21, 128, 61, 0.05) 100%)",
+            border: "1px solid rgba(22, 163, 74, 0.1)"
         }}
     >
         <Box
             sx={{
                 p: 1,
                 borderRadius: "10px",
-                backgroundColor: "rgba(102, 126, 234, 0.1)",
+                backgroundColor: "rgba(22, 163, 74, 0.1)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
@@ -421,7 +421,7 @@ const GammeEtudiantAssocier = ({ formModule, gammeEtudiants, setUpdate, isFrench
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -460,7 +460,7 @@ const GammeEtudiantAssocier = ({ formModule, gammeEtudiants, setUpdate, isFrench
                             <TableHead>
                                 <TableRow
                                     sx={{
-                                        background: "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)"
+                                        background: "linear-gradient(135deg, rgba(22, 163, 74, 0.1) 0%, rgba(21, 128, 61, 0.1) 100%)"
                                     }}
                                 >
                                     <TableCell sx={{ fontWeight: 700, color: "#1a202c" }}>N°</TableCell>
@@ -478,7 +478,7 @@ const GammeEtudiantAssocier = ({ formModule, gammeEtudiants, setUpdate, isFrench
                                         key={gammeEtudiant.id}
                                         sx={{
                                             "&:hover": {
-                                                backgroundColor: "rgba(102, 126, 234, 0.05)",
+                                                backgroundColor: "rgba(22, 163, 74, 0.05)",
                                                 cursor: "pointer"
                                             },
                                             transition: "background-color 0.2s ease"
@@ -489,7 +489,7 @@ const GammeEtudiantAssocier = ({ formModule, gammeEtudiants, setUpdate, isFrench
                                                 label={index + 1}
                                                 size="small"
                                                 sx={{
-                                                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                     color: "#fff",
                                                     fontWeight: 700
                                                 }}
@@ -569,7 +569,7 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate, isFrench }) => {
                 startIcon={<AddIcon />}
                 onClick={handleClickOpen}
                 sx={{
-                    background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     textTransform: "none",
@@ -578,7 +578,7 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate, isFrench }) => {
                     borderRadius: "12px",
                     boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                     "&:hover": {
-                        background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                         boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                     }
                 }}
@@ -601,7 +601,7 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate, isFrench }) => {
             >
                 <DialogTitle
                     sx={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         color: "#fff",
                         fontWeight: 700,
                         display: "flex",
@@ -649,11 +649,11 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate, isFrench }) => {
                                       sx={{
                                           p: 2,
                                           borderRadius: "12px",
-                                          border: "1px solid rgba(102, 126, 234, 0.2)",
+                                          border: "1px solid rgba(22, 163, 74, 0.2)",
                                           transition: "all 0.2s ease",
                                           "&:hover": {
-                                              borderColor: "#667eea",
-                                              boxShadow: "0 4px 12px rgba(102, 126, 234, 0.15)"
+                                              borderColor: "#16a34a",
+                                              boxShadow: "0 4px 12px rgba(22, 163, 74, 0.15)"
                                           }
                                       }}
                                   >
@@ -693,13 +693,13 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate, isFrench }) => {
                         onClick={handleSave}
                         variant="contained"
                         sx={{
-                            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 600,
                             textTransform: "none",
                             px: 3,
                             "&:hover": {
-                                background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)"
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)"
                             }
                         }}
                     >
@@ -759,7 +759,7 @@ const ListCourModule = ({ formModule, isFrench }) => {
                             <TableHead>
                                 <TableRow
                                     sx={{
-                                        background: "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)"
+                                        background: "linear-gradient(135deg, rgba(22, 163, 74, 0.1) 0%, rgba(21, 128, 61, 0.1) 100%)"
                                     }}
                                 >
                                     <TableCell sx={{ fontWeight: 700, color: "#1a202c" }}>N°</TableCell>
@@ -783,7 +783,7 @@ const ListCourModule = ({ formModule, isFrench }) => {
                                         }}
                                         sx={{
                                             "&:hover": {
-                                                backgroundColor: "rgba(102, 126, 234, 0.05)",
+                                                backgroundColor: "rgba(22, 163, 74, 0.05)",
                                                 cursor: "pointer",
                                                 transform: "scale(1.01)",
                                                 transition: "all 0.2s ease"
@@ -796,7 +796,7 @@ const ListCourModule = ({ formModule, isFrench }) => {
                                                 label={index + 1}
                                                 size="small"
                                                 sx={{
-                                                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                     color: "#fff",
                                                     fontWeight: 700
                                                 }}

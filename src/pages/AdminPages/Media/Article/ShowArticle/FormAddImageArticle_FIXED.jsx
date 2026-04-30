@@ -3,7 +3,7 @@
 
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../../../../../context/AppContext';
-import { Box, Button, TextField, Alert, CircularProgress } from '@mui/material';
+import { Box, Button, Alert, CircularProgress } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const FormAddImageArticle = ({ idArticle, onImageAdded }) => {

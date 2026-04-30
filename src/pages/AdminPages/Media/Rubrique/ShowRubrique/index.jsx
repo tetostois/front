@@ -107,9 +107,9 @@ export default function ShowRubrique() {
                         startIcon={<EditIcon />}
                         onClick={handleModifierClick}
                         sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                             '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
+                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                                 boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
                             },
                             textTransform: 'none',
@@ -130,7 +130,7 @@ export default function ShowRubrique() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des détails...' : 'Loading details...'}
                             </Typography>
@@ -149,7 +149,7 @@ export default function ShowRubrique() {
                             <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                                 <CardContent sx={{ p: 3 }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                        <FolderIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                        <FolderIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                         <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                             {isFrench ? 'Informations Générales' : 'General Information'}
                                         </Typography>
@@ -159,22 +159,22 @@ export default function ShowRubrique() {
                                         <InfoRow
                                             label={isFrench ? 'Nom' : 'Name'}
                                             value={data?.nom}
-                                            icon={<FolderIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                            icon={<FolderIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                                         />
                                         <InfoRow
                                             label={isFrench ? 'Catégorie' : 'Category'}
                                             value={data?.categorie}
-                                            icon={<CategoryIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                            icon={<CategoryIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                                         />
                                         <InfoRow
                                             label={isFrench ? 'Ordre / Positionnement' : 'Order / Position'}
                                             value={data?.ordre}
-                                            icon={<SortIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                            icon={<SortIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                                         />
                                         <InfoRow
                                             label={isFrench ? 'Nombre d\'Articles' : 'Number of Articles'}
                                             value={data?.nombreArticle || 0}
-                                            icon={<ArticleIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                            icon={<ArticleIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                                         />
                                     </Box>
                                 </CardContent>
@@ -184,7 +184,7 @@ export default function ShowRubrique() {
                             <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                                 <CardContent sx={{ p: 3 }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                        <DescriptionIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                        <DescriptionIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                         <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                             {isFrench ? 'Description' : 'Description'}
                                         </Typography>
@@ -251,7 +251,7 @@ const ListArticleRubrique = ({ idRubrique, isFrench, navigation }) => {
         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <ArticleIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                    <ArticleIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                         {isFrench ? 'Liste des Articles de cette Rubrique' : 'Articles List for this Rubrique'}
                     </Typography>
@@ -259,7 +259,7 @@ const ListArticleRubrique = ({ idRubrique, isFrench, navigation }) => {
                 <Divider sx={{ mb: 2 }} />
             {isLoading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
-                        <CircularProgress sx={{ color: '#667eea' }} />
+                        <CircularProgress sx={{ color: '#16a34a' }} />
                     </Box>
             ) : error ? (
                <MessageErrorServeur />
@@ -304,7 +304,7 @@ const ListArticleRubrique = ({ idRubrique, isFrench, navigation }) => {
                                             </TableCell>
                                             <TableCell>
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                                    <CalendarTodayIcon sx={{ fontSize: 16, color: '#667eea' }} />
+                                                    <CalendarTodayIcon sx={{ fontSize: 16, color: '#16a34a' }} />
                                                     <Typography variant="body2" sx={{ color: '#718096' }}>
                                                         {new Date(article.date).toLocaleDateString('fr-FR', {
                                                             day: 'numeric',
@@ -345,11 +345,11 @@ const ListArticleRubrique = ({ idRubrique, isFrench, navigation }) => {
                                                     sx={{
                                                         textTransform: 'none',
                                                         borderRadius: '8px',
-                                                        borderColor: '#667eea',
-                                                        color: '#667eea',
+                                                        borderColor: '#16a34a',
+                                                        color: '#16a34a',
                                                         '&:hover': {
-                                                            borderColor: '#764ba2',
-                                                            backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                                            borderColor: '#15803d',
+                                                            backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                                         }
                                                     }}
                                                 >
@@ -386,14 +386,14 @@ const ListArticleRubrique = ({ idRubrique, isFrench, navigation }) => {
                                         fontSize: '14px',
                                         fontWeight: 600,
                                         '&.Mui-selected': {
-                                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                             color: '#fff',
                                             '&:hover': {
-                                                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)'
+                                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)'
                                             }
                                         },
                                         '&:hover': {
-                                            backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                            backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                         }
                                     }
                                 }}

@@ -143,9 +143,9 @@ export default function AlterArticle() {
                   onClick={handleSave}
                   disabled={save || fetchArticle.isLoading}
                   sx={{
-                     background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                      "&:hover": {
-                        background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                         boxShadow: "0 6px 12px rgba(56, 249, 215, 0.3)",
                      },
                      textTransform: "none",
@@ -180,7 +180,7 @@ export default function AlterArticle() {
                <Box className="adminPageLoading">
                   <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                      <Box sx={{ textAlign: "center" }}>
-                        <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                        <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                         <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                            {isFrench ? "Chargement de l'article..." : "Loading article..."}
                         </Typography>

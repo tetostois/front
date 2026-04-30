@@ -55,7 +55,7 @@ export default function SuccessMailSend() {
                                 width: 80,
                                 height: 80,
                                 borderRadius: '50%',
-                                background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                                background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -88,7 +88,7 @@ export default function SuccessMailSend() {
                                 backgroundColor: '#e6fffa',
                                 color: '#234e52',
                                 '& .MuiAlert-icon': {
-                                    color: '#38f9d7'
+                                    color: '#16a34a'
                                 }
                             }}
                         >
@@ -129,10 +129,10 @@ export default function SuccessMailSend() {
                                 variant="contained"
                                 onClick={() => navigation('/dashboard')}
                                 sx={{
-                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                     '&:hover': {
-                                        background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                                        boxShadow: '0 6px 12px rgba(102, 126, 234, 0.3)'
+                                        background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
+                                        boxShadow: '0 6px 12px rgba(22, 163, 74, 0.3)'
                                     },
                                     textTransform: 'none',
                                     borderRadius: '12px',

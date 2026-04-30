@@ -159,7 +159,7 @@ function HeaderContent() {
                               fontFamily: "'Poppins', sans-serif",
                               background: user?.photoUrl || preview 
                                  ? "transparent" 
-                                 : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                 : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                               cursor: "pointer",
                               border: "4px solid white",
                               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
@@ -180,7 +180,7 @@ function HeaderContent() {
                                  position: "absolute",
                                  bottom: 0,
                                  right: 0,
-                                 backgroundColor: "#667eea",
+                                 backgroundColor: "#16a34a",
                                  color: "white",
                                  width: 32,
                                  height: 32,
@@ -255,7 +255,7 @@ function HeaderContent() {
          >
             <DialogTitle>
                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <CameraAltIcon sx={{ color: "#667eea" }} />
+                  <CameraAltIcon sx={{ color: "#16a34a" }} />
                   <Typography variant="h6" sx={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
                      {isFrench ? "Changer la photo de profil" : "Change profile photo"}
                   </Typography>
@@ -291,7 +291,7 @@ function HeaderContent() {
                         fontFamily: "'Poppins', sans-serif",
                         background: preview || user?.photoUrl 
                            ? "transparent" 
-                           : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                           : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         border: "4px solid #e5e7eb",
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)"
                      }}
@@ -306,11 +306,11 @@ function HeaderContent() {
                         borderRadius: "12px",
                         textTransform: "none",
                         fontWeight: 600,
-                        borderColor: "#667eea",
-                        color: "#667eea",
+                        borderColor: "#16a34a",
+                        color: "#16a34a",
                         "&:hover": {
                            borderColor: "#5568d3",
-                           backgroundColor: "rgba(102, 126, 234, 0.1)"
+                           backgroundColor: "rgba(22, 163, 74, 0.1)"
                         }
                      }}
                   >
@@ -353,7 +353,7 @@ function HeaderContent() {
                   disabled={!selectedFile || uploading}
                   startIcon={uploading ? <CircularProgress size={20} /> : <CameraAltIcon />}
                   sx={{
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                      borderRadius: "12px",
                      textTransform: "none",
                      fontWeight: 600,

@@ -1,54 +1,223 @@
-.accountContainer {
-   min-height: 100vh;
-   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-   padding: 40px 20px;
+/* Fil d’Ariane (même logique que la page cours) */
+.breadcrumbContainer {
+   display: flex;
+   justify-content: center;
+   padding: 20px 20px 10px 20px;
+   width: 100%;
+   max-width: 1200px;
+   margin-left: auto;
+   margin-right: auto;
+   box-sizing: border-box;
+   background-color: #f9fafb;
+   border-bottom: 1px solid #e5e7eb;
 }
 
-.accountHeaderRow {
-   margin-bottom: 30px;
+.breadcrumbContainer .MuiBreadcrumbs-root {
+   justify-content: center;
 }
 
-.accountHeader {
+.breadcrumbLink {
+   display: inline-flex;
+   align-items: center;
+   text-decoration: none;
+   color: #16a34a;
+   font-weight: 500;
+   font-size: 14px;
+   font-family: 'Inter', sans-serif;
+   transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+   color: #15803d;
+   text-decoration: underline;
+}
+
+.breadcrumbCurrent {
+   display: inline-flex;
+   align-items: center;
+   color: #1f2937 !important;
+   font-weight: 600;
+   font-size: 14px;
+   font-family: 'Poppins', sans-serif;
+}
+
+/* ============================================
+   Page compte — structure (alignée sur la page cours)
+   ============================================ */
+.accountPageOuter {
+   min-height: calc(100vh - 64px);
+   background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 35%, #eef2f7 100%);
+   padding: 0;
    display: flex;
    flex-direction: column;
    align-items: center;
-   text-align: center;
-   padding: 30px;
-   background: white;
-   border-radius: 20px;
-   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+   width: 100%;
 }
 
-.accountTitle {
-   font-family: 'Poppins', sans-serif;
-   font-weight: 700;
-   color: #1f2937;
-   margin-top: 16px;
-   margin-bottom: 8px;
+.accountPageShell {
+   width: 100%;
+   max-width: 1200px;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 20px 16px 40px;
+   box-sizing: border-box;
 }
 
-.accountSubtitle {
-   font-family: 'Inter', sans-serif;
-   color: #6b7280;
-   font-size: 16px;
+.accountPageShell--empty {
+   min-height: 50vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-.accountContentRow {
+.accountHeroBanner {
+   background: linear-gradient(135deg, rgba(22, 163, 74, 0.14) 0%, rgba(21, 128, 61, 0.05) 50%, #f9fafb 100%);
+   border-radius: 16px;
+   border: 1px solid rgba(22, 163, 74, 0.18);
+   margin-bottom: 24px;
+   overflow: hidden;
+}
+
+.accountHeroInner {
+   padding: 24px 28px 28px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 10px;
+}
+
+.accountHeroTitle {
+   font-family: 'Poppins', sans-serif !important;
+   font-weight: 700 !important;
+   color: #0f172a !important;
+   font-size: clamp(1.35rem, 2.5vw, 1.85rem) !important;
+   line-height: 1.25 !important;
+   margin: 0 !important;
+}
+
+.accountHeroSubtitle {
+   font-family: 'Inter', sans-serif !important;
+   color: #64748b !important;
+   font-size: 15px !important;
+   margin: 0 !important;
+}
+
+.accountBodyGrid {
+   display: grid;
+   grid-template-columns: minmax(0, 1fr);
+   gap: 24px;
+   align-items: start;
+   justify-items: center;
+   width: 100%;
+}
+
+.accountBodyGrid > .accountMainColumn,
+.accountBodyGrid > .accountAsideColumn {
+   width: 100%;
+   max-width: 720px;
+}
+
+.accountMainColumn {
+   min-width: 0;
+   display: flex;
+   flex-direction: column;
    gap: 24px;
 }
 
+.accountAsideColumn {
+   min-width: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.accountSectionAnchor {
+   scroll-margin-top: 88px;
+}
+
+/* Sommaire latéral */
+.accountTocAside {
+   display: none;
+   padding: 16px 18px;
+   border-radius: 14px;
+   background: #ffffff;
+   border: 1px solid #e5e7eb;
+   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.accountTocTitle {
+   font-weight: 700 !important;
+   color: #0f172a !important;
+   margin: 0 0 12px !important;
+   font-size: 0.8rem !important;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+}
+
+.accountTocList {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.accountTocList li {
+   margin: 0;
+   padding: 0;
+}
+
+.accountTocLink {
+   display: block;
+   padding: 8px 0;
+   font-size: 14px;
+   font-family: 'Inter', sans-serif;
+   color: #4b5563;
+   text-decoration: none;
+   border-left: 3px solid transparent;
+   padding-left: 10px;
+   margin-left: -2px;
+   transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.accountTocLink:hover {
+   color: #16a34a;
+   border-left-color: rgba(22, 163, 74, 0.5);
+}
+
+@media (min-width: 1100px) {
+   .accountBodyGrid {
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      justify-items: stretch;
+   }
+
+   .accountBodyGrid > .accountMainColumn,
+   .accountBodyGrid > .accountAsideColumn {
+      max-width: none;
+   }
+
+   .accountTocAside {
+      display: block;
+   }
+
+   .accountAsideColumn {
+      position: sticky;
+      top: 88px;
+      align-self: start;
+   }
+}
+
+/* Cartes */
 .accountInfoCard,
 .accountActionsCard {
-   border-radius: 20px;
-   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-   transition: all 0.3s ease;
-   border: none;
+   border-radius: 16px !important;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+   transition: box-shadow 0.3s ease;
+   border: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
 .accountInfoCard:hover,
 .accountActionsCard:hover {
-   transform: translateY(-4px);
-   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
 }
 
 .cardHeader {
@@ -56,6 +225,8 @@
    justify-content: space-between;
    align-items: center;
    margin-bottom: 8px;
+   flex-wrap: wrap;
+   gap: 8px;
 }
 
 .cardTitle {
@@ -80,7 +251,7 @@
 }
 
 .infoIcon {
-   color: #667eea;
+   color: #16a34a;
    font-size: 24px;
    margin-top: 4px;
 }
@@ -115,26 +286,19 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   min-height: 60vh;
-   padding: 40px;
+   width: 100%;
+   max-width: 520px;
+   padding: 24px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-   .accountContainer {
-      padding: 20px 10px;
+   .accountPageShell {
+      padding: 16px 12px 32px;
    }
 
-   .accountHeader {
+   .accountHeroInner {
       padding: 20px;
-   }
-
-   .accountTitle {
-      font-size: 28px;
-   }
-
-   .accountSubtitle {
-      font-size: 14px;
    }
 
    .infoItem {
@@ -151,18 +315,8 @@
 }
 
 @media (max-width: 480px) {
-   .accountHeader {
-      padding: 16px;
-   }
-
-   .accountTitle {
-      font-size: 24px;
-   }
-
    .cardHeader {
       flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
    }
 }
-

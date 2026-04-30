@@ -3,7 +3,6 @@ import {
     Box,
     Card,
     CardContent,
-    TextField,
     FormControl,
     InputLabel,
     Select,
@@ -14,6 +13,7 @@ import {
     Divider,
     Typography
 } from '@mui/material';
+import { FormTextInput } from '../../../../composants/UiInputs';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import TitleIcon from '@mui/icons-material/Title';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -59,7 +59,7 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des rubriques...' : 'Loading rubriques...'}
                             </Typography>
@@ -77,7 +77,7 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <FolderOpenIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <FolderOpenIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Rubrique' : 'Rubrique'}
                                     </Typography>
@@ -112,7 +112,7 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <TitleIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <TitleIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Titres de l\'article' : 'Article Titles'}
                                     </Typography>
@@ -120,30 +120,16 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                                 <Divider sx={{ mb: 2 }} />
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField
+                                        <FormTextInput
                                             fullWidth
                                             label={isFrench ? 'Sur titre' : 'Sur Title'}
                                             placeholder={isFrench ? 'Ex: Nouvelle entreprise créée au Cameroun' : 'Ex: New company created in Cameroon'}
                                             value={form.surTitre || ''}
                                             onChange={handleChange('surTitre')}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px',
-                                                '& input': {
-                                                    color: '#1a202c'
-                                                },
-                                                '& textarea': {
-                                                    color: '#1a202c'
-                                                }
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: '#718096'
-                                            }
-                                        }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField
+                                        <FormTextInput
                                             fullWidth
                                             label={isFrench ? 'Titre de l\'article' : 'Article Title'}
                                             placeholder={isFrench ? 'Ex: Nouvelle entreprise créée au Cameroun' : 'Ex: New company created in Cameroon'}
@@ -152,28 +138,10 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                                             value={form.titre || ''}
                                             onChange={handleChange('titre')}
                                             helperText={isFrench ? 'Le titre doit contenir entre 10 et 200 caractères' : 'Title must contain between 10 and 200 characters'}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    borderRadius: '12px',
-                                                    '& input': {
-                                                        color: '#1a202c'
-                                                    },
-                                                    '& textarea': {
-                                                        color: '#1a202c'
-                                                    }
-                                                },
-                                                '& .MuiInputLabel-root': {
-                                                    color: '#718096'
-                                                },
-                                                '& .MuiFormHelperText-root': {
-                                                    color: '#718096',
-                                                    fontSize: '12px'
-                                                }
-                                            }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField
+                                        <FormTextInput
                                             fullWidth
                                             label={isFrench ? 'Sous Titre' : 'Subtitle'}
                                             placeholder={isFrench ? 'Ex: L\'essor des nouvelles entreprises au Cameroun' : 'Ex: The rise of new companies in Cameroon'}
@@ -181,20 +149,6 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                                             rows={3}
                                             value={form.sousTitre || ''}
                                             onChange={handleChange('sousTitre')}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px',
-                                                '& input': {
-                                                    color: '#1a202c'
-                                                },
-                                                '& textarea': {
-                                                    color: '#1a202c'
-                                                }
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: '#718096'
-                                            }
-                                        }}
                                         />
                                     </Grid>
                                 </Grid>
@@ -207,13 +161,13 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <DescriptionIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <DescriptionIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Contenu de l\'article' : 'Article Content'}
                                     </Typography>
                                 </Box>
                                 <Divider sx={{ mb: 2 }} />
-                                <TextField
+                                <FormTextInput
                                     fullWidth
                                     label={isFrench ? 'Contenu textuel de l\'article' : 'Article Text Content'}
                                     placeholder={isFrench ? 'Le texte de l\'article ici... (minimum 30 caractères)' : 'Article text here... (minimum 30 characters)'}
@@ -222,26 +176,7 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                                     value={form.texte || ''}
                                     onChange={handleChange('texte')}
                                     helperText={isFrench ? 'Le texte doit contenir au moins 30 caractères' : 'Text must contain at least 30 characters'}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            fontFamily: 'monospace',
-                                            fontSize: '14px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            },
-                                            '& textarea': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        },
-                                        '& .MuiFormHelperText-root': {
-                                            color: '#718096',
-                                            fontSize: '12px'
-                                        }
-                                    }}
+                                    inputClassName="font-mono text-sm"
                                 />
                             </CardContent>
                         </Card>
@@ -252,7 +187,7 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <PersonIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <PersonIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Informations sur l\'auteur' : 'Author Information'}
                                     </Typography>
@@ -260,54 +195,22 @@ export default function FormArticle({ initialForm, setErrorServeur, setError, se
                                 <Divider sx={{ mb: 2 }} />
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={6}>
-                                        <TextField
+                                        <FormTextInput
                                             fullWidth
                                             label={isFrench ? 'Nom de l\'auteur' : 'Author Name'}
                                             placeholder={isFrench ? 'Ex: Jean Dupont' : 'Ex: John Doe'}
                                             value={form.auteur || ''}
                                             onChange={handleChange('auteur')}
                                             helperText={isFrench ? 'Le nom de l\'auteur doit contenir au moins 5 caractères' : 'Author name must contain at least 5 characters'}
-                                            sx={{
-                                                '& .MuiOutlinedInput-root': {
-                                                    borderRadius: '12px',
-                                                    '& input': {
-                                                        color: '#1a202c'
-                                                    },
-                                                    '& textarea': {
-                                                        color: '#1a202c'
-                                                    }
-                                                },
-                                                '& .MuiInputLabel-root': {
-                                                    color: '#718096'
-                                                },
-                                                '& .MuiFormHelperText-root': {
-                                                    color: '#718096',
-                                                    fontSize: '12px'
-                                                }
-                                            }}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}>
-                                        <TextField
+                                        <FormTextInput
                                             fullWidth
                                             label={isFrench ? 'Titre de l\'auteur' : 'Author Title'}
                                             placeholder={isFrench ? 'Ex: Journaliste, Rédacteur en chef' : 'Ex: Journalist, Editor-in-chief'}
                                             value={form.titreAuteur || ''}
                                             onChange={handleChange('titreAuteur')}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px',
-                                                '& input': {
-                                                    color: '#1a202c'
-                                                },
-                                                '& textarea': {
-                                                    color: '#1a202c'
-                                                }
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: '#718096'
-                                            }
-                                        }}
                                         />
                                     </Grid>
                                 </Grid>

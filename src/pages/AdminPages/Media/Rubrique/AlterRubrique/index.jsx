@@ -54,7 +54,7 @@ export default function AlterRubrique() {
             sx={{
                p: 3,
                mb: 3,
-               background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+               background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                color: "white",
                borderRadius: 2,
             }}
@@ -134,7 +134,7 @@ export default function AlterRubrique() {
          )}
          {fecthRubrique.isLoading ? (
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "40vh" }}>
-               <CircularProgress size={60} sx={{ color: "#667eea" }} />
+               <CircularProgress size={60} sx={{ color: "#16a34a" }} />
             </Box>
          ) : fecthRubrique.error ? (
             <MessageErrorServeurWithVarialbleHeight />

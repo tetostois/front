@@ -112,7 +112,7 @@ export default function CreateQCM() {
                         startIcon={<SaveIcon />}
                         onClick={sauvegarde}
                         sx={{
-                            background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 700,
                             textTransform: "none",
@@ -120,7 +120,7 @@ export default function CreateQCM() {
                             py: 1.5,
                             boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                             "&:hover": {
-                                background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                 boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                             }
                         }}
@@ -170,7 +170,7 @@ export default function CreateQCM() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                         <Box sx={{ textAlign: "center" }}>
-                            <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                             <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                                 {isFrench ? "Chargement des informations du chapitre..." : "Loading chapter information..."}
                             </Typography>

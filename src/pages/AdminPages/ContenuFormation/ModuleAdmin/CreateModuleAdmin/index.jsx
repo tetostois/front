@@ -40,112 +40,110 @@ export default function CreateModuleAdmin() {
    };
 
    return (
-      <Box sx={{ flexGrow: 1, p: 3 }}>
-         {/* En-tête moderne avec fil d'Ariane */}
-         <Paper 
-            elevation={3} 
-            sx={{ 
-               p: 3, 
-               mb: 3, 
-               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-               color: 'white',
-               borderRadius: 2
-            }}
-         >
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-               <Box>
-                  <Typography variant="h5" component="h1" sx={{ fontWeight: 600, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-                     <AddCircleIcon sx={{ fontSize: 28 }} />
-                     Ajout d'un nouveau module
+      <Box className="adminPageContainer">
+         <Box className="adminPageHeader">
+            <Box className="adminPageHeaderContent">
+               <Box className="adminPageHeaderIconContainer">
+                  <AddCircleIcon className="adminPageHeaderIcon" />
+               </Box>
+               <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography variant="h4" className="adminPageTitle">
+                     Ajout d&apos;un nouveau module
                   </Typography>
-                  <Breadcrumbs aria-label="breadcrumb" sx={{ color: 'white', '& a': { color: 'white' } }}>
-                     <Link 
-                        component={RouterLink} 
-                        to="/modules" 
-                        sx={{ 
-                           textDecoration: 'none', 
-                           display: 'flex', 
-                           alignItems: 'center',
-                           '&:hover': { textDecoration: 'underline' }
+                  <Breadcrumbs
+                     aria-label="breadcrumb"
+                     separator="›"
+                     sx={{ mt: 0.5, "& .MuiBreadcrumbs-separator": { color: "#94a3b8" } }}
+                  >
+                     <Link
+                        component={RouterLink}
+                        to="/modules"
+                        underline="hover"
+                        sx={{
+                           display: "inline-flex",
+                           alignItems: "center",
+                           gap: 0.5,
+                           color: "#16a34a",
+                           fontWeight: 500,
+                           fontSize: "0.95rem",
                         }}
                      >
-                        <ArrowBackIcon fontSize="small" sx={{ mr: 0.5 }} />
+                        <ArrowBackIcon sx={{ fontSize: 18 }} />
                         Retour aux modules
                      </Link>
-                     <Typography sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                        Création d'un module
-                     </Typography>
+                     <Typography sx={{ color: "#64748b", fontSize: "0.95rem" }}>Création d&apos;un module</Typography>
                   </Breadcrumbs>
                </Box>
-               <Box sx={{ display: 'flex', gap: 2 }}>
-                  <Tooltip title="Annuler la création">
-                     <Button
-                        variant="contained"
-                        startIcon={<CancelIcon />}
-                        onClick={() => navigation(-1)}
-                        sx={{ 
-                           bgcolor: 'error.main',
-                           '&:hover': { bgcolor: 'error.dark' },
-                           textTransform: 'none',
-                           borderRadius: '12px',
-                           fontWeight: 600
-                        }}
-                     >
-                        Annuler
-                     </Button>
-                  </Tooltip>
-                  <Tooltip title="Enregistrer le nouveau module">
-                     <Button
-                        variant="contained"
-                        startIcon={<SaveIcon />}
-                        onClick={ajoutRubrique}
-                        sx={{ 
-                           bgcolor: 'success.main',
-                           '&:hover': { bgcolor: 'success.dark' },
-                           textTransform: 'none',
-                           borderRadius: '12px',
-                           fontWeight: 600
-                        }}
-                     >
-                        Enregistrer
-                     </Button>
-                  </Tooltip>
-               </Box>
             </Box>
-         </Paper>
+            <Box sx={{ display: "flex", gap: 2, flexShrink: 0, flexWrap: "wrap" }}>
+               <Tooltip title="Annuler la création">
+                  <Button
+                     variant="outlined"
+                     color="error"
+                     startIcon={<CancelIcon />}
+                     onClick={() => navigation(-1)}
+                     sx={{
+                        textTransform: "none",
+                        borderRadius: "12px",
+                        fontWeight: 600,
+                     }}
+                  >
+                     Annuler
+                  </Button>
+               </Tooltip>
+               <Tooltip title="Enregistrer le nouveau module">
+                  <Button
+                     variant="contained"
+                     startIcon={<SaveIcon />}
+                     onClick={ajoutRubrique}
+                     sx={{
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                        color: "#fff",
+                        fontWeight: 600,
+                        textTransform: "none",
+                        borderRadius: "12px",
+                        boxShadow: "0 4px 16px rgba(22, 163, 74, 0.25)",
+                        "&:hover": {
+                           background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                           boxShadow: "0 6px 20px rgba(22, 163, 74, 0.35)",
+                        },
+                     }}
+                  >
+                     Enregistrer
+                  </Button>
+               </Tooltip>
+            </Box>
+         </Box>
 
-         {/* Messages d'erreur */}
-         {errorServeur && (
-            <Alert severity="error" sx={{ mb: 3, borderRadius: '12px' }}>
-               <MessageErrorServeur />
-            </Alert>
-         )}
+         <Box className="adminPageContent">
+            {errorServeur && (
+               <Alert severity="error" sx={{ mb: 2, borderRadius: "12px" }}>
+                  <MessageErrorServeur />
+               </Alert>
+            )}
+            {error.textError && (
+               <Alert severity="error" sx={{ mb: 2, borderRadius: "12px" }}>
+                  {error.textError}
+               </Alert>
+            )}
+            <Paper elevation={2} sx={{ p: 3, borderRadius: 2, boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)" }}>
+               <FormModule
+                  setSave={setSave}
+                  save={save}
+                  requestMethode="POST"
+                  setError={setError}
+                  setErrorServeur={setErrorServeur}
+               />
+            </Paper>
+         </Box>
 
-         {error.textError && (
-            <Alert severity="error" sx={{ mb: 3, borderRadius: '12px' }}>
-               {error.textError}
-            </Alert>
-         )}
-
-         {/* Contenu principal */}
-         <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
-            <FormModule
-               setSave={setSave}
-               save={save}
-               requestMethode="POST"
-               setError={setError}
-               setErrorServeur={setErrorServeur}
-            />
-         </Paper>
-
-         {/* Notification de succès */}
-         <Snackbar 
-            open={openSnackbar} 
-            autoHideDuration={6000} 
+         <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
             onClose={handleCloseSnackbar}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
          >
-            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%', borderRadius: '12px' }}>
+            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%", borderRadius: "12px" }}>
                Le module a été créé avec succès !
             </Alert>
          </Snackbar>

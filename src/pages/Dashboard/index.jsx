@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Header from "../../composants/Header";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { Alert, AlertTitle, Button, CircularProgress, Divider, Box } from "@mui/material";
@@ -22,7 +22,18 @@ export default function Dashboard() {
    const { isLoading, data, error } = useFetch("/etudiant/dashboard/" + (user ? user.id : 0), "GET");
    console.log("data dashboard", data);
    const navigation = useNavigate();
+   const modulesSectionRef = useRef(null);
+   const [selectedStat, setSelectedStat] = useState(null);
    var isfrench = language === "FR";
+
+   const scrollToModules = () => {
+      modulesSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+   };
+
+   const handleStatCardClick = (key) => {
+      setSelectedStat(key);
+      scrollToModules();
+   };
    return (
       <>
          <Container fluid style={{ width: "100vw", margin: 0, padding: 0 }}>
@@ -56,8 +67,15 @@ export default function Dashboard() {
                      <div className="statsTitle">
                         {isfrench ? "Récapitulatif de vos activités" : "Summary of your activities"}
                      </div>
-                     <div className="mainStatBlocDashboard">
-                        <Box className="statItemDashbord statCardCours">
+                     <div className="mainStatBlocDashboard" role="group" aria-label={isfrench ? "Indicateurs de progression" : "Progress indicators"}>
+                        <Box
+                           component="button"
+                           type="button"
+                           title={isfrench ? "Sélectionner et afficher les modules de formation" : "Select and scroll to training modules"}
+                           onClick={() => handleStatCardClick("cours")}
+                           aria-pressed={selectedStat === "cours"}
+                           className={`statItemDashbord statCardCours statCardButton${selectedStat === "cours" ? " statCardSelected" : ""}`}
+                        >
                            <Box className="icnDashbordContainer">
                               <MenuBookIcon className="statIcon" />
                            </Box>
@@ -70,7 +88,14 @@ export default function Dashboard() {
                               </span>
                            </div>
                         </Box>
-                        <Box className="statItemDashbord statCardQCM">
+                        <Box
+                           component="button"
+                           type="button"
+                           title={isfrench ? "Sélectionner et afficher les modules de formation" : "Select and scroll to training modules"}
+                           onClick={() => handleStatCardClick("qcm")}
+                           aria-pressed={selectedStat === "qcm"}
+                           className={`statItemDashbord statCardQCM statCardButton${selectedStat === "qcm" ? " statCardSelected" : ""}`}
+                        >
                            <Box className="icnDashbordContainer">
                               <QuizIcon className="statIcon" />
                            </Box>
@@ -84,7 +109,14 @@ export default function Dashboard() {
                            </div>
                         </Box>
 
-                        <Box className="statItemDashbord statCardModule">
+                        <Box
+                           component="button"
+                           type="button"
+                           title={isfrench ? "Sélectionner et afficher les modules de formation" : "Select and scroll to training modules"}
+                           onClick={() => handleStatCardClick("modules")}
+                           aria-pressed={selectedStat === "modules"}
+                           className={`statItemDashbord statCardModule statCardButton${selectedStat === "modules" ? " statCardSelected" : ""}`}
+                        >
                            <Box className="icnDashbordContainer">
                               <FolderOpenIcon className="statIcon" />
                            </Box>
@@ -98,7 +130,14 @@ export default function Dashboard() {
                            </div>
                         </Box>
 
-                        <Box className="statItemDashbord statCardQuestion">
+                        <Box
+                           component="button"
+                           type="button"
+                           title={isfrench ? "Sélectionner et afficher les modules de formation" : "Select and scroll to training modules"}
+                           onClick={() => handleStatCardClick("questions")}
+                           aria-pressed={selectedStat === "questions"}
+                           className={`statItemDashbord statCardQuestion statCardButton${selectedStat === "questions" ? " statCardSelected" : ""}`}
+                        >
                            <Box className="icnDashbordContainer">
                               <QuestionAnswerIcon className="statIcon" />
                            </Box>
@@ -112,6 +151,7 @@ export default function Dashboard() {
                      </div>
                   </Row>
 
+                  <div ref={modulesSectionRef} id="dashboard-modules-section">
                   <Row className="modulesRow">
                      <div className="modulesContainer">
                         <div className="modulesTitle">
@@ -162,14 +202,14 @@ export default function Dashboard() {
                                                    width: "100%", 
                                                    height: "100%", 
                                                    borderRadius: "0 0 12px 12px",
-                                                   background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                   background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                    fontWeight: 600,
                                                    textTransform: "none",
                                                    fontSize: "15px",
                                                    "&:hover": {
-                                                      background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
+                                                      background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                                       transform: "translateY(-2px)",
-                                                      boxShadow: "0 8px 16px rgba(102, 126, 234, 0.4)"
+                                                      boxShadow: "0 8px 16px rgba(22, 163, 74, 0.4)"
                                                    },
                                                    transition: "all 0.3s ease"
                                                 }}
@@ -225,19 +265,20 @@ export default function Dashboard() {
                         )}
                      </div>
                   </Row>
+                  </div>
                </>
             )}
 
             {/* Section C: Informations sur la formation */}
             <Row
                style={{
-                  backgroundColor: "rgba(102, 126, 234, 0.1)",
+                  backgroundColor: "rgba(22, 163, 74, 0.1)",
                   borderRadius: 16,
                   margin: 20,
                   marginTop: 30,
                   marginBottom: 30,
                   padding: 25,
-                  border: "2px solid rgba(102, 126, 234, 0.2)"
+                  border: "2px solid rgba(22, 163, 74, 0.2)"
                }}
             >
                <Col>
@@ -246,7 +287,7 @@ export default function Dashboard() {
                         fontWeight: "bold", 
                         fontSize: 20,
                         marginBottom: 15,
-                        color: "#667eea"
+                        color: "#16a34a"
                      }}>
                         {isfrench ? "Fonctionnement de la formation" : "How the training works"}
                      </div>

@@ -14,6 +14,13 @@ import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { FormRubrique } from '../FormRubrique';
 import { MessageErrorServeur } from '../../../../../composants/MessageComponent';
+import {
+    adminBreadcrumbRootSx,
+    adminBreadcrumbLinkSx,
+    adminBreadcrumbCurrentSx,
+    adminCancelButtonSx,
+    adminPrimarySaveButtonSx
+} from '../../../../../utils/adminPageStyles';
 
 export default function CreateRubrique() {
     const { language } = useContext(AppContext);
@@ -35,78 +42,55 @@ export default function CreateRubrique() {
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <FolderIcon className="adminPageHeaderIcon" />
-                    </Box>
-                    <Box>
-                        <Breadcrumbs sx={{ mb: 1, color: 'rgba(255, 255, 255, 0.8)' }}>
-                            <MuiLink
-                                component="button"
-                                variant="body2"
-                                onClick={() => navigation('/rubrique')}
-                                sx={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', cursor: 'pointer' }}
-                            >
-                                {isFrench ? 'Rubriques' : 'Rubriques'}
-                            </MuiLink>
-                            <Typography variant="body2" sx={{ color: '#fff', fontWeight: 500 }}>
-                                {isFrench ? 'Créer une rubrique' : 'Create Rubrique'}
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <FolderIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Breadcrumbs sx={adminBreadcrumbRootSx}>
+                                <MuiLink
+                                    component="button"
+                                    variant="body2"
+                                    onClick={() => navigation('/rubrique')}
+                                    sx={adminBreadcrumbLinkSx}
+                                >
+                                    {isFrench ? 'Rubriques' : 'Rubriques'}
+                                </MuiLink>
+                                <Typography variant="body2" sx={adminBreadcrumbCurrentSx}>
+                                    {isFrench ? 'Créer une rubrique' : 'Create Rubrique'}
+                                </Typography>
+                            </Breadcrumbs>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Créer une Rubrique' : 'Create Rubrique'}
                             </Typography>
-                        </Breadcrumbs>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Créer une Rubrique' : 'Create Rubrique'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Remplissez le formulaire pour créer une nouvelle rubrique'
-                                : 'Fill in the form to create a new rubrique'}
-                        </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Remplissez le formulaire pour créer une nouvelle rubrique'
+                                    : 'Fill in the form to create a new rubrique'}
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button
-                        variant="outlined"
-                        startIcon={<CancelIcon />}
-                        onClick={handleCancel}
-                        sx={{
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            borderColor: 'rgba(255, 255, 255, 0.5)',
-                            color: '#fff',
-                            '&:hover': {
-                                borderColor: '#fff',
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px'
-                        }}
-                    >
-                        {isFrench ? 'Annuler' : 'Cancel'}
-                    </Button>
-                    <Button
-                        variant="contained"
-                        startIcon={<SaveIcon />}
-                        onClick={handleSave}
-                        disabled={save}
-                        sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                            '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
-                                boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
-                            },
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px',
-                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {isFrench ? 'Enregistrer' : 'Save'}
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexShrink: 0, flexWrap: 'wrap' }}>
+                        <Button
+                            variant="outlined"
+                            startIcon={<CancelIcon />}
+                            onClick={handleCancel}
+                            sx={adminCancelButtonSx}
+                        >
+                            {isFrench ? 'Annuler' : 'Cancel'}
+                        </Button>
+                        <Button
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            onClick={handleSave}
+                            disabled={save}
+                            sx={adminPrimarySaveButtonSx}
+                        >
+                            {isFrench ? 'Enregistrer' : 'Save'}
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
 

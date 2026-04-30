@@ -61,7 +61,6 @@ import SuccessMailSend from './pages/Mail/SuccessMailSend';
 import Header from './composants/Header';
 import { ResetPasswordStepOne, ResetPasswordStepTow } from './pages/Connexion/resetPassword';
 import Account from './pages/Account';
-import { height } from '@mui/system';
 import ProfesseurDashboard from './pages/ProfesseurPages/Dashboard';
 import ModuleQRO from './pages/ProfesseurPages/ModuleQRO';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
@@ -92,21 +91,21 @@ function App() {
 
   // Vérifier périodiquement les cookies pour les mises à jour
   useEffect(() => {
-      const intervalId = setInterval(() => checkUserOnCookies(user, setUser), 4000);
-      return () => clearInterval(intervalId);
+    const intervalId = setInterval(() => checkUserOnCookies(user, setUser), 4000);
+    return () => clearInterval(intervalId);
   }, [user, setUser]);
 
   return (
 
-    <AppContext.Provider value={{ language, setLanguage, user, setUser, isOnline, setIsOnline,serveurURL }}>
+    <AppContext.Provider value={{ language, setLanguage, user, setUser, isOnline, setIsOnline, serveurURL }}>
       <CheckInternetConnection isOnline={isOnline} setIsOnline={setIsOnline} />
 
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         {(user && user.profil !== userProfile.ETUDIANT_USER) &&
-          <Sidebar large={large} setLarge={setLarge}  />
+          <Sidebar large={large} setLarge={setLarge} />
         }
         <div className={(large) ? "mainDiv large" : (!user || (user.profil === userProfile.ETUDIANT_USER) ? "mainDiv large" : "mainDiv")}>
-          
+
           <Routes>
 
 
@@ -114,9 +113,9 @@ function App() {
             <Route path="/home" element={<Home />}></Route>
             <Route path="/home02" element={<Home />}></Route>
             <Route path="/inscription" element={<Inscription002 />}></Route>
-            
+
             <Route path="/registration" element={<Inscription002 />}></Route>
-            
+
             <Route path="/signup" element={<Inscription002 />}></Route>
             <Route path="/connexion" element={<Connexion />}></Route>
             <Route path="/signin" element={<Connexion />}></Route>
@@ -135,22 +134,22 @@ function App() {
 
 
             {(!user || user.profil !== userProfile.ADMIN_USER) &&
-            <>
-            <Route path="/articles" element={<Media />}></Route>
-            <Route path="/medias" element={<Media />}></Route>
-            <Route path="/medias/rubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
-            <Route path="/medias/rubrique/:nomRubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
-            <Route path="/article/:lienArticle" element={<ArticlePublic />}></Route>
-            </>
+              <>
+                <Route path="/articles" element={<Media />}></Route>
+                <Route path="/medias" element={<Media />}></Route>
+                <Route path="/medias/rubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
+                <Route path="/medias/rubrique/:nomRubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
+                <Route path="/article/:lienArticle" element={<ArticlePublic />}></Route>
+              </>
             }
-            
+
             {(user && user.profil === userProfile.ETUDIANT_USER) &&
               <>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/course/:idChapitre" element={<Course />}></Route>
                 <Route path="/module/:idModule" element={<Module />}></Route>
                 <Route path="/account" element={<Account />}></Route>
-              </>  
+              </>
             }
 
             {(user && user.profil === userProfile.PROFESSEUR_USER) &&
@@ -263,24 +262,24 @@ const checkUserOnCookies = (user, setUser) => {
       const parsedUser = JSON.parse(userCookie);
       // Comparaison plus robuste : comparer les IDs et les propriétés importantes
       // plutôt que JSON.stringify qui peut échouer à cause de l'ordre des propriétés
-      
+
       // Si l'utilisateur du contexte n'existe pas, utiliser celui du cookie
       if (!user) {
         setUser(parsedUser);
         return;
       }
-      
+
       // Comparer les propriétés importantes
       const userIdMatch = parsedUser.id === user.id;
       const emailMatch = parsedUser.email === user.email;
       const photoUrlMatch = parsedUser.photoUrl === user.photoUrl;
-      
+
       // Si l'ID ou l'email ne correspondent pas, c'est un utilisateur différent
       if (!userIdMatch || !emailMatch) {
         setUser(parsedUser);
         return;
       }
-      
+
       // Si l'ID et l'email correspondent mais que photoUrl est différent,
       // utiliser celui du cookie (qui est plus récent si on vient de l'uploader)
       if (!photoUrlMatch && parsedUser.photoUrl) {
@@ -288,13 +287,13 @@ const checkUserOnCookies = (user, setUser) => {
         setUser(parsedUser);
         return;
       }
-      
+
       // Si le contexte a une photoUrl mais pas le cookie, mettre à jour le cookie
       if (photoUrlMatch && user.photoUrl && !parsedUser.photoUrl) {
         Cookies.set("user", JSON.stringify(user), { expires: 7 });
         return;
       }
-      
+
     } catch (e) {
       console.error("Erreur lors de la lecture du cookie utilisateur:", e);
     }

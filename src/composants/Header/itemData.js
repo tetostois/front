@@ -47,12 +47,6 @@ export const itemData = [
 
 export const itemDataAdmin = [
     {
-        id: 1,
-        nom: 'Accueil',
-        nomEn: 'Home',
-        lien: '/home'
-    },
-    {
         id: 2,
         nom: 'Tableau de bord',
         nomEn: 'Dashboard',

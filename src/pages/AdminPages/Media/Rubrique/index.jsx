@@ -92,11 +92,11 @@ export default function Rubrique() {
                         sx={{
                             textTransform: "none",
                             borderRadius: "8px",
-                            borderColor: "#667eea",
-                            color: "#667eea",
+                            borderColor: "#16a34a",
+                            color: "#16a34a",
                             "&:hover": {
-                                borderColor: "#764ba2",
-                                backgroundColor: "rgba(102, 126, 234, 0.1)"
+                                borderColor: "#15803d",
+                                backgroundColor: "rgba(22, 163, 74, 0.1)"
                             }
                         }}
                     >

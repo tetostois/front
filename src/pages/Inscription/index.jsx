@@ -181,16 +181,16 @@ function FormInscription({
                activeStep={activeStep}
                sx={{
                   '& .MuiStepLabel-root .Mui-completed': {
-                     color: '#667eea',
+                     color: '#16a34a',
                   },
                   '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel': {
-                     color: '#667eea',
+                     color: '#16a34a',
                   },
                   '& .Mui-active .MuiStepLabel-root': {
-                     color: '#667eea',
+                     color: '#16a34a',
                   },
                   '& .MuiStepLabel-root .Mui-active': {
-                     color: '#667eea',
+                     color: '#16a34a',
                      fontWeight: 600,
                   },
                }}
@@ -215,7 +215,7 @@ function FormInscription({
          {activeStep === 0 && (
             <fieldset>
                <legend>
-                  Sélectionnez votre <span style={{ color: "#667eea", fontWeight: "bold" }}>profil de formation</span>
+                  Sélectionnez votre <span style={{ color: "#16a34a", fontWeight: "bold" }}>profil de formation</span>
                </legend>
                {error.textError && (
                   <div style={{ 
@@ -258,7 +258,7 @@ function FormInscription({
          {activeStep === 1 && (
             <fieldset>
                <legend>
-                  Informations <span style={{ color: "#667eea", fontWeight: "bold" }}>Personnelles</span>
+                  Informations <span style={{ color: "#16a34a", fontWeight: "bold" }}>Personnelles</span>
                </legend>
                {error.step === 1 && (
                   <div style={{ 
@@ -370,7 +370,7 @@ function FormInscription({
          {activeStep === 2 && (
             <fieldset>
                <legend>
-                  Informations <span style={{ color: "#667eea", fontWeight: "bold" }}>Professionnelles</span>
+                  Informations <span style={{ color: "#16a34a", fontWeight: "bold" }}>Professionnelles</span>
                </legend>
                {error.step === 2 && (
                   <div style={{ 
@@ -527,7 +527,7 @@ function FormInscription({
          {activeStep === 3 && (
             <fieldset>
                <legend>
-                  Informations de <span style={{ color: "#667eea", fontWeight: "bold" }}>Connexion</span>
+                  Informations de <span style={{ color: "#16a34a", fontWeight: "bold" }}>Connexion</span>
                </legend>
                {error.step === 3 && (
                   <div style={{ 
@@ -601,13 +601,13 @@ function FormInscription({
                         borderRadius: "12px",
                         fontSize: "15px",
                         fontWeight: 600,
-                        borderColor: "#667eea",
-                        color: "#667eea",
+                        borderColor: "#16a34a",
+                        color: "#16a34a",
                         textTransform: "none",
                         transition: "all 0.3s ease",
                         "&:hover": {
-                           borderColor: "#764ba2",
-                           backgroundColor: "rgba(102, 126, 234, 0.05)",
+                           borderColor: "#15803d",
+                           backgroundColor: "rgba(22, 163, 74, 0.05)",
                            transform: "translateY(-2px)"
                         },
                         "&:disabled": {
@@ -628,13 +628,13 @@ function FormInscription({
                            borderRadius: "12px",
                            fontSize: "16px",
                            fontWeight: 600,
-                           background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                           boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+                           background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                           boxShadow: "0 4px 15px rgba(22, 163, 74, 0.4)",
                            textTransform: "none",
                            transition: "all 0.3s ease",
                            "&:hover": {
-                              background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
-                              boxShadow: "0 6px 20px rgba(102, 126, 234, 0.5)",
+                              background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                              boxShadow: "0 6px 20px rgba(22, 163, 74, 0.5)",
                               transform: "translateY(-2px)"
                            }
                         }}
@@ -651,13 +651,13 @@ function FormInscription({
                            borderRadius: "12px",
                            fontSize: "16px",
                            fontWeight: 600,
-                           background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                           boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+                           background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                           boxShadow: "0 4px 15px rgba(22, 163, 74, 0.4)",
                            textTransform: "none",
                            transition: "all 0.3s ease",
                            "&:hover": {
-                              background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
-                              boxShadow: "0 6px 20px rgba(102, 126, 234, 0.5)",
+                              background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                              boxShadow: "0 6px 20px rgba(22, 163, 74, 0.5)",
                               transform: "translateY(-2px)"
                            }
                         }}
@@ -679,12 +679,12 @@ function FormInscription({
                Vous avez déjà un compte ?{" "}
                <Link to={"/signIn"} style={{ textDecoration: "none" }}>
                   <span style={{ 
-                     color: "#667eea", 
+                     color: "#16a34a", 
                      fontWeight: 600,
                      transition: "color 0.2s ease"
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#764ba2"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "#667eea"}
+                  onMouseEnter={(e) => e.currentTarget.style.color = "#15803d"}
+                  onMouseLeave={(e) => e.currentTarget.style.color = "#16a34a"}
                   >
                      Connectez-vous
                   </span>

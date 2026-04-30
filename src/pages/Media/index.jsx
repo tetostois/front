@@ -63,7 +63,7 @@ export default function Media({ defaultIdSelectedRubrique }) {
                <Container maxWidth="xl">
                   <Box sx={{ marginBottom: 4 }}>
                      <Box sx={{ display: "flex", alignItems: "center", gap: 2, marginBottom: 3 }}>
-                        <ArticleIcon sx={{ fontSize: 32, color: "#667eea" }} />
+                        <ArticleIcon sx={{ fontSize: 32, color: "#16a34a" }} />
                         <Typography 
                            variant="h4" 
                            sx={{ 
@@ -111,7 +111,7 @@ export default function Media({ defaultIdSelectedRubrique }) {
                                        fontWeight: idSelectedRubrique === rubrique.id ? 700 : 500,
                                           cursor: "pointer",
                                        backgroundColor: idSelectedRubrique === rubrique.id
-                                          ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                                          ? "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)"
                                           : "#f7fafc",
                                        color: idSelectedRubrique === rubrique.id ? "#ffffff" : "#4a5568",
                                        border: idSelectedRubrique === rubrique.id
@@ -119,14 +119,14 @@ export default function Media({ defaultIdSelectedRubrique }) {
                                           : "2px solid #e2e8f0",
                                        "&:hover": {
                                           backgroundColor: idSelectedRubrique === rubrique.id
-                                             ? "linear-gradient(135deg, #764ba2 0%, #667eea 100%)"
+                                             ? "linear-gradient(135deg, #16a34a 0%, #15803d 100%)"
                                              : "#edf2f7",
                                           transform: "translateY(-2px)",
-                                          boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                                          boxShadow: "0 4px 12px rgba(22, 163, 74, 0.3)",
                                        },
                                        transition: "all 0.3s ease",
                                        boxShadow: idSelectedRubrique === rubrique.id
-                                          ? "0 4px 12px rgba(102, 126, 234, 0.4)"
+                                          ? "0 4px 12px rgba(22, 163, 74, 0.4)"
                                           : "none"
                                     }}
                                  />
@@ -208,7 +208,7 @@ const DisplayArticlesRubriques = ({ idSelectedRubrique, setIdSelectedRubrique, r
                         gap: 1
                      }}
                   >
-                     <ArticleIcon sx={{ color: "#667eea" }} />
+                     <ArticleIcon sx={{ color: "#16a34a" }} />
                      {rubrique ? rubrique.nom : nomRubrique || (isFrench ? "Articles" : "Articles")}
                   </Typography>
                </Box>
@@ -265,10 +265,10 @@ const DisplayArticlesRubriques = ({ idSelectedRubrique, setIdSelectedRubrique, r
                                  fontSize: "16px",
                                  fontWeight: 600,
                                  "&.Mui-selected": {
-                                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                     color: "white",
                                     "&:hover": {
-                                       background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
+                                       background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                     }
                                  }
                               }
@@ -309,7 +309,7 @@ const DisplaySmallBodyArticleHorizontal = ({ article, setNomRubrique, nomRubriqu
             overflow: "hidden",
             "&:hover": {
                transform: "translateY(-8px)",
-               boxShadow: "0 12px 24px rgba(102, 126, 234, 0.3)",
+               boxShadow: "0 12px 24px rgba(22, 163, 74, 0.3)",
             }
          }}
          onClick={handleClick}
@@ -333,8 +333,8 @@ const DisplaySmallBodyArticleHorizontal = ({ article, setNomRubrique, nomRubriqu
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "center",
-                     backgroundColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                     backgroundColor: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)"
                   }}
                >
                   <ArticleIcon sx={{ fontSize: 64, color: "rgba(255, 255, 255, 0.5)" }} />
@@ -349,8 +349,8 @@ const DisplaySmallBodyArticleHorizontal = ({ article, setNomRubrique, nomRubriqu
                   size="small"
                   sx={{
                      width: "fit-content",
-                     backgroundColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                     backgroundColor: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                      color: "white",
                      fontWeight: 700,
                      fontSize: "12px",
@@ -404,7 +404,7 @@ const DisplaySmallBodyArticleHorizontal = ({ article, setNomRubrique, nomRubriqu
                   display: "flex",
                   alignItems: "center",
                   gap: 0.5,
-                  color: "#667eea",
+                  color: "#16a34a",
                   fontWeight: 600,
                   fontSize: "14px",
                   marginTop: 1,
@@ -414,7 +414,7 @@ const DisplaySmallBodyArticleHorizontal = ({ article, setNomRubrique, nomRubriqu
                   }
                }}
             >
-               <Typography sx={{ fontSize: "14px", fontWeight: 600, color: "#667eea" }}>
+               <Typography sx={{ fontSize: "14px", fontWeight: 600, color: "#16a34a" }}>
                   {isFrench ? "Lire la suite" : "Read more"}
                </Typography>
                <ArrowForwardIcon sx={{ fontSize: 16 }} />

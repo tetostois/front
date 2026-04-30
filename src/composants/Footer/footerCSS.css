@@ -1,97 +1,17 @@
+/* Espacement au-dessus du footer (pages avec contenu) */
 .mainDivFooter {
     margin-top: 50px;
-    display: flex;
-    flex-direction: column;
     width: 100%;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/**
+ * Bande copyright : layout (le fond `footerImage.png` est défini en sx dans Footer/index.jsx
+ * pour éviter que webpack/css-loader ne résolve `url(/images/...)` depuis ce fichier).
+ */
+.footerCopyrightStrip {
     position: relative;
-    font-family: 'Inter', sans-serif;
-}
-
-.footerSection {
-    display: flex;
-    flex-direction: column;
-}
-
-.footerImageFooter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-
-.containDivFooter {
     width: 100%;
-    min-height: 200px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: space-evenly;
-    align-content: center;
-}
-
-.subContainDivFooter {
-    width: 20%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-
-.imageLogoFooter {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.blocFooterMainDiv{
-    width: 100%;
-    display: flex;
-    background-color: #0E8135;
-    min-height: 250px;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.SousblocFooterDiv01{
-   display: flex;
-   flex-direction: column;
-   color: white;
-   font-weight: 800;
-}
-
-.lienc1{
-    text-decoration: none;
-}
-
-/* Styles pour les Tablette et ordinateur */
-@media (min-width: 769px) {
-    /* Styles pour les Tablette et ordinateur */
-
-}
-
-/* Styles pour les smartphones */
-@media (max-width: 768px) {
-    /* Styles pour les smartphones */
-    .blocFooterMainDiv{
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 3%;
-    }
-
-    
-    .containDivFooter {
-        flex-direction: column;
-    }
-
-    .subContainDivFooter {
-        width: 100%;
-    }
-
+    min-height: 180px;
+    overflow: hidden;
 }

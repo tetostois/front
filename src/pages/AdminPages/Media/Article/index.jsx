@@ -85,7 +85,7 @@ export default function Article() {
                </Typography>
             </TableCell>
             <TableCell>
-               <Typography variant="body2" sx={{ fontWeight: 600, color: "#667eea" }}>
+               <Typography variant="body2" sx={{ fontWeight: 600, color: "#16a34a" }}>
                   {article.etat || 0} {article.etat > 1 ? (isFrench ? "vues" : "views") : isFrench ? "vue" : "view"}
                </Typography>
             </TableCell>
@@ -109,11 +109,11 @@ export default function Article() {
                   sx={{
                      textTransform: "none",
                      borderRadius: "8px",
-                     borderColor: "#667eea",
-                     color: "#667eea",
+                     borderColor: "#16a34a",
+                     color: "#16a34a",
                      "&:hover": {
-                        borderColor: "#764ba2",
-                        backgroundColor: "rgba(102, 126, 234, 0.1)",
+                        borderColor: "#15803d",
+                        backgroundColor: "rgba(22, 163, 74, 0.1)",
                      },
                   }}
                >

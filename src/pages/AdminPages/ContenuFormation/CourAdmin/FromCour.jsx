@@ -2,19 +2,15 @@ import { useState, useEffect } from "react";
 import SaveComponent from "../../../../composants/SaveComponent";
 import { 
    CircularProgress, 
-   FormControl, 
-   InputLabel, 
-   MenuItem, 
-   Select, 
-   TextField, 
    Button, 
    Box, 
    Typography, 
    Paper, 
    Grid,
    Tooltip,
-   FormHelperText
 } from "@mui/material";
+import ModuleFormationSelect from "./ModuleFormationSelect";
+import { FormTextInput } from "../../../../composants/UiInputs";
 import SchoolIcon from '@mui/icons-material/School';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -33,39 +29,9 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
    borderRadius: '20px',
    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
    overflow: 'hidden',
-   border: '1px solid rgba(102, 126, 234, 0.1)',
+   border: '1px solid rgba(22, 163, 74, 0.1)',
    '&:hover': {
       boxShadow: '0 6px 24px rgba(0,0,0,0.15)',
-   },
-}));
-
-const StyledTextField = styled(TextField)(({ theme }) => ({
-   marginBottom: theme.spacing(2),
-   '& .MuiOutlinedInput-root': {
-      borderRadius: '12px',
-      backgroundColor: '#ffffff',
-      '&:hover fieldset': {
-         borderColor: '#667eea',
-      },
-      '&.Mui-focused fieldset': {
-         borderColor: '#667eea',
-      },
-      '& .MuiOutlinedInput-input': {
-         color: '#333333',
-      },
-   },
-   '& .MuiInputLabel-root': {
-      color: 'rgba(0, 0, 0, 0.6)',
-      '&.Mui-focused': {
-         color: '#667eea',
-      },
-   },
-   '& .MuiOutlinedInput-input': {
-      padding: '12px 14px',
-      color: '#333333',
-   },
-   '& .MuiFormHelperText-root': {
-      color: 'rgba(0, 0, 0, 0.6)',
    },
 }));
 
@@ -88,11 +54,11 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
       }
    }, [initialForm]);
 
-   const handleSelectChange = (event) => {
-      const selectedModule = data?.find(module => module.idModule === event.target.value);
-      if (selectedModule) {
-         setForm(prev => ({ ...prev, module: selectedModule }));
-      }
+   const handleModuleChange = (moduleOrNull) => {
+      setForm((prev) => ({
+         ...prev,
+         module: moduleOrNull ?? undefined,
+      }));
    };
 
    const handleImageChange = (e) => {
@@ -125,80 +91,65 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
          <StyledPaper elevation={2}>
             <Box
                sx={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: "#ffffff",
+                  borderBottom: "1px solid #e2e8f0",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
                   p: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.5,
                }}
             >
-               <SchoolIcon sx={{ color: '#fff', fontSize: 28 }} />
-               <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700, m: 0 }}>
+               <Box
+                  sx={{
+                     display: "flex",
+                     alignItems: "center",
+                     justifyContent: "center",
+                     p: "10px",
+                     borderRadius: "12px",
+                     background: "rgba(22, 163, 74, 0.1)",
+                  }}
+               >
+                  <SchoolIcon sx={{ color: "#16a34a", fontSize: 28 }} />
+               </Box>
+               <Typography variant="h6" sx={{ color: "#0f172a", fontWeight: 700, m: 0 }}>
                   Module de formation
                </Typography>
             </Box>
             <Box sx={{ p: 3 }}>
-            <FormControl fullWidth variant="outlined" sx={{ mb: 3 }}>
-               <InputLabel id="module-label" sx={{ color: 'rgba(0, 0, 0, 0.6)' }}>Sélectionnez un module</InputLabel>
-               <Select
-                  labelId="module-label"
-                  value={form.module?.idModule || ''}
-                  onChange={handleSelectChange}
-                  label="Module de formation"
-                  sx={{
-                     '& .MuiSelect-select': {
-                        backgroundColor: '#ffffff',
-                        color: '#333333',
-                     },
-                     '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(0, 0, 0, 0.23)',
-                     },
-                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#667eea',
-                     },
-                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#667eea',
-                     },
-                  }}
-               >
-                  {data?.map((module) => (
-                     <MenuItem 
-                        key={module.idModule} 
-                        value={module.idModule}
-                        sx={{
-                           color: '#333333',
-                           '&:hover': {
-                              backgroundColor: 'rgba(102, 126, 234, 0.08)',
-                           },
-                           '&.Mui-selected': {
-                              backgroundColor: 'rgba(102, 126, 234, 0.12)',
-                              '&:hover': {
-                                 backgroundColor: 'rgba(102, 126, 234, 0.16)',
-                              },
-                           },
-                        }}
-                     >
-                        {module.titre}
-                     </MenuItem>
-                  ))}
-               </Select>
-               <FormHelperText sx={{color: 'rgba(0, 0, 0, 0.6)'}}>Choisissez le module auquel appartient ce cours</FormHelperText>
-            </FormControl>
+               <ModuleFormationSelect
+                  modules={data}
+                  valueId={form.module?.idModule}
+                  onChange={handleModuleChange}
+               />
             </Box>
          </StyledPaper>
          {/* Section Informations du cours */}
          <StyledPaper elevation={2}>
             <Box
                sx={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: "#ffffff",
+                  borderBottom: "1px solid #e2e8f0",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
                   p: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.5,
                }}
             >
-               <DescriptionIcon sx={{ color: '#fff', fontSize: 28 }} />
-               <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700, m: 0 }}>
+               <Box
+                  sx={{
+                     display: "flex",
+                     alignItems: "center",
+                     justifyContent: "center",
+                     p: "10px",
+                     borderRadius: "12px",
+                     background: "rgba(22, 163, 74, 0.1)",
+                  }}
+               >
+                  <DescriptionIcon sx={{ color: "#16a34a", fontSize: 28 }} />
+               </Box>
+               <Typography variant="h6" sx={{ color: "#0f172a", fontWeight: 700, m: 0 }}>
                   Informations du cours
                </Typography>
             </Box>
@@ -206,11 +157,10 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
             
             <Grid container spacing={3}>
                <Grid item xs={12}>
-                  <StyledTextField
+                  <FormTextInput
                      label="Titre du cours"
                      placeholder="Ex: Introduction à React"
                      fullWidth
-                     variant="outlined"
                      value={form.titre || ''}
                      onChange={(e) => setForm(prev => ({ ...prev, titre: e.target.value }))}
                      helperText="Donnez un titre clair et descriptif à votre cours"
@@ -218,13 +168,12 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                </Grid>
 
                <Grid item xs={12}>
-                  <StyledTextField
+                  <FormTextInput
                      label="Préambule"
                      placeholder="Un court texte d'introduction..."
                      fullWidth
                      multiline
                      rows={3}
-                     variant="outlined"
                      value={form.preanbule || ''}
                      onChange={(e) => setForm(prev => ({ ...prev, preanbule: e.target.value }))}
                      helperText="Une brève introduction qui donne envie de suivre le cours"
@@ -232,13 +181,12 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                </Grid>
 
                <Grid item xs={12}>
-                  <StyledTextField
+                  <FormTextInput
                      label="Description détaillée"
                      placeholder="Description complète du cours..."
                      fullWidth
                      multiline
                      rows={4}
-                     variant="outlined"
                      value={form.description || ''}
                      onChange={(e) => setForm(prev => ({ ...prev, description: e.target.value }))}
                      helperText="Décrivez en détail le contenu et les objectifs du cours"
@@ -247,15 +195,12 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
 
                <Grid item xs={12} md={6}>
                   <Box mb={2}>
-                     <StyledTextField
+                     <FormTextInput
                         label="Lien de l'image illustrative"
                         fullWidth
-                        variant="outlined"
                         value={form.image || ''}
                         onChange={handleImageChange}
-                        InputProps={{
-                           startAdornment: <ImageIcon color="action" sx={{ mr: 1 }} />,
-                        }}
+                        startAdornment={<ImageIcon sx={{ fontSize: 22, color: '#64748b' }} />}
                         helperText="URL d'une image représentative du cours"
                      />
                      {previewImage && (
@@ -281,15 +226,12 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
 
                <Grid item xs={12} md={6}>
                   <Box mb={2}>
-                     <StyledTextField
+                     <FormTextInput
                         label="Lien de la vidéo principale"
                         fullWidth
-                        variant="outlined"
                         value={form.video || ''}
                         onChange={handleVideoChange}
-                        InputProps={{
-                           startAdornment: <VideoLibraryIcon color="action" sx={{ mr: 1 }} />,
-                        }}
+                        startAdornment={<VideoLibraryIcon sx={{ fontSize: 22, color: '#64748b' }} />}
                         helperText="URL d'une vidéo de présentation ou d'introduction"
                      />
                      {previewVideo && (
@@ -315,17 +257,14 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                </Grid>
 
                <Grid item xs={12} sm={6} md={3}>
-                  <StyledTextField
+                  <FormTextInput
                      label="Ordre dans le module"
                      type="number"
                      fullWidth
-                     variant="outlined"
                      value={form.ordre || 0}
-                     onChange={(e) => setForm(prev => ({ ...prev, ordre: parseInt(e.target.value) || 0 }))}
-                     InputProps={{
-                        startAdornment: <SortIcon color="action" sx={{ mr: 1 }} />,
-                        inputProps: { min: 0 }
-                     }}
+                     onChange={(e) => setForm(prev => ({ ...prev, ordre: parseInt(e.target.value, 10) || 0 }))}
+                     startAdornment={<SortIcon sx={{ fontSize: 22, color: '#64748b' }} />}
+                     inputProps={{ min: 0 }}
                      helperText="Position du cours dans le module"
                   />
                </Grid>
@@ -337,26 +276,51 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
          <StyledPaper elevation={2}>
             <Box
                sx={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: "#ffffff",
+                  borderBottom: "1px solid #e2e8f0",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
                   p: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: 1.5,
                }}
             >
-               <Box display="flex" alignItems="center" gap={1}>
-                  <ArticleIcon sx={{ color: '#fff', fontSize: 28 }} />
-                  <Typography variant="h6" sx={{ color: '#fff', fontWeight: 700, m: 0 }}>
+               <Box display="flex" alignItems="center" gap={1.5}>
+                  <Box
+                     sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        p: "10px",
+                        borderRadius: "12px",
+                        background: "rgba(22, 163, 74, 0.1)",
+                     }}
+                  >
+                     <ArticleIcon sx={{ color: "#16a34a", fontSize: 28 }} />
+                  </Box>
+                  <Typography variant="h6" sx={{ color: "#0f172a", fontWeight: 700, m: 0 }}>
                      Contenu du cours
                   </Typography>
                </Box>
                <Tooltip title={showEdit ? "Aperçu du rendu" : "Modifier le contenu"}>
                   <Button
                      variant="contained"
-                     color={showEdit ? "primary" : "success"}
+                     size="small"
                      startIcon={showEdit ? <VisibilityIcon /> : <EditIcon />}
                      onClick={() => setShowEdit(!showEdit)}
-                     size="small"
+                     sx={{
+                        textTransform: "none",
+                        borderRadius: "12px",
+                        fontWeight: 600,
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                        color: "#fff",
+                        boxShadow: "0 2px 8px rgba(22, 163, 74, 0.25)",
+                        "&:hover": {
+                           background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                        },
+                     }}
                   >
                      {showEdit ? "Aperçu" : "Modifier"}
                   </Button>
@@ -365,29 +329,15 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
 
             {showEdit ? (
                <Box sx={{ p: 3 }}>
-                  <StyledTextField
+                  <FormTextInput
                      label="Contenu détaillé du cours"
                      placeholder="Rédigez ici le contenu complet de votre cours..."
                      multiline
                      rows={12}
                      fullWidth
-                     variant="outlined"
                      value={form.texte || ''}
                      onChange={(e) => setForm(prev => ({ ...prev, texte: e.target.value }))}
                      helperText="Utilisez le format Markdown pour la mise en forme (titres, listes, liens, etc.)"
-                     sx={{
-                        '& .MuiOutlinedInput-root': {
-                           '&:hover fieldset': {
-                              borderColor: '#667eea',
-                           },
-                           '&.Mui-focused fieldset': {
-                              borderColor: '#667eea',
-                           },
-                        },
-                        '& .MuiInputLabel-root.Mui-focused': {
-                           color: '#667eea',
-                        },
-                     }}
                   />
                </Box>
             ) : (
@@ -415,7 +365,7 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                         margin: '4px 0',
                      },
                      '& a': {
-                        color: '#667eea',
+                        color: '#16a34a',
                         textDecoration: 'none',
                         '&:hover': {
                            textDecoration: 'underline',

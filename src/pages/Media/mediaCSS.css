@@ -1,14 +1,14 @@
 /* Styles pour les rubriques sélectionnées */
 .rubriqueselected01 {
     transition: 200ms;
-    background-color: #667eea;
+    background-color: #16a34a;
     color: #ffffff;
 }
 
 .rubriqueselected01:hover {
     transition: 200ms;
     transform: scale(1.05);
-    background-color: #764ba2;
+    background-color: #15803d;
 }
 
 /* Styles pour les blocs d'articles - conservés pour compatibilité */
@@ -27,7 +27,7 @@
 .mediablocArticle:hover {
     transition: 250ms;
     transform: translateY(-8px);
-    box-shadow: 0px 12px 24px rgba(102, 126, 234, 0.3);
+    box-shadow: 0px 12px 24px rgba(22, 163, 74, 0.3);
 }
 
 .mediablocArticleImanage {
@@ -59,7 +59,7 @@
     margin-left: 2px;
     padding: 4px 8px;
     min-width: 70px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
     letter-spacing: 0.1em;
     border-radius: 4px;
 }

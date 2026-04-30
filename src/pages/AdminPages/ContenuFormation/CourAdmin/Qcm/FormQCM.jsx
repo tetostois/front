@@ -1,8 +1,9 @@
-import { TextField, Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import React, { useState } from "react";
 import SaveComponent from "../../../../../composants/SaveComponent";
 import DescriptionIcon from "@mui/icons-material/Description";
 import TranslateIcon from "@mui/icons-material/Translate";
+import { FormTextInput } from "../../../../../composants/UiInputs";
 
 export default function FormQCM({
     initialForm,
@@ -20,7 +21,7 @@ export default function FormQCM({
         <Box sx={{ p: 3 }}>
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     borderRadius: "20px 20px 0 0",
                     display: "flex",
@@ -40,19 +41,19 @@ export default function FormQCM({
                     borderRadius: "0 0 20px 20px",
                     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                     p: 4,
-                    border: "1px solid rgba(102, 126, 234, 0.1)",
+                    border: "1px solid rgba(22, 163, 74, 0.1)",
                     borderTop: "none"
                 }}
             >
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Box sx={{ mb: 1, display: "flex", alignItems: "center", gap: 1 }}>
-                            <TranslateIcon sx={{ color: "#667eea", fontSize: 20 }} />
+                            <TranslateIcon sx={{ color: "#16a34a", fontSize: 20 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                 {isFrench ? "Intitulé en Français" : "Title in French"}
                             </Typography>
                         </Box>
-                        <TextField
+                        <FormTextInput
                             label={isFrench ? "Intitulé en Français" : "Title in French"}
                             placeholder={isFrench ? "Ex: Ce titre" : "Ex: This title"}
                             fullWidth
@@ -60,73 +61,23 @@ export default function FormQCM({
                             onChange={(e) => {
                                 setForm({ ...form, intitule: e.target.value });
                             }}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    borderRadius: "12px",
-                                    "& fieldset": {
-                                        borderColor: "rgba(102, 126, 234, 0.2)"
-                                    },
-                                    "&:hover fieldset": {
-                                        borderColor: "rgba(102, 126, 234, 0.4)"
-                                    },
-                                    "&.Mui-focused fieldset": {
-                                        borderColor: "#667eea"
-                                    },
-                                    "& input": {
-                                        color: "#1a202c",
-                                        fontFamily: "'Inter', sans-serif"
-                                    }
-                                },
-                                "& .MuiInputLabel-root": {
-                                    color: "#718096",
-                                    fontFamily: "'Inter', sans-serif"
-                                },
-                                "& .MuiInputLabel-root.Mui-focused": {
-                                    color: "#667eea"
-                                }
-                            }}
                         />
                     </Grid>
 
                     <Grid item xs={12}>
                         <Box sx={{ mb: 1, display: "flex", alignItems: "center", gap: 1 }}>
-                            <TranslateIcon sx={{ color: "#43e97b", fontSize: 20 }} />
+                            <TranslateIcon sx={{ color: "#16a34a", fontSize: 20 }} />
                             <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                 {isFrench ? "Intitulé en Anglais" : "Title in English"}
                             </Typography>
                         </Box>
-                        <TextField
+                        <FormTextInput
                             label={isFrench ? "Intitulé en Anglais" : "Title in English"}
                             placeholder={isFrench ? "Ex: Ce titre" : "Ex: This title"}
                             fullWidth
                             value={form.intituleEn || ""}
                             onChange={(e) => {
                                 setForm({ ...form, intituleEn: e.target.value });
-                            }}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    borderRadius: "12px",
-                                    "& fieldset": {
-                                        borderColor: "rgba(67, 233, 123, 0.2)"
-                                    },
-                                    "&:hover fieldset": {
-                                        borderColor: "rgba(67, 233, 123, 0.4)"
-                                    },
-                                    "&.Mui-focused fieldset": {
-                                        borderColor: "#43e97b"
-                                    },
-                                    "& input": {
-                                        color: "#1a202c",
-                                        fontFamily: "'Inter', sans-serif"
-                                    }
-                                },
-                                "& .MuiInputLabel-root": {
-                                    color: "#718096",
-                                    fontFamily: "'Inter', sans-serif"
-                                },
-                                "& .MuiInputLabel-root.Mui-focused": {
-                                    color: "#43e97b"
-                                }
                             }}
                         />
                     </Grid>
@@ -138,7 +89,7 @@ export default function FormQCM({
                                 {isFrench ? "Description" : "Description"}
                             </Typography>
                         </Box>
-                        <TextField
+                        <FormTextInput
                             label={isFrench ? "Description" : "Description"}
                             placeholder={isFrench ? "Description" : "Description"}
                             multiline
@@ -147,31 +98,6 @@ export default function FormQCM({
                             value={form.description || ""}
                             onChange={(e) => {
                                 setForm({ ...form, description: e.target.value });
-                            }}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    borderRadius: "12px",
-                                    "& fieldset": {
-                                        borderColor: "rgba(250, 112, 154, 0.2)"
-                                    },
-                                    "&:hover fieldset": {
-                                        borderColor: "rgba(250, 112, 154, 0.4)"
-                                    },
-                                    "&.Mui-focused fieldset": {
-                                        borderColor: "#fa709a"
-                                    },
-                                    "& textarea": {
-                                        color: "#1a202c",
-                                        fontFamily: "'Inter', sans-serif"
-                                    }
-                                },
-                                "& .MuiInputLabel-root": {
-                                    color: "#718096",
-                                    fontFamily: "'Inter', sans-serif"
-                                },
-                                "& .MuiInputLabel-root.Mui-focused": {
-                                    color: "#fa709a"
-                                }
                             }}
                         />
                     </Grid>

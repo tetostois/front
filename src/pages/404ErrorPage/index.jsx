@@ -32,7 +32,7 @@ const Error404Page = () => {
                      borderRadius: "24px",
                      boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
                      overflow: "hidden",
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                      position: "relative"
                   }}
                >
@@ -148,7 +148,7 @@ const Error404Page = () => {
                                  to="/home"
                                  sx={{
                                     background: "rgba(255,255,255,0.95)",
-                                    color: "#667eea",
+                                    color: "#16a34a",
                                     fontWeight: 700,
                                     textTransform: "none",
                                     px: 4,

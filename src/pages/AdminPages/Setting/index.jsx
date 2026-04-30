@@ -6,7 +6,6 @@ import {
     Card,
     CardContent,
     Grid,
-    TextField,
     Button,
     Switch,
     FormControlLabel,
@@ -15,13 +14,14 @@ import {
     CircularProgress,
     Backdrop
 } from '@mui/material';
+import { FormTextInput } from '../../../composants/UiInputs';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SaveIcon from '@mui/icons-material/Save';
 import SecurityIcon from '@mui/icons-material/Security';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LanguageIcon from '@mui/icons-material/Language';
 import EmailIcon from '@mui/icons-material/Email';
-import { useFetch } from '../../../utils/hooks/FetchData';
+import { adminPrimarySaveButtonSx } from '../../../utils/adminPageStyles';
 
 export default function Setting() {
     const { language, setLanguage } = useContext(AppContext);
@@ -107,44 +107,33 @@ export default function Setting() {
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <SettingsIcon className="adminPageHeaderIcon" />
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <SettingsIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Paramètres' : 'Settings'}
+                            </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Gérez les paramètres généraux de l\'application'
+                                    : 'Manage general application settings'}
+                            </Typography>
+                        </Box>
                     </Box>
-                    <Box>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Paramètres' : 'Settings'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Gérez les paramètres généraux de l\'application'
-                                : 'Manage general application settings'}
-                        </Typography>
-                    </Box>
+                    <Button
+                        variant="contained"
+                        startIcon={<SaveIcon />}
+                        onClick={handleSave}
+                        disabled={saving}
+                        sx={adminPrimarySaveButtonSx}
+                    >
+                        {saving ? (isFrench ? 'Enregistrement...' : 'Saving...') : (isFrench ? 'Enregistrer' : 'Save')}
+                    </Button>
                 </Box>
-                <Button
-                    variant="contained"
-                    startIcon={<SaveIcon />}
-                    onClick={handleSave}
-                    disabled={saving}
-                    sx={{
-                        background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                        '&:hover': {
-                            background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
-                            boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
-                        },
-                        textTransform: 'none',
-                        borderRadius: '12px',
-                        fontWeight: 600,
-                        fontSize: 15,
-                        padding: '10px 24px',
-                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                    }}
-                >
-                    {saving ? (isFrench ? 'Enregistrement...' : 'Saving...') : (isFrench ? 'Enregistrer' : 'Save')}
-                </Button>
             </Box>
 
             {/* Success/Error Messages */}
@@ -167,52 +156,29 @@ export default function Setting() {
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', height: '100%' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                                    <SettingsIcon sx={{ fontSize: 28, color: '#667eea', mr: 1.5 }} />
+                                    <SettingsIcon sx={{ fontSize: 28, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Paramètres Généraux' : 'General Settings'}
                                     </Typography>
                                 </Box>
                                 <Divider sx={{ mb: 3 }} />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     label={isFrench ? 'Nom du site' : 'Site Name'}
                                     value={generalSettings.siteName}
                                     onChange={handleGeneralChange('siteName')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     multiline
                                     rows={3}
                                     label={isFrench ? 'Description du site' : 'Site Description'}
                                     value={generalSettings.siteDescription}
                                     onChange={handleGeneralChange('siteDescription')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            },
-                                            '& textarea': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
                                 <FormControlLabel
@@ -277,43 +243,23 @@ export default function Setting() {
                                     sx={{ mb: 2 }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     type="number"
                                     label={isFrench ? 'Longueur minimale du mot de passe' : 'Password Min Length'}
                                     value={securitySettings.passwordMinLength}
                                     onChange={handleSecurityChange('passwordMinLength')}
                                     inputProps={{ min: 6, max: 20 }}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
                                     type="number"
                                     label={isFrench ? 'Délai d\'expiration de session (minutes)' : 'Session Timeout (minutes)'}
                                     value={securitySettings.sessionTimeout}
                                     onChange={handleSecurityChange('sessionTimeout')}
                                     inputProps={{ min: 5, max: 1440 }}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                             </CardContent>
                         </Card>
@@ -393,113 +339,53 @@ export default function Setting() {
                                 </Box>
                                 <Divider sx={{ mb: 3 }} />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     label="SMTP Host"
                                     value={emailSettings.smtpHost}
                                     onChange={handleEmailChange('smtpHost')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     type="number"
                                     label="SMTP Port"
                                     value={emailSettings.smtpPort}
                                     onChange={handleEmailChange('smtpPort')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     label="SMTP Username"
                                     value={emailSettings.smtpUsername}
                                     onChange={handleEmailChange('smtpUsername')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     type="password"
                                     label="SMTP Password"
                                     value={emailSettings.smtpPassword}
                                     onChange={handleEmailChange('smtpPassword')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
+                                    className="mb-2"
                                     label={isFrench ? 'Email expéditeur' : 'From Email'}
                                     value={emailSettings.fromEmail}
                                     onChange={handleEmailChange('fromEmail')}
-                                    sx={{
-                                        mb: 2,
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                                 
-                                <TextField
+                                <FormTextInput
                                     fullWidth
                                     label={isFrench ? 'Nom expéditeur' : 'From Name'}
                                     value={emailSettings.fromName}
                                     onChange={handleEmailChange('fromName')}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                             </CardContent>
                         </Card>
@@ -510,7 +396,7 @@ export default function Setting() {
             {/* Loading Backdrop */}
             <Backdrop open={saving} sx={{ zIndex: 1000, color: '#fff' }}>
                 <Box sx={{ textAlign: 'center' }}>
-                    <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                    <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                     <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                         {isFrench ? 'Enregistrement en cours...' : 'Saving in progress...'}
                     </Typography>

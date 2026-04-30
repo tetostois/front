@@ -17,6 +17,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import PeopleIcon from '@mui/icons-material/People';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { MessageErrorServeur } from '../../../../composants/MessageComponent';
+import StatMetricCard from '../../../../composants/StatMetricCard';
 
 export default function StatForum() {
     const { language } = useContext(AppContext);
@@ -46,51 +47,61 @@ export default function StatForum() {
     const statsCards = [
         {
             id: 'total',
-            title: isFrench ? 'Total Messages' : 'Total Messages',
+            title: isFrench ? 'Messages' : 'Messages',
+            subtitle: isFrench ? 'Publiés sur le forum' : 'Posted on the forum',
             value: mockStats.totalMessages,
             icon: ForumIcon,
-            color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            iconBg: '#dbeafe',
+            accent: '#2563eb',
         },
         {
             id: 'actifs',
-            title: isFrench ? 'Messages Actifs' : 'Active Messages',
+            title: isFrench ? 'Actifs' : 'Active',
+            subtitle: isFrench ? 'Discussions en cours' : 'Ongoing threads',
             value: mockStats.messagesActifs,
             icon: TrendingUpIcon,
-            color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+            iconBg: '#d1fae5',
+            accent: '#059669',
         },
         {
             id: 'resolus',
-            title: isFrench ? 'Messages Résolus' : 'Resolved Messages',
+            title: isFrench ? 'Résolus' : 'Resolved',
+            subtitle: isFrench ? 'Marqués comme traités' : 'Marked as resolved',
             value: mockStats.messagesResolus,
             icon: MessageIcon,
-            color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+            iconBg: '#e0f2fe',
+            accent: '#0284c7',
         },
         {
             id: 'reponses',
-            title: isFrench ? 'Total Réponses' : 'Total Replies',
+            title: isFrench ? 'Réponses' : 'Replies',
+            subtitle: isFrench ? 'Total des réponses' : 'All replies',
             value: mockStats.totalReponses,
             icon: PeopleIcon,
-            color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
-        }
+            iconBg: '#ffedd5',
+            accent: '#ea580c',
+        },
     ];
 
     return (
         <Box className="adminPageContainer">
             {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <AssessmentIcon className="adminPageHeaderIcon" />
-                    </Box>
-                    <Box>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Statistiques du Forum' : 'Forum Statistics'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Analyse détaillée de l\'activité et de l\'engagement sur le forum'
-                                : 'Detailed analysis of forum activity and engagement'}
-                        </Typography>
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <AssessmentIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Statistiques du Forum' : 'Forum Statistics'}
+                            </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Analyse détaillée de l\'activité et de l\'engagement sur le forum'
+                                    : 'Detailed analysis of forum activity and engagement'}
+                            </Typography>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -100,7 +111,7 @@ export default function StatForum() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des statistiques...' : 'Loading statistics...'}
                             </Typography>
@@ -115,76 +126,33 @@ export default function StatForum() {
                 <Box className="adminPageContent">
                     {/* Statistics Cards */}
                     <Grid container spacing={3} sx={{ mb: 4 }}>
-                        {statsCards.map((stat) => {
-                            const IconComponent = stat.icon;
-                            return (
-                                <Grid item xs={12} sm={6} md={3} key={stat.id}>
-                                    <Card
-                                        sx={{
-                                            background: stat.color,
-                                            borderRadius: '20px',
-                                            boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                                            transition: 'all 0.3s ease',
-                                            '&:hover': {
-                                                transform: 'translateY(-8px)',
-                                                boxShadow: '0 12px 24px rgba(0,0,0,0.15)'
-                                            }
-                                        }}
-                                    >
-                                        <CardContent sx={{ p: 3, textAlign: 'center' }}>
-                                            <Box
-                                                sx={{
-                                                    width: 56,
-                                                    height: 56,
-                                                    background: 'rgba(255, 255, 255, 0.2)',
-                                                    borderRadius: '14px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    margin: '0 auto 16px',
-                                                    backdropFilter: 'blur(10px)'
-                                                }}
-                                            >
-                                                <IconComponent sx={{ fontSize: 32, color: '#fff' }} />
-                                            </Box>
-                                            <Typography
-                                                variant="h3"
-                                                sx={{
-                                                    fontFamily: 'Poppins, sans-serif',
-                                                    fontWeight: 700,
-                                                    color: '#fff',
-                                                    mb: 1,
-                                                    textShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                                                }}
-                                            >
-                                                {stat.value}
-                                            </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                sx={{
-                                                    fontFamily: 'Inter, sans-serif',
-                                                    color: 'rgba(255, 255, 255, 0.95)',
-                                                    fontWeight: 500,
-                                                    fontSize: 14,
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: 0.5
-                                                }}
-                                            >
-                                                {stat.title}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            );
-                        })}
+                        {statsCards.map((stat) => (
+                            <Grid item xs={12} sm={6} md={3} key={stat.id}>
+                                <StatMetricCard
+                                    title={stat.title}
+                                    subtitle={stat.subtitle}
+                                    value={stat.value}
+                                    icon={stat.icon}
+                                    iconBg={stat.iconBg}
+                                    accent={stat.accent}
+                                />
+                            </Grid>
+                        ))}
                     </Grid>
 
                     {/* Engagement Summary */}
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
-                            <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+                            <Card
+                                elevation={0}
+                                sx={{
+                                    borderRadius: '12px',
+                                    border: '1px solid #e2e8f0',
+                                    boxShadow: '0 4px 6px -1px rgba(15, 23, 42, 0.06)',
+                                }}
+                            >
                                 <CardContent>
-                                    <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#1a202c' }}>
+                                    <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#0f172a' }}>
                                         {isFrench ? 'Engagement par Type d\'Utilisateur' : 'Engagement by User Type'}
                                     </Typography>
                                     <Box sx={{ mb: 2 }}>
@@ -200,13 +168,13 @@ export default function StatForum() {
                                             variant="determinate"
                                             value={mockStats.etudiantsActifs > 0 ? 70 : 0}
                                             sx={{
-                                                height: 8,
-                                                borderRadius: 4,
-                                                backgroundColor: '#e0e0e0',
+                                                height: 6,
+                                                borderRadius: 999,
+                                                backgroundColor: '#e2e8f0',
                                                 '& .MuiLinearProgress-bar': {
-                                                    background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                                                    borderRadius: 4
-                                                }
+                                                    background: 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)',
+                                                    borderRadius: 999,
+                                                },
                                             }}
                                         />
                                     </Box>
@@ -223,13 +191,13 @@ export default function StatForum() {
                                             variant="determinate"
                                             value={mockStats.professeursActifs > 0 ? 30 : 0}
                                             sx={{
-                                                height: 8,
-                                                borderRadius: 4,
-                                                backgroundColor: '#e0e0e0',
+                                                height: 6,
+                                                borderRadius: 999,
+                                                backgroundColor: '#e2e8f0',
                                                 '& .MuiLinearProgress-bar': {
-                                                    background: 'linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)',
-                                                    borderRadius: 4
-                                                }
+                                                    background: 'linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%)',
+                                                    borderRadius: 999,
+                                                },
                                             }}
                                         />
                                     </Box>
@@ -237,9 +205,16 @@ export default function StatForum() {
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+                            <Card
+                                elevation={0}
+                                sx={{
+                                    borderRadius: '12px',
+                                    border: '1px solid #e2e8f0',
+                                    boxShadow: '0 4px 6px -1px rgba(15, 23, 42, 0.06)',
+                                }}
+                            >
                                 <CardContent>
-                                    <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#1a202c' }}>
+                                    <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: '#0f172a' }}>
                                         {isFrench ? 'Taux de Résolution' : 'Resolution Rate'}
                                     </Typography>
                                     <Box>
@@ -262,13 +237,13 @@ export default function StatForum() {
                                                     : 0
                                             }
                                             sx={{
-                                                height: 8,
-                                                borderRadius: 4,
-                                                backgroundColor: '#e0e0e0',
+                                                height: 6,
+                                                borderRadius: 999,
+                                                backgroundColor: '#e2e8f0',
                                                 '& .MuiLinearProgress-bar': {
-                                                    background: 'linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)',
-                                                    borderRadius: 4
-                                                }
+                                                    background: 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)',
+                                                    borderRadius: 999,
+                                                },
                                             }}
                                         />
                                     </Box>

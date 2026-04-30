@@ -20,7 +20,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import { MessageErrorServeur } from '../MessageComponent';
-import { useForceInputTextVisibility } from '../../utils/hooks/useForceInputTextVisibility';
+
 import './adminPageTemplate.css';
 
 /**
@@ -47,9 +47,8 @@ export default function AdminPageTemplate({
 }) {
     const navigation = useNavigate();
     const isFrench = language === 'FR';
-    
-    // Forcer la visibilité du texte dans tous les champs de saisie
-    useForceInputTextVisibility();
+
+
 
     // Calculer les informations de pagination
     const totalPages = data?.totalPages || 0;
@@ -65,26 +64,27 @@ export default function AdminPageTemplate({
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
+            {/* Header — même style que le tableau de bord admin (bandeau blanc) */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    {Icon && (
-                        <Box className="adminPageHeaderIconContainer">
-                            <Icon className="adminPageHeaderIcon" />
-                        </Box>
-                    )}
-                    <Box>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {title}
-                        </Typography>
-                        {subtitle && (
-                            <Typography variant="body1" className="adminPageSubtitle">
-                                {subtitle}
-                            </Typography>
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        {Icon && (
+                            <Box className="adminPageHeaderIconContainer">
+                                <Icon className="adminPageHeaderIcon" />
+                            </Box>
                         )}
+                        <Box>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {title}
+                            </Typography>
+                            {subtitle && (
+                                <Typography variant="body1" className="adminPageSubtitle">
+                                    {subtitle}
+                                </Typography>
+                            )}
+                        </Box>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexShrink: 0 }}>
                     {customHeaderActions}
                     {addButtonPath && (
                         <Button
@@ -93,16 +93,16 @@ export default function AdminPageTemplate({
                             onClick={() => navigation(addButtonPath)}
                             className="adminPageAddButton"
                             sx={{
-                                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                 color: '#fff',
                                 fontWeight: 600,
                                 textTransform: 'none',
                                 padding: '10px 24px',
                                 borderRadius: '12px',
-                                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                                boxShadow: '0 4px 12px rgba(22, 163, 74, 0.3)',
                                 '&:hover': {
-                                    background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                                    boxShadow: '0 6px 16px rgba(102, 126, 234, 0.4)',
+                                    background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
+                                    boxShadow: '0 6px 16px rgba(22, 163, 74, 0.4)',
                                     transform: 'translateY(-2px)'
                                 },
                                 transition: 'all 0.3s ease'
@@ -111,6 +111,7 @@ export default function AdminPageTemplate({
                             {addButtonText || (isFrench ? 'Ajouter' : 'Add')}
                         </Button>
                     )}
+                    </Box>
                 </Box>
             </Box>
 
@@ -120,7 +121,7 @@ export default function AdminPageTemplate({
                     <Box className="adminPageLoading">
                         <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                             <Box sx={{ textAlign: 'center' }}>
-                                <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                                <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                                 <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                     {isFrench ? 'Chargement des données...' : 'Loading data...'}
                                 </Typography>
@@ -222,14 +223,14 @@ export default function AdminPageTemplate({
                                         fontSize: '14px',
                                         fontWeight: 600,
                                         '&.Mui-selected': {
-                                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                                             color: '#fff',
                                             '&:hover': {
-                                                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)'
+                                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)'
                                             }
                                         },
                                         '&:hover': {
-                                            backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                            backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                         }
                                     }
                                 }}

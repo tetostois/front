@@ -11,6 +11,18 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import CancelIcon from "@mui/icons-material/Cancel";
 import "./tableauCSS.css";
 
+/** L'API renvoie `dateNaissance`, pas `age`. Calcul local pour l'affichage liste. */
+function ageFromDateNaissance(dateNaissance) {
+    if (!dateNaissance) return null;
+    const birth = new Date(dateNaissance);
+    if (Number.isNaN(birth.getTime())) return null;
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    return age >= 0 ? age : null;
+}
+
 export default function Etudiant() {
    const navigation = useNavigate();
     const { language, serveurURL } = useContext(AppContext);
@@ -124,9 +136,9 @@ export default function Etudiant() {
                         onChange={() => handleSelectOne(etudiant.matricule)}
                         onClick={(e) => e.stopPropagation()}
                         sx={{
-                            color: "#667eea",
+                            color: "#16a34a",
                             "&.Mui-checked": {
-                                color: "#667eea"
+                                color: "#16a34a"
                             }
                         }}
                     />
@@ -147,7 +159,7 @@ export default function Etudiant() {
                             sx={{
                                 width: 32,
                                 height: 32,
-                                bgcolor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                bgcolor: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                 fontSize: 12,
                                 fontWeight: 600
                             }}
@@ -163,7 +175,7 @@ export default function Etudiant() {
                     <Typography variant="body2">{etudiant.prenom || "-"}</Typography>
                 </TableCell>
                 <TableCell>
-                    <Typography variant="body2" sx={{ color: "#667eea" }}>
+                    <Typography variant="body2" sx={{ color: "#16a34a" }}>
                         {etudiant.email || "-"}
                     </Typography>
                 </TableCell>
@@ -196,7 +208,9 @@ export default function Etudiant() {
                     <Typography variant="body2">{etudiant.region?.nom || "-"}</Typography>
                 </TableCell>
                 <TableCell>
-                    <Typography variant="body2">{etudiant.age || "-"}</Typography>
+                    <Typography variant="body2">
+                        {ageFromDateNaissance(etudiant.dateNaissance) ?? (etudiant.age != null ? etudiant.age : "-")}
+                    </Typography>
                 </TableCell>
                 <TableCell>
                     <Button
@@ -207,11 +221,11 @@ export default function Etudiant() {
                         sx={{
                             textTransform: "none",
                             borderRadius: "8px",
-                            borderColor: "#667eea",
-                            color: "#667eea",
+                            borderColor: "#16a34a",
+                            color: "#16a34a",
                             "&:hover": {
-                                borderColor: "#764ba2",
-                                backgroundColor: "rgba(102, 126, 234, 0.1)"
+                                borderColor: "#15803d",
+                                backgroundColor: "rgba(22, 163, 74, 0.1)"
                             }
                         }}
                     >
@@ -277,12 +291,12 @@ export default function Etudiant() {
                                 checked={isAllSelected}
                                 onChange={handleSelectAll}
                                 sx={{
-                                    color: "#667eea",
+                                    color: "#16a34a",
                                     "&.Mui-checked": {
-                                        color: "#667eea"
+                                        color: "#16a34a"
                                     },
                                     "&.MuiCheckbox-indeterminate": {
-                                        color: "#667eea"
+                                        color: "#16a34a"
                                     }
                                 }}
                             />

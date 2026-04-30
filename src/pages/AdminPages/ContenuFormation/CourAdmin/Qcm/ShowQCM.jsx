@@ -19,13 +19,13 @@ import {
     Link as MuiLink,
     Chip,
     IconButton,
-    TextField,
     Select,
     MenuItem,
     FormControl,
     InputLabel,
     Divider
 } from "@mui/material";
+import { FormTextInput } from "../../../../../composants/UiInputs";
 import QuizIcon from "@mui/icons-material/Quiz";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -116,7 +116,7 @@ export default function ShowQCM() {
                         startIcon={<EditIcon />}
                         onClick={() => navigation(`/qcm/alter/${idChapitre}/${idQcm}`)}
                         sx={{
-                            background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 700,
                             textTransform: "none",
@@ -124,7 +124,7 @@ export default function ShowQCM() {
                             py: 1.5,
                             boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                             "&:hover": {
-                                background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
                                 boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                             }
                         }}
@@ -159,7 +159,7 @@ export default function ShowQCM() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                         <Box sx={{ textAlign: "center" }}>
-                            <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                             <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                                 {isFrench ? "Chargement des détails..." : "Loading details..."}
                             </Typography>
@@ -192,7 +192,7 @@ const InformationGeneralQCM = ({ qcm, isFrench }) => {
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -211,12 +211,12 @@ const InformationGeneralQCM = ({ qcm, isFrench }) => {
                             sx={{
                                 p: 2,
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)",
-                                border: "1px solid rgba(102, 126, 234, 0.1)"
+                                background: "linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(21, 128, 61, 0.05) 100%)",
+                                border: "1px solid rgba(22, 163, 74, 0.1)"
                             }}
                         >
                             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-                                <TranslateIcon sx={{ color: "#667eea", fontSize: 20 }} />
+                                <TranslateIcon sx={{ color: "#16a34a", fontSize: 20 }} />
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                     {isFrench ? "Intitulé en Français" : "Title in French"}
                                 </Typography>
@@ -236,7 +236,7 @@ const InformationGeneralQCM = ({ qcm, isFrench }) => {
                             }}
                         >
                             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-                                <TranslateIcon sx={{ color: "#43e97b", fontSize: 20 }} />
+                                <TranslateIcon sx={{ color: "#16a34a", fontSize: 20 }} />
                                 <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                     {isFrench ? "Intitulé en Anglais" : "Title in English"}
                                 </Typography>
@@ -285,7 +285,7 @@ const ListProposition = ({ qcm, setUpdate, isFrench }) => {
         >
             <Box
                 sx={{
-                    background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     p: 2,
                     display: "flex",
                     alignItems: "center",
@@ -313,13 +313,13 @@ const ListProposition = ({ qcm, setUpdate, isFrench }) => {
                                     sx={{
                                         p: 2,
                                         borderRadius: "12px",
-                                        border: `2px solid ${proposition.etat > 0 ? "#43e97b" : "#cbd5e0"}`,
+                                        border: `2px solid ${proposition.etat > 0 ? "#16a34a" : "#cbd5e0"}`,
                                         background: proposition.etat > 0
                                             ? "linear-gradient(135deg, rgba(67, 233, 123, 0.05) 0%, rgba(56, 249, 215, 0.05) 100%)"
                                             : "linear-gradient(135deg, rgba(237, 242, 247, 0.5) 0%, rgba(237, 242, 247, 0.3) 100%)",
                                         transition: "all 0.2s ease",
                                         "&:hover": {
-                                            borderColor: proposition.etat > 0 ? "#38f9d7" : "#667eea",
+                                            borderColor: proposition.etat > 0 ? "#15803d" : "#16a34a",
                                             boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
                                         }
                                     }}
@@ -328,7 +328,7 @@ const ListProposition = ({ qcm, setUpdate, isFrench }) => {
                                         <Chip
                                             label={index + 1}
                                             sx={{
-                                                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                 color: "#fff",
                                                 fontWeight: 700,
                                                 minWidth: 40,
@@ -339,7 +339,7 @@ const ListProposition = ({ qcm, setUpdate, isFrench }) => {
                                         <Box sx={{ flex: 1 }}>
                                             <Box sx={{ mb: 1.5 }}>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <TranslateIcon sx={{ color: "#667eea", fontSize: 16 }} />
+                                                    <TranslateIcon sx={{ color: "#16a34a", fontSize: 16 }} />
                                                     <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                                         {isFrench ? "Proposition en Français" : "Proposition in French"}
                                                     </Typography>
@@ -351,7 +351,7 @@ const ListProposition = ({ qcm, setUpdate, isFrench }) => {
                                             <Divider sx={{ my: 1.5 }} />
                                             <Box>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
-                                                    <TranslateIcon sx={{ color: "#43e97b", fontSize: 16 }} />
+                                                    <TranslateIcon sx={{ color: "#16a34a", fontSize: 16 }} />
                                                     <Typography variant="body2" sx={{ fontWeight: 600, color: "#718096" }}>
                                                         {isFrench ? "Proposition en Anglais" : "Proposition in English"}
                                                     </Typography>
@@ -430,18 +430,18 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
                 sx={{
                     ...(initialValue
                         ? {
-                              borderColor: "#667eea",
-                              color: "#667eea",
+                              borderColor: "#16a34a",
+                              color: "#16a34a",
                               "&:hover": {
-                                  borderColor: "#764ba2",
-                                  backgroundColor: "rgba(102, 126, 234, 0.1)"
+                                  borderColor: "#15803d",
+                                  backgroundColor: "rgba(22, 163, 74, 0.1)"
                               }
                           }
                         : {
-                              background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                              background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                               color: "#fff",
                               "&:hover": {
-                                  background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)"
+                                  background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)"
                               }
                           }),
                     fontWeight: 600,
@@ -467,7 +467,7 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
             >
                 <DialogTitle
                     sx={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         color: "#fff",
                         fontWeight: 700,
                         display: "flex",
@@ -503,7 +503,7 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
                     )}
 
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                        <TextField
+                        <FormTextInput
                             fullWidth
                             multiline
                             rows={4}
@@ -511,14 +511,9 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
                             placeholder={isFrench ? "Écrire ici..." : "Write here..."}
                             value={formPropositionQCM.valeur || ""}
                             onChange={(e) => setFormPropositionQCM((prev) => ({ ...prev, valeur: e.target.value }))}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    borderRadius: "12px"
-                                }
-                            }}
                         />
 
-                        <TextField
+                        <FormTextInput
                             fullWidth
                             multiline
                             rows={4}
@@ -526,11 +521,6 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
                             placeholder={isFrench ? "Écrire ici..." : "Write here..."}
                             value={formPropositionQCM.valeurEn || ""}
                             onChange={(e) => setFormPropositionQCM((prev) => ({ ...prev, valeurEn: e.target.value }))}
-                            sx={{
-                                "& .MuiOutlinedInput-root": {
-                                    borderRadius: "12px"
-                                }
-                            }}
                         />
 
                         <FormControl fullWidth>
@@ -564,13 +554,13 @@ const AjoutOrUpdatePropositionQCM = ({ qcm, setUpdate, initialValue, isFrench })
                         onClick={handleSave}
                         variant="contained"
                         sx={{
-                            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                            background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                             color: "#fff",
                             fontWeight: 600,
                             textTransform: "none",
                             px: 3,
                             "&:hover": {
-                                background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)"
+                                background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)"
                             }
                         }}
                     >
@@ -673,7 +663,7 @@ const DeleteProposition = ({ proposition, setUpdate, isFrench }) => {
                     <Button
                         onClick={handleClose}
                         sx={{
-                            color: "#667eea",
+                            color: "#16a34a",
                             fontWeight: 600,
                             textTransform: "none"
                         }}

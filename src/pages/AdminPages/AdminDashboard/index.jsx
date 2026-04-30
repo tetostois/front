@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Header from '../../../composants/Header'
-import { Container } from 'react-bootstrap'
 import './adminDashbordCSS.css';
 import { useFetch } from '../../../utils/hooks/FetchData';
 import { MessageErrorServeur } from '../../../composants/MessageComponent';
@@ -23,9 +21,10 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import AdminDashboardCharts from '../../../composants/AdminDashboardCharts';
 
 export default function AdminDashboard() {
-    const { isOnline, language } = useContext(AppContext);
+    const { language } = useContext(AppContext);
     const [update, setUpdate] = useState(false)
     const { isLoading, data, error } = useFetch('/admin/dashboard', 'GET', null, null, update)
     const isFrench = language === 'FR';
@@ -39,68 +38,79 @@ export default function AdminDashboard() {
         return () => clearInterval(intervale);
     }, [isLoading, error, update]);
 
+    /* Style type projet : carte blanche, pastille d’icône colorée à gauche (voir AdminDashboard.tsx) */
     const stats = data ? [
         {
             id: 'etudiants',
-            title: isFrench ? 'Étudiants Inscrits' : 'Registered Students',
+            title: isFrench ? 'Étudiants' : 'Students',
+            subtitle: isFrench ? 'Inscrits sur la plateforme' : 'Registered on the platform',
             value: data.etudiantInscrit || 0,
             icon: PeopleIcon,
-            color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            iconColor: '#667eea'
+            iconBg: '#dbeafe',
+            accent: '#2563eb',
         },
         {
             id: 'professeurs',
-            title: isFrench ? 'Professeurs Actifs' : 'Active Teachers',
+            title: isFrench ? 'Professeurs' : 'Teachers',
+            subtitle: isFrench ? 'Actifs / total' : 'Active / total',
             value: `${data.profActif || 0} / ${data.profTotal || 0}`,
             icon: SchoolIcon,
-            color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-            iconColor: '#f5576c'
+            iconBg: '#d1fae5',
+            accent: '#059669',
         },
         {
             id: 'modules',
-            title: isFrench ? 'Modules Actifs' : 'Active Modules',
+            title: isFrench ? 'Modules' : 'Modules',
+            subtitle: isFrench ? 'Actifs / total' : 'Active / total',
             value: `${data.moduleActif || 0} / ${data.moduleTotal || 0}`,
             icon: MenuBookIcon,
-            color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-            iconColor: '#4facfe'
+            iconBg: '#e0f2fe',
+            accent: '#0284c7',
         },
         {
             id: 'chapitres',
-            title: isFrench ? 'Chapitres Totaux' : 'Total Chapters',
+            title: isFrench ? 'Chapitres' : 'Chapters',
+            subtitle: isFrench ? 'Contenus publiés' : 'Published content',
             value: data.chapitreTotal || 0,
             icon: ArticleIcon,
-            color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-            iconColor: '#43e97b'
+            iconBg: '#ccfbf1',
+            accent: '#0d9488',
         },
         {
             id: 'qcm',
-            title: isFrench ? 'QCM Validés' : 'Validated QCMs',
+            title: isFrench ? 'QCM' : 'MCQs',
+            subtitle: isFrench ? 'Validés' : 'Validated',
             value: data.qcmValide || 0,
             icon: QuizIcon,
-            color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-            iconColor: '#fa709a'
+            iconBg: '#ffedd5',
+            accent: '#ea580c',
         },
         {
             id: 'taux',
-            title: isFrench ? 'Taux de Réussite QCM' : 'QCM Success Rate',
+            title: isFrench ? 'Réussite QCM' : 'QCM success',
+            subtitle: isFrench ? 'Taux global' : 'Overall rate',
             value: `${data.tauxReuissite || 0}%`,
             icon: TrendingUpIcon,
-            color: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
-            iconColor: '#30cfd0'
+            iconBg: '#e0e7ff',
+            accent: '#4f46e5',
         },
         {
             id: 'questions',
-            title: isFrench ? 'Questions Posées' : 'Questions Asked',
+            title: isFrench ? 'Questions' : 'Questions',
+            subtitle: isFrench ? 'Posées par les apprenants' : 'Asked by learners',
             value: data.questionPose || 0,
             icon: QuestionAnswerIcon,
-            color: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-            iconColor: '#a8edea'
-        }
+            iconBg: '#f3e8ff',
+            accent: '#9333ea',
+        },
     ] : [];
+
+    const courLuRaw = Number(data?.courLu);
+    const courLuPercent = Number.isFinite(courLuRaw) ? Math.min(100, Math.max(0, courLuRaw)) : 0;
 
     return (
         <>
-            <Container fluid className="adminDashboardContainer">
+            <Box component="main" className="adminDashboardContainer">
                 {/* Header Section */}
                 <Box className="adminDashboardHeader">
                     <Box className="adminDashboardHeaderContent">
@@ -124,7 +134,7 @@ export default function AdminDashboard() {
                     <Box className="adminDashboardLoading">
                         <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                             <Box sx={{ textAlign: 'center' }}>
-                                <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                                <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                                 <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                     {isFrench ? 'Chargement des données...' : 'Loading data...'}
                                 </Typography>
@@ -143,30 +153,84 @@ export default function AdminDashboard() {
                                 const IconComponent = stat.icon;
                                 return (
                                     <Grid item xs={12} sm={6} md={4} lg={3} key={stat.id}>
-                                        <Card className="adminStatCard" sx={{ 
-                                            background: stat.color,
-                                            transition: 'all 0.3s ease',
-                                            '&:hover': {
-                                                transform: 'translateY(-8px)',
-                                                boxShadow: '0 12px 24px rgba(0,0,0,0.15)'
-                                            }
-                                        }}>
-                                            <CardContent className="adminStatCardContent">
-                                                <Box className="adminStatIconContainer">
-                                                    <IconComponent className="adminStatIcon" sx={{ color: '#fff' }} />
+                                        <Card
+                                            className="adminStatCard adminStatCardLight"
+                                            elevation={0}
+                                            sx={{
+                                                border: '1px solid #f1f5f9',
+                                                borderRadius: '12px',
+                                                bgcolor: '#ffffff',
+                                                boxShadow: '0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06)',
+                                                transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+                                                '&:hover': {
+                                                    boxShadow: '0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.06)',
+                                                    transform: 'translateY(-2px)',
+                                                },
+                                            }}
+                                        >
+                                            <CardContent
+                                                sx={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: 2,
+                                                    py: 2.5,
+                                                    px: 2,
+                                                    '&:last-child': { pb: 2.5 },
+                                                }}
+                                            >
+                                                <Box
+                                                    sx={{
+                                                        width: 52,
+                                                        height: 52,
+                                                        borderRadius: '10px',
+                                                        bgcolor: stat.iconBg,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        flexShrink: 0,
+                                                    }}
+                                                >
+                                                    <IconComponent sx={{ color: stat.accent, fontSize: 26 }} />
                                                 </Box>
-                                                <Typography variant="h3" className="adminStatValue">
-                                                    {stat.value}
-                                                </Typography>
-                                                <Typography variant="body2" className="adminStatTitle">
-                                                    {stat.title}
-                                                </Typography>
+                                                <Box sx={{ minWidth: 0, flex: 1 }}>
+                                                    <Typography
+                                                        variant="subtitle2"
+                                                        sx={{
+                                                            fontWeight: 600,
+                                                            color: '#0f172a',
+                                                            fontSize: '0.9375rem',
+                                                            lineHeight: 1.3,
+                                                            mb: 0.25,
+                                                        }}
+                                                    >
+                                                        {stat.title}
+                                                    </Typography>
+                                                    <Typography
+                                                        sx={{
+                                                            fontWeight: 700,
+                                                            fontSize: '1.5rem',
+                                                            color: stat.accent,
+                                                            lineHeight: 1.2,
+                                                            letterSpacing: '-0.02em',
+                                                        }}
+                                                    >
+                                                        {stat.value}
+                                                    </Typography>
+                                                    <Typography
+                                                        variant="caption"
+                                                        sx={{ color: '#64748b', display: 'block', mt: 0.35, lineHeight: 1.35 }}
+                                                    >
+                                                        {stat.subtitle}
+                                                    </Typography>
+                                                </Box>
                                             </CardContent>
                                         </Card>
                                     </Grid>
                                 );
                             })}
                         </Grid>
+
+                        <AdminDashboardCharts data={data} isFrench={isFrench} />
 
                         {/* Additional Info Section */}
                         <Box className="adminDashboardInfoSection">
@@ -182,14 +246,14 @@ export default function AdminDashboard() {
                                             </Typography>
                                             <LinearProgress 
                                                 variant="determinate" 
-                                                value={data?.courLu || 0} 
+                                                value={courLuPercent} 
                                                 sx={{ 
-                                                    height: 8, 
-                                                    borderRadius: 4,
-                                                    backgroundColor: '#e0e0e0',
+                                                    height: 6, 
+                                                    borderRadius: 999,
+                                                    backgroundColor: '#e2e8f0',
                                                     '& .MuiLinearProgress-bar': {
-                                                        background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                                                        borderRadius: 4
+                                                        background: 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)',
+                                                        borderRadius: 999
                                                     }
                                                 }} 
                                             />
@@ -203,7 +267,7 @@ export default function AdminDashboard() {
                         </Box>
                     </Box>
                 )}
-            </Container>
+            </Box>
         </>
     )
 }

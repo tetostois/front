@@ -3,11 +3,11 @@ import {
     Box,
     Card,
     CardContent,
-    TextField,
     Grid,
     Divider,
     Typography
 } from '@mui/material';
+import { FormTextInput } from '../../../../composants/UiInputs';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import CategoryIcon from '@mui/icons-material/Category';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -40,48 +40,32 @@ export const FormRubrique = ({ initialForm, setErrorServeur, setError, setSave, 
                 />
             )}
             <Grid container spacing={3}>
-                {/* Basic Information */}
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                         <CardContent sx={{ p: 3 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <FolderOpenIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                <FolderOpenIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                 <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                     {isFrench ? 'Informations de Base' : 'Basic Information'}
                                 </Typography>
                             </Box>
                             <Divider sx={{ mb: 2 }} />
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                 label={isFrench ? 'Nom de la Rubrique' : 'Rubrique Name'}
                                 placeholder={isFrench ? 'Ex: Afrique' : 'Ex: Africa'}
                                 value={form.nom || ''}
                                 onChange={handleChange('nom')}
-                                sx={{
-                                    '& .MuiOutlinedInput-root': {
-                                        borderRadius: '12px',
-                                        '& input': {
-                                            color: '#1a202c'
-                                        },
-                                        '& textarea': {
-                                            color: '#1a202c'
-                                        }
-                                    },
-                                    '& .MuiInputLabel-root': {
-                                        color: '#718096'
-                                    }
-                                }}
                             />
                         </CardContent>
                     </Card>
                 </Grid>
 
-                {/* Category and Order */}
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                     <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                         <CardContent sx={{ p: 3 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <CategoryIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                <CategoryIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                 <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                     {isFrench ? 'Catégorie et Ordre' : 'Category and Order'}
                                 </Typography>
@@ -89,35 +73,23 @@ export const FormRubrique = ({ initialForm, setErrorServeur, setError, setSave, 
                             <Divider sx={{ mb: 2 }} />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
-                                    <TextField
+                                    <FormTextInput
                                         fullWidth
                                         label={isFrench ? 'Catégorie' : 'Category'}
                                         placeholder={isFrench ? 'Ex: Actualités' : 'Ex: News'}
                                         value={form.categorie || ''}
                                         onChange={handleChange('categorie')}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px'
-                                            }
-                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    <TextField
+                                    <FormTextInput
                                         fullWidth
                                         type="number"
                                         label={isFrench ? 'Niveau d\'ordre' : 'Order Level'}
                                         placeholder={isFrench ? 'Ex: 1' : 'Ex: 1'}
                                         value={form.ordre || ''}
                                         onChange={handleChange('ordre')}
-                                        InputProps={{
-                                            startAdornment: <SortIcon sx={{ mr: 1, color: '#667eea' }} />
-                                        }}
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px'
-                                            }
-                                        }}
+                                        startAdornment={<SortIcon sx={{ fontSize: 22, color: '#16a34a' }} />}
                                     />
                                 </Grid>
                             </Grid>
@@ -125,18 +97,17 @@ export const FormRubrique = ({ initialForm, setErrorServeur, setError, setSave, 
                     </Card>
                 </Grid>
 
-                {/* Description */}
                 <Grid item xs={12}>
                     <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                         <CardContent sx={{ p: 3 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <DescriptionIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                <DescriptionIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                 <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                     {isFrench ? 'Description' : 'Description'}
                                 </Typography>
                             </Box>
                             <Divider sx={{ mb: 2 }} />
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                 label={isFrench ? 'Description' : 'Description'}
                                 placeholder={isFrench ? 'Cette rubrique est pour...' : 'This rubrique is for...'}
@@ -144,20 +115,6 @@ export const FormRubrique = ({ initialForm, setErrorServeur, setError, setSave, 
                                 rows={6}
                                 value={form.description || ''}
                                 onChange={handleChange('description')}
-                                sx={{
-                                    '& .MuiOutlinedInput-root': {
-                                        borderRadius: '12px',
-                                        '& input': {
-                                            color: '#1a202c'
-                                        },
-                                        '& textarea': {
-                                            color: '#1a202c'
-                                        }
-                                    },
-                                    '& .MuiInputLabel-root': {
-                                        color: '#718096'
-                                    }
-                                }}
                             />
                         </CardContent>
                     </Card>

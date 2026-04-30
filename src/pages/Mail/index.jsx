@@ -6,7 +6,6 @@ import {
     Typography,
     Card,
     CardContent,
-    TextField,
     Button,
     Alert,
     Divider,
@@ -16,6 +15,7 @@ import {
     IconButton,
     Tooltip
 } from '@mui/material';
+import { FormTextInput } from '../../composants/UiInputs';
 import EmailIcon from '@mui/icons-material/Email';
 import SendIcon from '@mui/icons-material/Send';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -23,6 +23,7 @@ import PreviewIcon from '@mui/icons-material/Preview';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveComponent from '../../composants/SaveComponent';
 import { MessageErrorServeur } from '../../composants/MessageComponent';
+import { adminCancelButtonSx, adminPrimarySaveButtonSx } from '../../utils/adminPageStyles';
 
 export default function Mail() {
     const { language } = useContext(AppContext);
@@ -73,65 +74,42 @@ export default function Mail() {
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <EmailIcon className="adminPageHeaderIcon" />
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <EmailIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Envoi de Mail' : 'Send Email'}
+                            </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Envoyez des emails aux étudiants selon leur profil'
+                                    : 'Send emails to students based on their profile'}
+                            </Typography>
+                        </Box>
                     </Box>
-                    <Box>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Envoi de Mail' : 'Send Email'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Envoyez des emails aux étudiants selon leur profil'
-                                : 'Send emails to students based on their profile'}
-                        </Typography>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexShrink: 0, flexWrap: 'wrap' }}>
+                        <Button
+                            variant="outlined"
+                            startIcon={<CancelIcon />}
+                            onClick={handleCancel}
+                            sx={adminCancelButtonSx}
+                        >
+                            {isFrench ? 'Annuler' : 'Cancel'}
+                        </Button>
+                        <Button
+                            variant="contained"
+                            startIcon={<SendIcon />}
+                            onClick={handleSend}
+                            disabled={save}
+                            sx={adminPrimarySaveButtonSx}
+                        >
+                            {isFrench ? 'Envoyer' : 'Send'}
+                        </Button>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button
-                        variant="outlined"
-                        startIcon={<CancelIcon />}
-                        onClick={handleCancel}
-                        sx={{
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            borderColor: '#e2e8f0',
-                            color: '#4a5568',
-                            '&:hover': {
-                                borderColor: '#cbd5e0',
-                                backgroundColor: '#f7fafc'
-                            },
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px'
-                        }}
-                    >
-                        {isFrench ? 'Annuler' : 'Cancel'}
-                    </Button>
-                    <Button
-                        variant="contained"
-                        startIcon={<SendIcon />}
-                        onClick={handleSend}
-                        disabled={save}
-                        sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                            '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
-                                boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
-                            },
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px',
-                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {isFrench ? 'Envoyer' : 'Send'}
-                    </Button>
                 </Box>
             </Box>
 
@@ -156,24 +134,18 @@ export default function Mail() {
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <EmailIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <EmailIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Objet du Mail' : 'Email Subject'}
                                     </Typography>
                                 </Box>
                                 <Divider sx={{ mb: 2 }} />
-                                <TextField
+                                <FormTextInput
                                     fullWidth
                                     label={isFrench ? 'Objet du mail' : 'Mail Subject'}
                                     placeholder={isFrench ? 'Validation de Compte' : 'Account Validation'}
                                     value={form.objet}
                                     onChange={handleChange('objet')}
-                                    variant="outlined"
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px'
-                                        }
-                                    }}
                                 />
                             </CardContent>
                         </Card>
@@ -185,7 +157,7 @@ export default function Mail() {
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <EmailIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                        <EmailIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                         <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                             {isFrench ? 'Corps du Mail' : 'Email Body'}
                                         </Typography>
@@ -194,10 +166,10 @@ export default function Mail() {
                                         <IconButton
                                             onClick={() => setShowPreview(!showPreview)}
                                             sx={{
-                                                backgroundColor: showPreview ? '#667eea' : '#e2e8f0',
+                                                backgroundColor: showPreview ? '#16a34a' : '#e2e8f0',
                                                 color: showPreview ? '#fff' : '#4a5568',
                                                 '&:hover': {
-                                                    backgroundColor: showPreview ? '#764ba2' : '#cbd5e0'
+                                                    backgroundColor: showPreview ? '#15803d' : '#cbd5e0'
                                                 }
                                             }}
                                         >
@@ -224,12 +196,12 @@ export default function Mail() {
                                             sx={{
                                                 '& p': { margin: '8px 0' },
                                                 '& h1, & h2, & h3': { color: '#1a202c', marginTop: '16px' },
-                                                '& a': { color: '#667eea', textDecoration: 'none' }
+                                                '& a': { color: '#16a34a', textDecoration: 'none' }
                                             }}
                                         />
                                     </Paper>
                                 ) : (
-                                    <TextField
+                                    <FormTextInput
                                         fullWidth
                                         multiline
                                         rows={15}
@@ -237,14 +209,7 @@ export default function Mail() {
                                         placeholder={isFrench ? 'Texte du mail au format HTML, tout dans une div' : 'Mail text in HTML format, everything in a div'}
                                         value={form.bodyHtml}
                                         onChange={handleChange('bodyHtml')}
-                                        variant="outlined"
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                borderRadius: '12px',
-                                                fontFamily: 'monospace',
-                                                fontSize: '14px'
-                                            }
-                                        }}
+                                        inputClassName="font-mono text-sm"
                                     />
                                 )}
                                 <Box sx={{ mt: 2 }}>
@@ -267,25 +232,19 @@ export default function Mail() {
                         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                             <CardContent sx={{ p: 3 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <EmailIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                                    <EmailIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                         {isFrench ? 'Profils Cibles' : 'Target Profiles'}
                                     </Typography>
                                 </Box>
                                 <Divider sx={{ mb: 2 }} />
-                                <TextField
+                                <FormTextInput
                                     fullWidth
                                     label={isFrench ? 'Identifiants des profils (ex: 123 ou 12 ou 34)' : 'Profile IDs (e.g., 123 or 12 or 34)'}
                                     placeholder="1234"
                                     value={form.profil}
                                     onChange={handleChange('profil')}
-                                    variant="outlined"
                                     helperText={isFrench ? 'Entrez les identifiants des profils séparés par des espaces ou des virgules' : 'Enter profile IDs separated by spaces or commas'}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px'
-                                        }
-                                    }}
                                 />
                                 <Alert severity="info" sx={{ mt: 2, borderRadius: '12px' }}>
                                     {isFrench

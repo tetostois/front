@@ -86,7 +86,7 @@ export default function ShowEtudiant() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des détails...' : 'Loading details...'}
                             </Typography>
@@ -123,7 +123,7 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <PersonIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <PersonIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Informations Générales' : 'General Information'}
                             </Typography>
@@ -133,7 +133,7 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                             <InfoRow
                                 label={isFrench ? 'Matricule' : 'Matricule'}
                                 value={etudiant.matricule}
-                                icon={<SchoolIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<SchoolIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                             <InfoRow
                                 label={isFrench ? 'Nom' : 'Last Name'}
@@ -146,12 +146,12 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                             <InfoRow
                                 label="Email"
                                 value={etudiant.email}
-                                icon={<EmailIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<EmailIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                             <InfoRow
                                 label={isFrench ? 'Téléphone' : 'Phone'}
                                 value={etudiant.telephone}
-                                icon={<PhoneIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<PhoneIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                             <InfoRow
                                 label={isFrench ? 'Date d\'inscription' : 'Registration Date'}
@@ -164,17 +164,17 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                                           })
                                         : '-'
                                 }
-                                icon={<CalendarTodayIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<CalendarTodayIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                             <InfoRow
                                 label={isFrench ? 'Profession' : 'Profession'}
                                 value={etudiant.profession}
-                                icon={<WorkIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<WorkIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                             <InfoRow
                                 label={isFrench ? 'Région' : 'Region'}
                                 value={etudiant.region?.nom}
-                                icon={<LocationOnIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<LocationOnIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                         </Box>
                     </CardContent>
@@ -186,7 +186,7 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <AssessmentIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <AssessmentIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Évaluation sur la Formation' : 'Training Evaluation'}
                             </Typography>
@@ -197,13 +197,13 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                                 label={isFrench ? 'Modules Débutés' : 'Modules Started'}
                                 value={etudiantModules.length}
                                 icon={<SchoolIcon />}
-                                color="#667eea"
+                                color="#16a34a"
                             />
                             <StatCard
                                 label={isFrench ? 'Cours / Chapitres Lus' : 'Courses / Chapters Read'}
                                 value={etudiantChapitres.length}
                                 icon={<SchoolIcon />}
-                                color="#43e97b"
+                                color="#16a34a"
                             />
                             <StatCard
                                 label={isFrench ? 'QCM Validés' : 'QCM Validated'}
@@ -224,7 +224,7 @@ const InfoGeneral = ({ formEtudiant, isFrench }) => {
                                           })
                                         : '-'
                                 }
-                                icon={<CalendarTodayIcon sx={{ fontSize: 18, color: '#667eea' }} />}
+                                icon={<CalendarTodayIcon sx={{ fontSize: 18, color: '#16a34a' }} />}
                             />
                         </Box>
                     </CardContent>
@@ -355,7 +355,7 @@ const InfoByModule = ({ formEtudiant, module, chapitreSimpleforms, etudiantChapi
         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', mb: 3 }}>
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <SchoolIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                    <SchoolIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                         {isFrench ? 'Module' : 'Module'}: {module.titre}
                     </Typography>
@@ -375,7 +375,7 @@ const InfoByModule = ({ formEtudiant, module, chapitreSimpleforms, etudiantChapi
                                     : '-'
                             }
                             icon={<CalendarTodayIcon />}
-                            color="#667eea"
+                            color="#16a34a"
                         />
                     </Grid>
                     <Grid item xs={12} md={3}>
@@ -383,7 +383,7 @@ const InfoByModule = ({ formEtudiant, module, chapitreSimpleforms, etudiantChapi
                             label={isFrench ? 'Cours Commencés' : 'Courses Started'}
                             value={`${courLu} / ${courTotal}`}
                             icon={<SchoolIcon />}
-                            color="#43e97b"
+                            color="#16a34a"
                         />
                     </Grid>
                     <Grid item xs={12} md={3}>

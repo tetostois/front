@@ -43,7 +43,7 @@ export default function DescriptionProfil({ nom, description, gammeEtudiant, set
          >
             <Box
                sx={{
-                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                   padding: "25px 30px",
                   color: "white",
                   position: "relative"
@@ -141,13 +141,13 @@ export default function DescriptionProfil({ nom, description, gammeEtudiant, set
                      borderRadius: "12px",
                      fontSize: "16px",
                      fontWeight: 600,
-                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                     boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
+                     background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                     boxShadow: "0 4px 15px rgba(22, 163, 74, 0.4)",
                      textTransform: "none",
                      transition: "all 0.3s ease",
                      "&:hover": {
-                        background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
-                        boxShadow: "0 6px 20px rgba(102, 126, 234, 0.5)",
+                        background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+                        boxShadow: "0 6px 20px rgba(22, 163, 74, 0.5)",
                         transform: "translateY(-2px)"
                      }
                   }}

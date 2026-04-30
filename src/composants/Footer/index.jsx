@@ -1,351 +1,221 @@
-import React, { useContext } from "react";
-import "./footerCSS.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { 
-   Box, 
-   Typography, 
-   IconButton, 
-   Tooltip,
-   Container,
-   Grid
-} from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import React, { useContext, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Box, Typography, Container, Link } from "@mui/material";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
-import LanguageIcon from "@mui/icons-material/Language";
+import PlaceIcon from "@mui/icons-material/Place";
 import { AppContext } from "../../context";
-import Cookies from "js-cookie";
+import "./footerCSS.css";
+
+/** Textes alignés sur `project` (Footer.tsx + i18n fr/en). */
+const copy = {
+   FR: {
+      quickLinks: "Liens Rapides",
+      home: "Accueil",
+      about: "À propos",
+      certifications: "Certifications",
+      contact: "Contact",
+      certs: [
+         "Initiation Pratique Générale",
+         "Cadre & Manager",
+         "Rentabilité Entrepreneuriale",
+         "Chef d'entreprise",
+         "Investisseur Africain",
+         "Ingénieries Spécifiques",
+      ],
+      copyright: "© 2026 ENALE Programme LEADERSHIP. Tous droits réservés.",
+      bannerAlt: "Bannière",
+   },
+   EN: {
+      quickLinks: "Quick Links",
+      home: "Home",
+      about: "About",
+      certifications: "Certifications",
+      contact: "Contact",
+      certs: [
+         "General Practical Introduction",
+         "Manager & Executive",
+         "Entrepreneurial Profitability",
+         "Business Owner",
+         "African Investor",
+         "Specific Engineering",
+      ],
+      copyright: "© 2026 ENALE LEADERSHIP Programme. All rights reserved.",
+      bannerAlt: "Banner",
+   },
+};
 
 function Footer() {
-   const { language, setLanguage, setUser, user } = useContext(AppContext);
-   const navigation = useNavigate();
-   const location = useLocation();
+   const { language } = useContext(AppContext);
+   const isFr = language === "FR";
+   const t = isFr ? copy.FR : copy.EN;
+   const [logoSrc, setLogoSrc] = useState("/images/05.png");
 
-   let isFrench = language === "FR";
-   const deconnexion = () => {
-      setUser(null);
-      Cookies.remove("user");
-      navigation("/");
+   const linkSx = {
+      color: "rgba(255, 255, 255, 0.8)",
+      textDecoration: "none",
+      fontSize: "0.875rem",
+      transition: "color 0.2s",
+      "&:hover": { color: "#fff" },
    };
 
-   const listNumeroWhatSapp = ["", "", "", ""];
-
    return (
-      // <>
-      //    <footer class="footer">
-      //       <div class="wapper">
-      //          <div class="row-col">
-      //             <div class="cat-col-25">
-      //                <div class="pad-cat">
-      //                   <div class="img logo-footer">
-      //                      <img src="images/logo-footer.png" alt="" />
-      //                   </div>
-      //                   <div class="widget-footer">
-      //                      <div class="menu-container">
-      //                         <h4 class="titre-footer-rx text-center">Suivez-nous</h4>
-      //                         <div class="footer-social-links">
-      //                            <a
-      //                               href="https:web.facebook.com/Leadershipprogramm/?_rdc=1&_rdr"
-      //                               title="Facebook"
-      //                               target="_blank"
-      //                            >
-      //                               <i class="fa-brands fa-facebook"></i>
-      //                            </a>
-      //                            <a
-      //                               href="https:www.linkedin.com/company/programmeleadership"
-      //                               title="Linkedin"
-      //                               target="_blank"
-      //                            >
-      //                               <i class="fa-brands fa-linkedin"></i>
-      //                            </a>
-      //                            <a
-      //                               href="https:api.whatsapp.com/send?phone=237695835877&text=Hi%20Programme%20Leadership"
-      //                               title="Whatsapp"
-      //                               target="_blank"
-      //                            >
-      //                               <i class="fa-brands fa-whatsapp"></i>
-      //                            </a>
-      //                         </div>
-      //                      </div>
-      //                   </div>
-      //                </div>
-      //             </div>
-      //             <div class="cat-col-30">
-      //                <div class="pad-cat">
-      //                   <h4 class="titre-footer">À propos</h4>
-      //                   <div class="widget-footer">
-      //                      <ul>
-      //                         <li>
-      //                            <a href="#">Qui sommes nous?</a>
-      //                         </li>
-      //                         <li>
-      //                            <a href="#">Nos objectifs</a>
-      //                         </li>
-      //                         <li>
-      //                            <a href="#">Connexion</a>
-      //                         </li>
-      //                         <li>
-      //                            <a href="#">S'inscrire pour suivre une formation</a>
-      //                         </li>
-      //                      </ul>
-      //                   </div>
-      //                </div>
-      //             </div>
-      //             <div class="cat-col-40">
-      //                <div class="pad-cat">
-      //                   <h4 class="titre-footer">Contact</h4>
-      //                   <div class="widget-footer">
-      //                      <ul>
-      //                         <li>Palais de Congrès, Bastos Golf, Yaoundé Cameroun</li>
-      //                         <li>contact@programmeleadership.org</li>
-      //                         <li>+237 697 84 03 20 / +237 699 94 71 95</li>
-      //                         <li>Site web : www.proqrammeleadership.orc</li>
-      //                      </ul>
-      //                   </div>
-      //                </div>
-      //             </div>
-      //          </div>
-      //       </div>
-      //       <div class="wapper">
-      //          <div class="row-col">
-      //             <div class="cat-col-100">
-      //                <div class="copyright_text text-center">
-      //                   Programme Leadership © 2024, All Rights Reserved, by Group IRI.
-      //                </div>
-      //             </div>
-      //          </div>
-      //       </div>
-      //    </footer>
-      // </>
-
-      <Box 
-         className="mainDivFooter" 
-         sx={{
-            position: "relative",
-            backgroundColor: "#1a472a",
-            color: "white",
-            paddingTop: 4,
-            paddingBottom: 2,
-            overflow: "hidden"
-         }}
-      >
-         {/* Image de fond */}
-         <Box 
-            className="footerImageFooter" 
+      <Box component="footer" className="mainDivFooter">
+         {/* Zone verte : uniquement le bloc liens / contact (pas la bande copyright) */}
+         <Box sx={{ bgcolor: "#15803d", color: "#fff" }}>
+         <Container
+            maxWidth={false}
             sx={{
-               position: "absolute",
-               top: 0,
-               left: 0,
-               right: 0,
-               bottom: 0,
-               backgroundImage: "url(/images/footerImage.png)",
-               backgroundSize: "cover",
-               backgroundPosition: "center",
-               opacity: 0.1,
-               zIndex: 0
+               maxWidth: "1280px",
+               mx: "auto",
+               px: { xs: 2, sm: 3, lg: 4 },
+               py: 6,
             }}
-         />
-
-         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-            <Grid container spacing={4}>
-               {/* Section NOUS CONTACTER */}
-               <Grid item xs={12} md={6}>
-                  <Box className="footerSection">
-                     <Typography 
-                        variant="h6" 
-                        sx={{
-                           fontFamily: "'Poppins', sans-serif",
-                           fontWeight: 700,
-                           fontSize: "1.5rem",
-                           marginBottom: 3,
-                           textTransform: "uppercase",
-                           letterSpacing: "1px",
-                           borderBottom: "2px solid rgba(255, 255, 255, 0.3)",
-                           paddingBottom: 1
-                        }}
-                     >
-                        {isFrench ? "NOUS CONTACTER" : "CONTACT US"}
-                     </Typography>
-                     
-                     <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
-                        {/* WhatsApp */}
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                           <WhatsAppIcon sx={{ fontSize: "32px", color: "#25D366" }} />
-                           <Box>
-                              <Typography variant="body2" sx={{ opacity: 0.9, marginBottom: 0.5 }}>
-                                 {isFrench ? "Nous écrire sur WhatsApp" : "Write to us on WhatsApp"}
-                              </Typography>
-                              <a
-                                 href="https://chat.whatsapp.com/HZvUzVRNNHFFZNyden9NEi"
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 style={{ 
-                                    color: "white", 
-                                    textDecoration: "none",
-                                    fontWeight: 500,
-                                    transition: "all 0.3s ease"
-                                 }}
-                                 onMouseEnter={(e) => e.target.style.opacity = "0.8"}
-                                 onMouseLeave={(e) => e.target.style.opacity = "1"}
-                              >
-                                 {isFrench ? "Rejoindre le groupe" : "Join the group"}
-                              </a>
-                           </Box>
-                        </Box>
-
-                        {/* Téléphone */}
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                           <PhoneIcon sx={{ fontSize: "28px", color: "white", opacity: 0.9 }} />
-                           <Box>
-                              <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                                 <strong>Tel:</strong> +237 695 83 58 77 / +237 691 26 55 25
-                              </Typography>
-                           </Box>
-                        </Box>
-
-                        {/* Site Web */}
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                           <LanguageIcon sx={{ fontSize: "28px", color: "white", opacity: 0.9 }} />
-                           <Box>
-                              <Typography variant="body2" sx={{ opacity: 0.9, marginBottom: 0.5 }}>
-                                 <strong>SITE WEB:</strong>
-                              </Typography>
-                              <a
-                                 href="https://programmeleadership.org"
-                                 target="_blank"
-                                 rel="noreferrer"
-                                 style={{ 
-                                    color: "white", 
-                                    textDecoration: "none",
-                                    fontWeight: 500,
-                                    transition: "all 0.3s ease"
-                                 }}
-                                 onMouseEnter={(e) => e.target.style.opacity = "0.8"}
-                                 onMouseLeave={(e) => e.target.style.opacity = "1"}
-                              >
-                                 www.programmeleadership.org
-                              </a>
-                           </Box>
-                        </Box>
-                     </Box>
-                  </Box>
-               </Grid>
-
-               {/* Section NOUS SUIVRE */}
-               <Grid item xs={12} md={6}>
-                  <Box className="footerSection">
-                     <Typography 
-                        variant="h6" 
-                        sx={{
-                           fontFamily: "'Poppins', sans-serif",
-                           fontWeight: 700,
-                           fontSize: "1.5rem",
-                           marginBottom: 3,
-                           textTransform: "uppercase",
-                           letterSpacing: "1px",
-                           borderBottom: "2px solid rgba(255, 255, 255, 0.3)",
-                           paddingBottom: 1
-                        }}
-                     >
-                        {isFrench ? "NOUS SUIVRE" : "FOLLOW US"}
-                     </Typography>
-                     
-                     <Box sx={{ display: "flex", gap: 2, marginTop: 2 }}>
-                        <Tooltip title="Facebook" arrow>
-                           <IconButton
-                              component="a"
-                              href="https://web.facebook.com/Leadershipprogramm/?_rdc=1&_rdr"
-                              target="_blank"
-                              rel="noreferrer"
-                              sx={{
-                                 backgroundColor: "rgba(255, 255, 255, 0.1)",
-                                 color: "white",
-                                 width: 56,
-                                 height: 56,
-                                 "&:hover": {
-                                    backgroundColor: "#1877F2",
-                                    transform: "translateY(-4px)",
-                                    boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)"
-                                 },
-                                 transition: "all 0.3s ease"
-                              }}
-                           >
-                              <FacebookIcon sx={{ fontSize: "32px" }} />
-                           </IconButton>
-                        </Tooltip>
-
-                        <Tooltip title="WhatsApp" arrow>
-                           <IconButton
-                              component="a"
-                              href="https://chat.whatsapp.com/HZvUzVRNNHFFZNyden9NEi"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              sx={{
-                                 backgroundColor: "rgba(255, 255, 255, 0.1)",
-                                 color: "white",
-                                 width: 56,
-                                 height: 56,
-                                 "&:hover": {
-                                    backgroundColor: "#25D366",
-                                    transform: "translateY(-4px)",
-                                    boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)"
-                                 },
-                                 transition: "all 0.3s ease"
-                              }}
-                           >
-                              <WhatsAppIcon sx={{ fontSize: "32px" }} />
-                           </IconButton>
-                        </Tooltip>
-
-                        <Tooltip title="LinkedIn" arrow>
-                           <IconButton
-                              component="a"
-                              href="https://www.linkedin.com/company/programmeleadership"
-                              target="_blank"
-                              rel="noreferrer"
-                              sx={{
-                                 backgroundColor: "rgba(255, 255, 255, 0.1)",
-                                 color: "white",
-                                 width: 56,
-                                 height: 56,
-                                 "&:hover": {
-                                    backgroundColor: "#0077B5",
-                                    transform: "translateY(-4px)",
-                                    boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)"
-                                 },
-                                 transition: "all 0.3s ease"
-                              }}
-                           >
-                              <LinkedInIcon sx={{ fontSize: "32px" }} />
-                           </IconButton>
-                        </Tooltip>
-                     </Box>
-                  </Box>
-               </Grid>
-            </Grid>
-
-            {/* Copyright */}
-            <Box 
-               sx={{ 
-                  textAlign: "center", 
-                  marginTop: 4,
-                  paddingTop: 3,
-                  borderTop: "1px solid rgba(255, 255, 255, 0.2)"
+         >
+            <Box
+               sx={{
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", md: "repeat(4, 1fr)" },
+                  gap: 4,
                }}
             >
-               <Typography 
-                  variant="body2" 
-                  sx={{ 
-                     color: "rgba(255, 255, 255, 0.8)",
-                     fontFamily: "'Inter', sans-serif",
-                     fontSize: "0.95rem"
-                  }}
-               >
-                  © 2024 Groupe IRI. {isFrench ? "Tous droits réservés." : "All rights reserved."}
-               </Typography>
+               <Box sx={{ display: "flex", flexDirection: "column", gap: 2, ml: { xs: 0, sm: 1 } }}>
+                  <Link component={RouterLink} to="/" sx={{ display: "flex", alignItems: "center", width: "fit-content" }}>
+                     <Box
+                        component="img"
+                        src={logoSrc}
+                        alt="Logo"
+                        onError={() => setLogoSrc("/images/logos02.png")}
+                        sx={{
+                           height: { xs: 48, sm: 56, md: 64 },
+                           width: "auto",
+                           maxWidth: 220,
+                           objectFit: "contain",
+                        }}
+                     />
+                  </Link>
+                  <Box sx={{ display: "flex", gap: 2 }} role="list">
+                     <Box
+                        component="a"
+                        href="https://www.linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                     >
+                        <Box component="img" src="/icons/linkedin.svg" alt="" sx={{ width: 24, height: 24 }} aria-hidden />
+                     </Box>
+                     <Box
+                        component="a"
+                        href="https://wa.me/+237695835877"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp"
+                     >
+                        <Box component="img" src="/icons/whatsapp.svg" alt="" sx={{ width: 24, height: 24 }} aria-hidden />
+                     </Box>
+                     <Box
+                        component="a"
+                        href="https://www.facebook.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                     >
+                        <Box component="img" src="/icons/facebook.svg" alt="" sx={{ width: 24, height: 24 }} aria-hidden />
+                     </Box>
+                  </Box>
+               </Box>
+
+               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, fontSize: "0.875rem" }}>
+                     {t.quickLinks}
+                  </Typography>
+                  <Box component="ul" sx={{ m: 0, p: 0, listStyle: "none", "& li": { mb: 1 } }}>
+                     <li>
+                        <Link component={RouterLink} to="/" sx={linkSx}>
+                           {t.home}
+                        </Link>
+                     </li>
+                     <li>
+                        <Link component={RouterLink} to="/apropos" sx={linkSx}>
+                           {t.about}
+                        </Link>
+                     </li>
+                  </Box>
+               </Box>
+
+               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, fontSize: "0.875rem" }}>
+                     {t.certifications}
+                  </Typography>
+                  <Box component="ul" sx={{ m: 0, p: 0, listStyle: "none", "& li": { mb: 1 } }}>
+                     {t.certs.map((label) => (
+                        <li key={label}>
+                           <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.875rem" }}>
+                              {label}
+                           </Typography>
+                        </li>
+                     ))}
+                  </Box>
+               </Box>
+
+               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, fontSize: "0.875rem" }}>
+                     {t.contact}
+                  </Typography>
+                  <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+                     <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
+                        <MailOutlineIcon sx={{ fontSize: 16, color: "rgba(255,255,255,0.9)", mt: 0.25, flexShrink: 0 }} />
+                        <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.875rem", wordBreak: "break-word" }}>
+                           contact@programmeleadership.org
+                        </Typography>
+                     </Box>
+                     <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
+                        <PhoneIcon sx={{ fontSize: 16, color: "rgba(255,255,255,0.9)", mt: 0.25, flexShrink: 0 }} />
+                        <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.875rem", wordBreak: "break-word" }}>
+                           +237 695 83 58 77 / +237 672 64 33 53
+                        </Typography>
+                     </Box>
+                     <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
+                        <PlaceIcon sx={{ fontSize: 16, color: "rgba(255,255,255,0.9)", mt: 0.25, flexShrink: 0 }} />
+                        <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.875rem", wordBreak: "break-word" }}>
+                           Palais de Congrès, Bastos Golf, Yaoundé Cameroun
+                        </Typography>
+                     </Box>
+                  </Box>
+               </Box>
             </Box>
          </Container>
+         </Box>
+
+         {/* Bande copyright : même rendu que le bandeau HeaderContent (footerImage.png en CSS background) */}
+         <Box
+            className="footerCopyrightStrip"
+            role="img"
+            aria-label={t.bannerAlt}
+            sx={{
+               bgcolor: "#0f172a",
+               backgroundImage: "url(/images/footerImage.png)",
+               backgroundSize: "cover",
+               backgroundRepeat: "no-repeat",
+               backgroundPosition: "center",
+            }}
+         >
+            <Box sx={{ position: "absolute", inset: 0, bgcolor: "rgba(0, 0, 0, 0.45)" }} />
+            <Box
+               sx={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  px: 2,
+               }}
+            >
+               <Typography sx={{ color: "#fff", textAlign: "center", fontSize: { xs: "0.875rem", md: "1.125rem" } }}>
+                  {t.copyright}
+               </Typography>
+            </Box>
+         </Box>
       </Box>
    );
 }

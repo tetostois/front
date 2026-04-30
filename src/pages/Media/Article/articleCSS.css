@@ -9,7 +9,7 @@
     transform: scale(1.05);
     transition: 500ms;
     white-space: pre-wrap;
-    background-color: #667eea;
+    background-color: #16a34a;
     color: white;
 }
 
@@ -26,7 +26,7 @@
 
 .surTitreDiv {
     width: max-content;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
     min-width: 200px;
     max-width: 100%;
     display: flex;
@@ -89,13 +89,13 @@
 .lienPosition {
     text-decoration: none;
     margin-left: 4px;
-    color: #667eea;
+    color: #16a34a;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .lienPosition:hover {
-    color: #764ba2;
+    color: #15803d;
     text-decoration: underline;
 }
 
@@ -106,12 +106,12 @@
 .corpsArticle a {
     text-decoration: none;
     font-weight: 600;
-    color: #667eea;
+    color: #16a34a;
     transition: all 0.3s ease;
 }
 
 .corpsArticle a:hover {
-    color: #764ba2;
+    color: #15803d;
     text-decoration: underline;
 }
 

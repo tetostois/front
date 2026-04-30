@@ -17,7 +17,6 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
-    TextField,
     Alert,
     Table,
     TableBody,
@@ -29,6 +28,7 @@ import {
     Breadcrumbs,
     Link as MuiLink
 } from '@mui/material';
+import { FormTextInput } from '../../../../../composants/UiInputs';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -113,9 +113,9 @@ export default function ShowCourAdmin() {
                         startIcon={<EditIcon />}
                         onClick={handleModifierClick}
                         sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                             '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
+                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                                 boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
                             },
                             textTransform: 'none',
@@ -136,7 +136,7 @@ export default function ShowCourAdmin() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                         <Box sx={{ textAlign: 'center' }}>
-                            <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                             <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                                 {isFrench ? 'Chargement des détails...' : 'Loading details...'}
                             </Typography>
@@ -169,7 +169,7 @@ const InformationGeneral = ({ formChapitre, navigation, isFrench }) => {
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <FolderOpenIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <FolderOpenIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Module de Formation' : 'Training Module'}
                             </Typography>
@@ -230,7 +230,7 @@ const InformationGeneral = ({ formChapitre, navigation, isFrench }) => {
                                 </Typography>
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                <CalendarTodayIcon sx={{ fontSize: 18, color: '#667eea' }} />
+                                <CalendarTodayIcon sx={{ fontSize: 18, color: '#16a34a' }} />
                                 <Box>
                                     <Typography variant="body2" sx={{ fontWeight: 600, color: '#718096' }}>
                                         {isFrench ? 'Date de Création' : 'Creation Date'}
@@ -275,7 +275,7 @@ const InformationGeneral = ({ formChapitre, navigation, isFrench }) => {
                         <Divider sx={{ mb: 2 }} />
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                <ImageIcon sx={{ fontSize: 20, color: '#43e97b' }} />
+                                <ImageIcon sx={{ fontSize: 20, color: '#16a34a' }} />
                                 <Box sx={{ flex: 1 }}>
                                     <Typography variant="body2" sx={{ fontWeight: 600, color: '#718096', mb: 0.5 }}>
                                         {isFrench ? 'Image Descriptive' : 'Descriptive Image'}
@@ -352,7 +352,7 @@ const InformationGeneral = ({ formChapitre, navigation, isFrench }) => {
                                     sx={{
                                         '& p': { margin: '8px 0', textAlign: 'justify' },
                                         '& h1, & h2, & h3': { color: '#1a202c', marginTop: '16px' },
-                                        '& a': { color: '#667eea', textDecoration: 'none' },
+                                        '& a': { color: '#16a34a', textDecoration: 'none' },
                                         whiteSpace: 'pre-wrap'
                                     }}
                                 />
@@ -372,7 +372,7 @@ const ListBlock = ({ chapitre, isFrench }) => {
         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', mb: 3 }}>
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <MenuBookIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                    <MenuBookIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                         {isFrench ? 'Sections du Cours' : 'Course Sections'}
                     </Typography>
@@ -429,11 +429,11 @@ const ListBlock = ({ chapitre, isFrench }) => {
                                                 sx={{
                                                     textTransform: 'none',
                                                     borderRadius: '8px',
-                                                    borderColor: '#667eea',
-                                                    color: '#667eea',
+                                                    borderColor: '#16a34a',
+                                                    color: '#16a34a',
                                                     '&:hover': {
-                                                        borderColor: '#764ba2',
-                                                        backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                                        borderColor: '#15803d',
+                                                        backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                                     }
                                                 }}
                                             >
@@ -459,7 +459,7 @@ const ListQCM = ({ listQcm, idChapitre, navigation, isFrench }) => {
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <QuizIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                        <QuizIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                         <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                             {isFrench ? 'QCM du Chapitre' : 'Chapter QCM'}
                         </Typography>
@@ -469,9 +469,9 @@ const ListQCM = ({ listQcm, idChapitre, navigation, isFrench }) => {
                         startIcon={<AddIcon />}
                         onClick={() => navigation(`/qcm/ajouter/${idChapitre}`)}
                         sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                             '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
+                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                                 boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
                             },
                             textTransform: 'none',
@@ -554,11 +554,11 @@ const ListQCM = ({ listQcm, idChapitre, navigation, isFrench }) => {
                                                     sx={{
                                                         textTransform: 'none',
                                                         borderRadius: '8px',
-                                                        borderColor: '#667eea',
-                                                        color: '#667eea',
+                                                        borderColor: '#16a34a',
+                                                        color: '#16a34a',
                                                         '&:hover': {
-                                                            borderColor: '#764ba2',
-                                                            backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                                            borderColor: '#15803d',
+                                                            backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                                         }
                                                     }}
                                                 >
@@ -585,7 +585,7 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre, isFrench }) => {
         <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <QuestionAnswerIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                    <QuestionAnswerIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                         {isFrench ? 'Questions à Réponse Ouverte (QRO)' : 'Open Response Questions (QRO)'}
                     </Typography>
@@ -641,11 +641,11 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre, isFrench }) => {
                                                 sx={{
                                                     textTransform: 'none',
                                                     borderRadius: '8px',
-                                                    borderColor: '#667eea',
-                                                    color: '#667eea',
+                                                    borderColor: '#16a34a',
+                                                    color: '#16a34a',
                                                     '&:hover': {
-                                                        borderColor: '#764ba2',
-                                                        backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                                                        borderColor: '#15803d',
+                                                        backgroundColor: 'rgba(22, 163, 74, 0.1)'
                                                     }
                                                 }}
                                             >
@@ -690,9 +690,9 @@ const AjoutQRO = ({ chapitre, setUpdate, isFrench }) => {
                 startIcon={<AddIcon />}
                 onClick={() => setOpen(true)}
                 sx={{
-                    background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                     '&:hover': {
-                        background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
+                        background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
                         boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
                     },
                     textTransform: 'none',
@@ -729,7 +729,7 @@ const AjoutQRO = ({ chapitre, setUpdate, isFrench }) => {
                         </Alert>
                     )}
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
-                        <TextField
+                        <FormTextInput
                             fullWidth
                             multiline
                             rows={4}
@@ -737,22 +737,8 @@ const AjoutQRO = ({ chapitre, setUpdate, isFrench }) => {
                             placeholder={isFrench ? 'Écrire ici...' : 'Write here...'}
                             value={formQRO.intitule || ''}
                             onChange={(e) => setFormQRO({ ...formQRO, intitule: e.target.value })}
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    borderRadius: '12px',
-                                    '& input': {
-                                        color: '#1a202c'
-                                    },
-                                    '& textarea': {
-                                        color: '#1a202c'
-                                    }
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#718096'
-                                }
-                            }}
                         />
-                        <TextField
+                        <FormTextInput
                             fullWidth
                             multiline
                             rows={4}
@@ -760,20 +746,6 @@ const AjoutQRO = ({ chapitre, setUpdate, isFrench }) => {
                             placeholder="Write here..."
                             value={formQRO.intituleEn || ''}
                             onChange={(e) => setFormQRO({ ...formQRO, intituleEn: e.target.value })}
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    borderRadius: '12px',
-                                    '& input': {
-                                        color: '#1a202c'
-                                    },
-                                    '& textarea': {
-                                        color: '#1a202c'
-                                    }
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#718096'
-                                }
-                            }}
                         />
                     </Box>
                 </DialogContent>
@@ -795,10 +767,10 @@ const AjoutQRO = ({ chapitre, setUpdate, isFrench }) => {
                         onClick={handleSave}
                         variant="contained"
                         sx={{
-                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                             '&:hover': {
-                                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                                boxShadow: '0 6px 12px rgba(102, 126, 234, 0.3)'
+                                background: 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)',
+                                boxShadow: '0 6px 12px rgba(22, 163, 74, 0.3)'
                             },
                             textTransform: 'none',
                             borderRadius: '12px',

@@ -11,9 +11,9 @@ import {
     Grid,
     Card,
     CardContent,
-    TextField,
     Divider
 } from '@mui/material';
+import { FormTextInput } from '../../../../composants/UiInputs';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -24,6 +24,13 @@ import WorkIcon from '@mui/icons-material/Work';
 import { MessageErrorServeur } from '../../../../composants/MessageComponent';
 import { useFetch } from '../../../../utils/hooks/FetchData';
 import { Backdrop, CircularProgress } from '@mui/material';
+import {
+    adminBreadcrumbRootSx,
+    adminBreadcrumbLinkSx,
+    adminBreadcrumbCurrentSx,
+    adminCancelButtonSx,
+    adminPrimarySaveButtonSx
+} from '../../../../utils/adminPageStyles';
 
 export default function CreateProfesseur() {
     const { language } = useContext(AppContext);
@@ -50,78 +57,55 @@ export default function CreateProfesseur() {
 
     return (
         <Box className="adminPageContainer">
-            {/* Header Section */}
             <Box className="adminPageHeader">
-                <Box className="adminPageHeaderContent">
-                    <Box className="adminPageHeaderIconContainer">
-                        <PersonAddIcon className="adminPageHeaderIcon" />
-                    </Box>
-                    <Box>
-                        <Breadcrumbs sx={{ mb: 1, color: 'rgba(255, 255, 255, 0.8)' }}>
-                            <MuiLink
-                                component="button"
-                                variant="body2"
-                                onClick={() => navigation('/professeurs')}
-                                sx={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', cursor: 'pointer' }}
-                            >
-                                {isFrench ? 'Professeurs' : 'Teachers'}
-                            </MuiLink>
-                            <Typography variant="body2" sx={{ color: '#fff', fontWeight: 500 }}>
-                                {isFrench ? 'Ajouter un professeur' : 'Add Teacher'}
+                <Box className="adminPageHeaderRow">
+                    <Box className="adminPageHeaderContent">
+                        <Box className="adminPageHeaderIconContainer">
+                            <PersonAddIcon className="adminPageHeaderIcon" />
+                        </Box>
+                        <Box>
+                            <Breadcrumbs sx={adminBreadcrumbRootSx}>
+                                <MuiLink
+                                    component="button"
+                                    variant="body2"
+                                    onClick={() => navigation('/professeurs')}
+                                    sx={adminBreadcrumbLinkSx}
+                                >
+                                    {isFrench ? 'Professeurs' : 'Teachers'}
+                                </MuiLink>
+                                <Typography variant="body2" sx={adminBreadcrumbCurrentSx}>
+                                    {isFrench ? 'Ajouter un professeur' : 'Add Teacher'}
+                                </Typography>
+                            </Breadcrumbs>
+                            <Typography variant="h4" className="adminPageTitle">
+                                {isFrench ? 'Ajouter un Professeur' : 'Add Teacher'}
                             </Typography>
-                        </Breadcrumbs>
-                        <Typography variant="h4" className="adminPageTitle">
-                            {isFrench ? 'Ajouter un Professeur' : 'Add Teacher'}
-                        </Typography>
-                        <Typography variant="body1" className="adminPageSubtitle">
-                            {isFrench
-                                ? 'Remplissez le formulaire pour créer un nouveau professeur'
-                                : 'Fill in the form to create a new teacher'}
-                        </Typography>
+                            <Typography variant="body1" className="adminPageSubtitle">
+                                {isFrench
+                                    ? 'Remplissez le formulaire pour créer un nouveau professeur'
+                                    : 'Fill in the form to create a new teacher'}
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button
-                        variant="outlined"
-                        startIcon={<CancelIcon />}
-                        onClick={handleCancel}
-                        sx={{
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            borderColor: 'rgba(255, 255, 255, 0.5)',
-                            color: '#fff',
-                            '&:hover': {
-                                borderColor: '#fff',
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px'
-                        }}
-                    >
-                        {isFrench ? 'Annuler' : 'Cancel'}
-                    </Button>
-                    <Button
-                        variant="contained"
-                        startIcon={<SaveIcon />}
-                        onClick={handleSave}
-                        disabled={save}
-                        sx={{
-                            background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                            '&:hover': {
-                                background: 'linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)',
-                                boxShadow: '0 6px 12px rgba(56, 249, 215, 0.3)'
-                            },
-                            textTransform: 'none',
-                            borderRadius: '12px',
-                            fontWeight: 600,
-                            fontSize: 15,
-                            padding: '10px 24px',
-                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {isFrench ? 'Enregistrer' : 'Save'}
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexShrink: 0, flexWrap: 'wrap' }}>
+                        <Button
+                            variant="outlined"
+                            startIcon={<CancelIcon />}
+                            onClick={handleCancel}
+                            sx={adminCancelButtonSx}
+                        >
+                            {isFrench ? 'Annuler' : 'Cancel'}
+                        </Button>
+                        <Button
+                            variant="contained"
+                            startIcon={<SaveIcon />}
+                            onClick={handleSave}
+                            disabled={save}
+                            sx={adminPrimarySaveButtonSx}
+                        >
+                            {isFrench ? 'Enregistrer' : 'Save'}
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
 
@@ -161,12 +145,12 @@ export const FormProfesseur = ({ formProfesseur, setFormProfesseur, isFrench }) 
 
     return (
         <Grid container spacing={3}>
-            {/* Personal Information */}
-            <Grid item xs={12} md={6}>
+            {/* Personal Information — pleine largeur (aligné dashboard) */}
+            <Grid item xs={12}>
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <PersonIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <PersonIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Informations Personnelles' : 'Personal Information'}
                             </Typography>
@@ -174,43 +158,21 @@ export const FormProfesseur = ({ formProfesseur, setFormProfesseur, isFrench }) 
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                     label={isFrench ? 'Nom du professeur' : 'Teacher Last Name'}
                                     placeholder={isFrench ? 'Ex: Ngah' : 'Ex: Smith'}
                                     value={formProfesseur.nom || ''}
                                     onChange={handleChange('nom')}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                     label={isFrench ? 'Prénom du professeur' : 'Teacher First Name'}
                                     placeholder={isFrench ? 'Ex: Josiane' : 'Ex: Jane'}
                                     value={formProfesseur.prenom || ''}
                                     onChange={handleChange('prenom')}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                             </Grid>
                         </Grid>
@@ -219,11 +181,11 @@ export const FormProfesseur = ({ formProfesseur, setFormProfesseur, isFrench }) 
             </Grid>
 
             {/* Contact Information */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <EmailIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <EmailIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Informations de Contact' : 'Contact Information'}
                             </Typography>
@@ -231,50 +193,24 @@ export const FormProfesseur = ({ formProfesseur, setFormProfesseur, isFrench }) 
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                     label={isFrench ? 'Téléphone' : 'Phone'}
                                     placeholder={isFrench ? 'Ex: 651294896' : 'Ex: +1234567890'}
                                     value={formProfesseur.telephone || ''}
                                     onChange={handleChange('telephone')}
-                                    InputProps={{
-                                        startAdornment: <PhoneIcon sx={{ mr: 1, color: '#667eea' }} />
-                                    }}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
+                                    startAdornment={<PhoneIcon sx={{ fontSize: 22, color: '#16a34a' }} />}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            <TextField
+                            <FormTextInput
                                 fullWidth
                                     label="Email"
                                     placeholder={isFrench ? 'Ex: professeur@gmail.com' : 'Ex: teacher@example.com'}
                                     type="email"
                                     value={formProfesseur.email || ''}
                                     onChange={handleChange('email')}
-                                    InputProps={{
-                                        startAdornment: <EmailIcon sx={{ mr: 1, color: '#667eea' }} />
-                                    }}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
+                                    startAdornment={<EmailIcon sx={{ fontSize: 22, color: '#16a34a' }} />}
                                 />
                             </Grid>
                         </Grid>
@@ -287,31 +223,20 @@ export const FormProfesseur = ({ formProfesseur, setFormProfesseur, isFrench }) 
                 <Card sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
                     <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <WorkIcon sx={{ fontSize: 24, color: '#667eea', mr: 1.5 }} />
+                            <WorkIcon sx={{ fontSize: 24, color: '#16a34a', mr: 1.5 }} />
                             <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a202c' }}>
                                 {isFrench ? 'Informations Professionnelles' : 'Professional Information'}
                             </Typography>
                         </Box>
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
-                            <Grid item xs={12} md={6}>
-                            <TextField
+                            <Grid item xs={12}>
+                            <FormTextInput
                                 fullWidth
                                     label={isFrench ? 'Profession' : 'Profession'}
                                     placeholder={isFrench ? 'Ex: Chargé de projet' : 'Ex: Project Manager'}
                                     value={formProfesseur.profession || ''}
                                     onChange={handleChange('profession')}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                            '& input': {
-                                                color: '#1a202c'
-                                            }
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                            color: '#718096'
-                                        }
-                                    }}
                                 />
                             </Grid>
                         </Grid>
@@ -367,7 +292,7 @@ export const SaveFormProfesseur = ({ setErrorServeur, setSave, setError, formPro
         return (
             <Backdrop open={true} sx={{ zIndex: 1000, color: '#fff' }}>
                 <Box sx={{ textAlign: 'center' }}>
-                    <CircularProgress size={60} sx={{ color: '#667eea', mb: 2 }} />
+                    <CircularProgress size={60} sx={{ color: '#16a34a', mb: 2 }} />
                     <Typography variant="h6" sx={{ color: '#fff', mt: 2 }}>
                         {language === 'FR' ? 'Enregistrement en cours...' : 'Saving in progress...'}
                     </Typography>

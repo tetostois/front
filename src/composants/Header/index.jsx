@@ -80,14 +80,8 @@ const HeaderComponent = () => {
       );
    }
 
-   const getHeaderGradient = () => {
-      if (isAdmin) {
-         return "linear-gradient(135deg, #48bb78 0%, #38a169 100%)";
-      } else if (isProf) {
-         return "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-      }
-      return "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)";
-   };
+   const getHeaderGradient = () =>
+      "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)";
 
    const getHeaderIcon = (item) => {
       const lien = item.lien.toLowerCase();
@@ -108,10 +102,8 @@ const HeaderComponent = () => {
          className="mainDivHeader"
          sx={{
             background: getHeaderGradient(),
-            boxShadow: isAdmin || isProf 
-               ? "0 4px 12px rgba(0, 0, 0, 0.15)" 
-               : "0 2px 8px rgba(0, 0, 0, 0.08)",
-            borderBottom: isAdmin || isProf ? "none" : "1px solid rgba(0, 0, 0, 0.05)",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
             margin: 0,
             marginTop: 0,
             padding: 0,
@@ -164,15 +156,14 @@ const HeaderComponent = () => {
                            sx={{
                               textTransform: "none",
                               fontWeight: 600,
-                              borderRadius: "12px",
-                              borderColor: isAdmin || isProf ? "rgba(255, 255, 255, 0.5)" : "#f56565",
-                              color: isAdmin || isProf ? "white" : "#f56565",
+                              borderRadius: "8px",
+                              borderColor: "#f56565",
+                              color: "#f56565",
                               "&:hover": {
-                                 borderColor: isAdmin || isProf ? "white" : "#f56565",
-                                 backgroundColor: isAdmin || isProf ? "rgba(255, 255, 255, 0.1)" : "rgba(245, 101, 101, 0.1)",
-                                 transform: "translateY(-2px)",
+                                 borderColor: "#f56565",
+                                 backgroundColor: "rgba(245, 101, 101, 0.08)",
                               },
-                              transition: "all 0.3s ease"
+                              transition: "background-color 0.2s ease",
                            }}
                         >
                            {isFrench ? "Déconnexion" : "Logout"}
@@ -183,19 +174,17 @@ const HeaderComponent = () => {
                            className="signupButton"
                            onClick={() => navigation("/signup")}
                            sx={{
-                              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                              backgroundColor: "#16a34a",
                               color: "white",
                               fontWeight: 600,
                               textTransform: "none",
-                              borderRadius: "12px",
-                              padding: "8px 24px",
-                              boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                              borderRadius: "8px",
+                              padding: "8px 16px",
+                              boxShadow: "none",
                               "&:hover": {
-                                 background: "linear-gradient(135deg, #764ba2 0%, #667eea 100%)",
-                                 transform: "translateY(-2px)",
-                                 boxShadow: "0 8px 16px rgba(102, 126, 234, 0.4)",
+                                 backgroundColor: "#15803d",
                               },
-                              transition: "all 0.3s ease"
+                              transition: "background-color 0.2s ease",
                            }}
                         >
                            {isFrench ? "S'inscrire" : "Sign Up"}
@@ -208,21 +197,20 @@ const HeaderComponent = () => {
                            display: "flex",
                            alignItems: "center",
                            gap: 1,
-                           backgroundColor: isAdmin || isProf ? "rgba(255, 255, 255, 0.2)" : "white",
-                           borderRadius: "12px",
+                           backgroundColor: "white",
+                           borderRadius: "8px",
                            padding: "4px 12px 4px 12px",
-                           border: isAdmin || isProf ? "1px solid rgba(255, 255, 255, 0.3)" : "1px solid #e5e7eb",
-                           transition: "all 0.3s ease",
+                           border: "1px solid #e5e7eb",
+                           transition: "background-color 0.2s ease, border-color 0.2s ease",
                            "&:hover": {
-                              border: isAdmin || isProf ? "1px solid rgba(255, 255, 255, 0.5)" : "1px solid #667eea",
-                              transform: "translateY(-2px)",
-                              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)"
-                           }
+                              border: "1px solid #d1d5db",
+                              backgroundColor: "#f9fafb",
+                           },
                         }}
                      >
                         <LanguageIcon sx={{ 
                            fontSize: 18,
-                           color: isAdmin || isProf ? "white" : "#667eea",
+                           color: "#16a34a",
                            flexShrink: 0
                         }} />
                         <FormControl 
@@ -248,12 +236,12 @@ const HeaderComponent = () => {
                               renderValue={(value) => value === "FR" ? "Français" : "English"}
                               displayEmpty={false}
                               sx={{
-                                 color: isAdmin || isProf ? "white" : "#1f2937",
+                                 color: "#1f2937",
                                  fontWeight: 600,
                                  fontFamily: "'Inter', sans-serif",
                                  fontSize: "14px",
                                  "& .MuiSelect-icon": {
-                                    color: isAdmin || isProf ? "white" : "#667eea",
+                                    color: "#16a34a",
                                  },
                                  "& fieldset": {
                                     border: "none"
@@ -275,16 +263,10 @@ const HeaderComponent = () => {
                               onClick={() => setOpenMenuProfil(true)}
                               className="profileIconButton"
                               sx={{
-                                 border: isAdmin || isProf 
-                                    ? "2px solid rgba(255, 255, 255, 0.5)" 
-                                    : "2px solid #e5e7eb",
+                                 border: "2px solid #e5e7eb",
                                  "&:hover": {
-                                    border: isAdmin || isProf 
-                                       ? "2px solid white" 
-                                       : "2px solid #667eea",
-                                    backgroundColor: isAdmin || isProf 
-                                       ? "rgba(255, 255, 255, 0.1)" 
-                                       : "rgba(102, 126, 234, 0.1)",
+                                    border: "2px solid #16a34a",
+                                    backgroundColor: "rgba(22, 163, 74, 0.1)",
                                     transform: "scale(1.1)",
                                  },
                                  transition: "all 0.3s ease"
@@ -293,7 +275,7 @@ const HeaderComponent = () => {
                               <AccountCircleIcon 
                                  sx={{ 
                                     fontSize: "32px",
-                                    color: isAdmin || isProf ? "white" : "#667eea"
+                                    color: "#16a34a"
                                  }} 
                               />
                            </IconButton>
@@ -333,7 +315,7 @@ const HeaderComponent = () => {
                                  "&:hover": {
                                     backgroundColor: setting.id === 3 
                                        ? "rgba(245, 101, 101, 0.1)" 
-                                       : "rgba(102, 126, 234, 0.1)",
+                                       : "rgba(22, 163, 74, 0.1)",
                                  },
                                  transition: "all 0.2s ease",
                                  display: "flex",
@@ -341,8 +323,8 @@ const HeaderComponent = () => {
                                  gap: 1
                               }}
                            >
-                              {setting.id === 1 && <SettingsIcon sx={{ fontSize: 20, color: "#667eea" }} />}
-                              {setting.id === 2 && <DashboardIcon sx={{ fontSize: 20, color: "#667eea" }} />}
+                              {setting.id === 1 && <SettingsIcon sx={{ fontSize: 20, color: "#16a34a" }} />}
+                              {setting.id === 2 && <DashboardIcon sx={{ fontSize: 20, color: "#16a34a" }} />}
                               {setting.id === 3 && <LogoutIcon sx={{ fontSize: 20, color: "#f56565" }} />}
                               <Typography 
                                  sx={{
@@ -376,11 +358,9 @@ const HeaderComponent = () => {
                   <IconButton
                      onClick={() => setOpenVerticalMenu((prev) => !prev)}
                      sx={{
-                        color: isAdmin || isProf ? "white" : "#1f2937",
+                        color: "#1f2937",
                         "&:hover": {
-                           backgroundColor: isAdmin || isProf 
-                              ? "rgba(255, 255, 255, 0.1)" 
-                              : "rgba(102, 126, 234, 0.1)",
+                           backgroundColor: "rgba(22, 163, 74, 0.1)",
                         }
                      }}
                   >
@@ -410,7 +390,7 @@ const HeaderComponent = () => {
                   </Typography>
                   <IconButton
                      onClick={() => setOpenVerticalMenu(false)}
-                     sx={{ color: "#667eea" }}
+                     sx={{ color: "#16a34a" }}
                   >
                      <CloseIcon />
                   </IconButton>
@@ -461,8 +441,8 @@ const HeaderComponent = () => {
                         sx={{
                            textTransform: "none",
                            fontWeight: 600,
-                           borderRadius: "12px",
-                           marginBottom: 2
+                           borderRadius: "8px",
+                           marginBottom: 2,
                         }}
                      >
                         {isFrench ? "Déconnexion" : "Logout"}
@@ -485,7 +465,7 @@ const HeaderComponent = () => {
                         border: "1px solid #e5e7eb"
                      }}
                   >
-                     <LanguageIcon sx={{ fontSize: 18, color: "#667eea" }} />
+                     <LanguageIcon sx={{ fontSize: 18, color: "#16a34a" }} />
                      <FormControl fullWidth size="small">
                         <Select
                            value={language}

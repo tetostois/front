@@ -39,7 +39,7 @@ export default function CourAdmin() {
         switch (etat) {
             case "ACTIF":
             case "ACTIVE":
-                return { bg: "#e6fffa", color: "#234e52", border: "#38f9d7" };
+                return { bg: "#e6fffa", color: "#234e52", border: "#16a34a" };
             case "INACTIF":
             case "INACTIVE":
                 return { bg: "#fed7d7", color: "#742a2a", border: "#fa709a" };
@@ -72,7 +72,7 @@ export default function CourAdmin() {
                     startIcon={<AddIcon />}
                     onClick={() => navigation("/cour/ajouter")}
                     sx={{
-                        background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                         color: "#fff",
                         fontWeight: 700,
                         textTransform: "none",
@@ -80,7 +80,7 @@ export default function CourAdmin() {
                         py: 1.5,
                         boxShadow: "0 4px 16px rgba(67, 233, 123, 0.3)",
                         "&:hover": {
-                            background: "linear-gradient(135deg, #38f9d7 0%, #43e97b 100%)",
+                            background: "linear-gradient(135deg, #16a34a 0%, #16a34a 100%)",
                             boxShadow: "0 6px 20px rgba(67, 233, 123, 0.4)"
                         }
                     }}
@@ -94,7 +94,7 @@ export default function CourAdmin() {
                 <Box className="adminPageLoading">
                     <Backdrop open={true} sx={{ zIndex: 1000, color: "#fff" }}>
                         <Box sx={{ textAlign: "center" }}>
-                            <CircularProgress size={60} sx={{ color: "#667eea", mb: 2 }} />
+                            <CircularProgress size={60} sx={{ color: "#16a34a", mb: 2 }} />
                             <Typography variant="h6" sx={{ color: "#fff", mt: 2 }}>
                                 {isFrench ? "Chargement des cours..." : "Loading courses..."}
                             </Typography>
@@ -116,7 +116,7 @@ export default function CourAdmin() {
                     >
                         <Box
                             sx={{
-                                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                 p: 2,
                                 display: "flex",
                                 alignItems: "center",
@@ -147,7 +147,7 @@ export default function CourAdmin() {
                                         <TableHead>
                                             <TableRow
                                                 sx={{
-                                                    background: "linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)"
+                                                    background: "linear-gradient(135deg, rgba(22, 163, 74, 0.1) 0%, rgba(21, 128, 61, 0.1) 100%)"
                                                 }}
                                             >
                                                 <TableCell sx={{ fontWeight: 700, color: "#1a202c" }}>N°</TableCell>
@@ -182,7 +182,7 @@ export default function CourAdmin() {
                                                         onClick={() => navigation("/cour/" + chapitre.idChapitre)}
                                                         sx={{
                                                             "&:hover": {
-                                                                backgroundColor: "rgba(102, 126, 234, 0.05)",
+                                                                backgroundColor: "rgba(22, 163, 74, 0.05)",
                                                                 cursor: "pointer",
                                                                 transform: "scale(1.01)",
                                                                 transition: "all 0.2s ease"
@@ -195,7 +195,7 @@ export default function CourAdmin() {
                                                                 label={index + 1}
                                                                 size="small"
                                                                 sx={{
-                                                                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                                                    background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                                                                     color: "#fff",
                                                                     fontWeight: 700,
                                                                     minWidth: 40
@@ -214,7 +214,7 @@ export default function CourAdmin() {
                                                         </TableCell>
                                                         <TableCell>
                                                             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                                                <FolderOpenIcon sx={{ fontSize: 16, color: "#667eea" }} />
+                                                                <FolderOpenIcon sx={{ fontSize: 16, color: "#16a34a" }} />
                                                                 <Typography variant="body2" sx={{ fontWeight: 500, color: "#1a202c" }}>
                                                                     {chapitre.titreModule || "-"}
                                                                 </Typography>
@@ -225,7 +225,7 @@ export default function CourAdmin() {
                                                                 <QuizIcon
                                                                     sx={{
                                                                         fontSize: 18,
-                                                                        color: qcmCount > 0 ? "#43e97b" : "#cbd5e0"
+                                                                        color: qcmCount > 0 ? "#16a34a" : "#cbd5e0"
                                                                     }}
                                                                 />
                                                                 <Chip
@@ -235,7 +235,7 @@ export default function CourAdmin() {
                                                                         backgroundColor: qcmCount > 0 ? "#e6fffa" : "#edf2f7",
                                                                         color: qcmCount > 0 ? "#234e52" : "#718096",
                                                                         fontWeight: 600,
-                                                                        border: qcmCount > 0 ? "1px solid #38f9d7" : "1px solid #cbd5e0",
+                                                                        border: qcmCount > 0 ? "1px solid #16a34a" : "1px solid #cbd5e0",
                                                                         minWidth: 50
                                                                     }}
                                                                 />
@@ -267,14 +267,14 @@ export default function CourAdmin() {
                                                                 sx={{
                                                                     textTransform: "none",
                                                                     borderRadius: "8px",
-                                                                    borderColor: "#667eea",
-                                                                    color: "#667eea",
+                                                                    borderColor: "#16a34a",
+                                                                    color: "#16a34a",
                                                                     fontWeight: 600,
                                                                     "&:hover": {
-                                                                        borderColor: "#764ba2",
-                                                                        backgroundColor: "rgba(102, 126, 234, 0.1)",
+                                                                        borderColor: "#15803d",
+                                                                        backgroundColor: "rgba(22, 163, 74, 0.1)",
                                                                         transform: "translateY(-2px)",
-                                                                        boxShadow: "0 4px 12px rgba(102, 126, 234, 0.2)"
+                                                                        boxShadow: "0 4px 12px rgba(22, 163, 74, 0.2)"
                                                                     },
                                                                     transition: "all 0.2s ease"
                                                                 }}
