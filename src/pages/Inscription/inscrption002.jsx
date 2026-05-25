@@ -29,8 +29,24 @@ const steps4 = ["Etape 1", "Etape 2", "Etape 3", "Etape 4"];
 
 export default function Inscription002() {
    const { isOnline, language, setUser } = useContext(AppContext);
-   const [formInscription, setFormInscription] = useState({});
-   const [information, setInformation] = useState({});
+   const [formInscription, setFormInscription] = useState({
+      nom: "",
+      prenom: "",
+      dateNaissance: "",
+      lieuNaissance: "",
+      telephone: "",
+      email: "",
+      profession: "",
+      nomEntreprise: "",
+      Universite: "",
+      matiere: "",
+      grade: "",
+      password: "",
+      confirmPassword: "",
+      region: { id: "" },
+      gammeEtudiant: { code: "" },
+   });
+   const [information, setInformation] = useState({ sexe: "", motivation: "", souhaitAcquisitionDurant: "" });
    const [save, setSave] = useState(false);
    const [activeStep, setActiveStep] = useState(-1);
    const [errorServeur, setErrorServeur] = useState(false);

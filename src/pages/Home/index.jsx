@@ -380,7 +380,7 @@ export default function Home() {
          <section className="cible-second-all pt-60">
             <div className="wapper">
                <div className="row-col">
-                  <div class="cat-col-100">
+                  <div className="cat-col-100">
                      <div className="pad-cat">
                         <div className="pl-title text-center m-auto">
                            <div className="pl-title-subtitle text-center">

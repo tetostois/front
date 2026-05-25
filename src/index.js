@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import './index.css';
 import './theme/formBootstrap.css';
 import './composants/AdminPageTemplate/adminPageTemplate.css';
+import './i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import muiTheme from './theme/muiTheme';

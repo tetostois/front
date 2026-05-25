@@ -21,8 +21,8 @@
 }
 
 .headerToolbar {
-    padding: 0 20px !important;
-    min-height: 70px !important;
+    padding: 0 16px !important;
+    min-height: 64px !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,12 +34,11 @@
 .logoDiv {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 8px 0;
 }
 
 .logo {
-    height: 60px;
-    object-fit: contain;
+    height: 52px;
     transition: transform 0.3s ease;
 }
 
@@ -57,6 +56,30 @@
     align-items: center;
     width: 100%;
     gap: 20px;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.actionButtons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
 }
 
 .allItemDiv {
@@ -131,12 +154,22 @@
 /* ============================================
    ACTIONS (Boutons, Langue, Profil)
    ============================================ */
-.buttonAction {
+.buttonAction,
+.actionButtons {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 12px;
     margin-right: 20px;
+}
+
+.loginButton {
+    color: #111827;
+    min-width: 100px;
+}
+
+.signupButton {
+    border-radius: 999px !important;
 }
 
 .profileIconButton {
@@ -226,7 +259,11 @@
     color: #16a34a;
     font-size: 20px;
 }
-
+.languageToggleButton {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
 .mobileMenuItem.activeMobileItem .mobileMenuItemIcon {
     color: white !important;
 }

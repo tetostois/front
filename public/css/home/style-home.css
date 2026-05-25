@@ -36,6 +36,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, em, fo
 }
 body, html {
   overflow-x: hidden;
+  overflow-y: auto;
 }
 body{
   color: #464646;

@@ -34,6 +34,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import MenuIcon from "@mui/icons-material/Menu";
+import i18n from "../../i18n";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import ArticleIcon from "@mui/icons-material/Article";
@@ -64,8 +65,11 @@ const HeaderComponent = () => {
       navigation("/");
    };
 
-   const handleLanguageChange = (event) => {
-      setLanguage(event.target.value);
+   const toggleLanguage = () => {
+      const newLang = isFrench ? 'EN' : 'FR';
+      setLanguage(newLang);
+      // keep i18n in sync (project uses 'fr' / 'en')
+      try { i18n.changeLanguage(isFrench ? 'en' : 'fr'); } catch (e) { }
    };
 
    let itemDataFilter = !user
@@ -102,8 +106,8 @@ const HeaderComponent = () => {
          className="mainDivHeader"
          sx={{
             background: getHeaderGradient(),
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.08)",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
             margin: 0,
             marginTop: 0,
             padding: 0,
@@ -114,8 +118,7 @@ const HeaderComponent = () => {
          }}
       >
          <Toolbar className="headerToolbar">
-            {/* Desktop View */}
-            <Box className="largeScreanList">
+            <Box className="headerContent">
                <Box className="logoDiv">
                   <img 
                      className="logo" 
@@ -125,7 +128,8 @@ const HeaderComponent = () => {
                      style={{ cursor: "pointer" }}
                   />
                </Box>
-               <Box className="allItemDiv">
+
+               <Box className="navLinks">
                   {itemDataFilter.map((item) => {
                      const isActive = location.pathname === item.lien;
                      return (
@@ -134,41 +138,70 @@ const HeaderComponent = () => {
                            className={`itemListDiv ${isActive ? "activeItemMenu" : ""}`}
                            onClick={() => navigation(item.lien)}
                         >
-                           {getHeaderIcon(item) && (
-                              <Box className="menuItemIcon">
-                                 {getHeaderIcon(item)}
-                              </Box>
-                           )}
                            <Typography className="itemList">
                               {isFrench ? item.nom : item.nomEn}
                            </Typography>
                         </Box>
                      );
                   })}
+               </Box>
 
-                  <Box className="buttonAction">
-                     {user ? (
-                        <Button 
-                           variant="outlined" 
-                           className="logoutButton"
-                           onClick={() => deconnexion()}
-                           startIcon={<LogoutIcon />}
+               <Box className="actionButtons">
+                  <Button
+                     className="languageToggleButton"
+                     onClick={toggleLanguage}
+                     startIcon={<LanguageIcon sx={{ color: "#16a34a", fontSize: 16 }} />}
+                     sx={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 4,
+                        px: 2,
+                        py: 1.5,
+                        textTransform: "none",
+                        fontWeight: 600,
+                        color: "#4b5563",
+                        backgroundColor: "white",
+                        borderRadius: "12px",
+                        border: "1px solid #e5e7eb",
+                        boxShadow: "none",
+                        minWidth: 78,
+                        justifyContent: "center",
+                        fontSize: "0.875rem",
+                        "&:hover": {
+                           backgroundColor: "#f3f4f6",
+                           color: "#111827",
+                        },
+                        "& .MuiButton-startIcon": {
+                           marginRight: 4
+                        }
+                     }}
+                     title={isFrench ? "Passer en anglais" : "Switch to French"}
+                     aria-label={isFrench ? "Passer en anglais" : "Switch to French"}
+                  >
+                     {isFrench ? "EN" : "FR"}
+                  </Button>
+
+                  {!user ? (
+                     <>
+                        <Button
+                           variant="text"
+                           className="loginButton"
+                           onClick={() => navigation("/connexion")}
                            sx={{
                               textTransform: "none",
                               fontWeight: 600,
-                              borderRadius: "8px",
-                              borderColor: "#f56565",
-                              color: "#f56565",
-                              "&:hover": {
-                                 borderColor: "#f56565",
-                                 backgroundColor: "rgba(245, 101, 101, 0.08)",
-                              },
+                              color: "#1f2937",
+                              borderRadius: "999px",
+                              padding: "10px 20px",
+                              minWidth: 110,
                               transition: "background-color 0.2s ease",
+                              "&:hover": {
+                                 backgroundColor: "rgba(22, 163, 74, 0.08)",
+                              }
                            }}
                         >
-                           {isFrench ? "Déconnexion" : "Logout"}
+                           {isFrench ? "Connexion" : "Sign In"}
                         </Button>
-                     ) : (
                         <Button
                            variant="contained"
                            className="signupButton"
@@ -178,8 +211,8 @@ const HeaderComponent = () => {
                               color: "white",
                               fontWeight: 600,
                               textTransform: "none",
-                              borderRadius: "8px",
-                              padding: "8px 16px",
+                              borderRadius: "999px",
+                              padding: "10px 22px",
                               boxShadow: "none",
                               "&:hover": {
                                  backgroundColor: "#15803d",
@@ -189,75 +222,30 @@ const HeaderComponent = () => {
                         >
                            {isFrench ? "S'inscrire" : "Sign Up"}
                         </Button>
-                     )}
-                     
-                     <Box 
-                        className="languageSelectContainer"
-                        sx={{
-                           display: "flex",
-                           alignItems: "center",
-                           gap: 1,
-                           backgroundColor: "white",
-                           borderRadius: "8px",
-                           padding: "4px 12px 4px 12px",
-                           border: "1px solid #e5e7eb",
-                           transition: "background-color 0.2s ease, border-color 0.2s ease",
-                           "&:hover": {
-                              border: "1px solid #d1d5db",
-                              backgroundColor: "#f9fafb",
-                           },
-                        }}
-                     >
-                        <LanguageIcon sx={{ 
-                           fontSize: 18,
-                           color: "#16a34a",
-                           flexShrink: 0
-                        }} />
-                        <FormControl 
-                           size="small" 
-                           className="languageSelect"
-                           sx={{ 
-                              minWidth: 120,
-                              flex: 1,
-                              "& .MuiOutlinedInput-notchedOutline": {
-                                 border: "none",
+                     </>
+                  ) : (
+                     <>
+                        <Button 
+                           variant="outlined" 
+                           className="logoutButton"
+                           onClick={() => deconnexion()}
+                           startIcon={<LogoutIcon />}
+                           sx={{
+                              textTransform: "none",
+                              fontWeight: 600,
+                              borderRadius: "999px",
+                              borderColor: "#f56565",
+                              color: "#f56565",
+                              padding: "10px 18px",
+                              "&:hover": {
+                                 borderColor: "#f56565",
+                                 backgroundColor: "rgba(245, 101, 101, 0.08)",
                               },
-                              "&:hover .MuiOutlinedInput-notchedOutline": {
-                                 border: "none",
-                              },
-                              "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                 border: "none",
-                              }
+                              transition: "background-color 0.2s ease",
                            }}
                         >
-                           <Select
-                              value={language}
-                              onChange={handleLanguageChange}
-                              renderValue={(value) => value === "FR" ? "Français" : "English"}
-                              displayEmpty={false}
-                              sx={{
-                                 color: "#1f2937",
-                                 fontWeight: 600,
-                                 fontFamily: "'Inter', sans-serif",
-                                 fontSize: "14px",
-                                 "& .MuiSelect-icon": {
-                                    color: "#16a34a",
-                                 },
-                                 "& fieldset": {
-                                    border: "none"
-                                 },
-                                 "& .MuiSelect-select": {
-                                    padding: "6px 24px 6px 0px !important"
-                                 }
-                              }}
-                           >
-                              <MenuItem value="EN">English</MenuItem>
-                              <MenuItem value="FR">Français</MenuItem>
-                           </Select>
-                        </FormControl>
-                     </Box>
-
-                     {user && (
+                           {isFrench ? "Déconnexion" : "Logout"}
+                        </Button>
                         <Tooltip title={isFrench ? "Menu profil" : "Profile menu"}>
                            <IconButton
                               onClick={() => setOpenMenuProfil(true)}
@@ -280,66 +268,8 @@ const HeaderComponent = () => {
                               />
                            </IconButton>
                         </Tooltip>
-                     )}
-                     
-                     <Menu
-                        sx={{ 
-                           mt: "50px",
-                           "& .MuiPaper-root": {
-                              borderRadius: "12px",
-                              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
-                              minWidth: 200
-                           }
-                        }}
-                        id="menu-appbar"
-                        anchorOrigin={{
-                           vertical: "top",
-                           horizontal: "right",
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                           vertical: "top",
-                           horizontal: "right",
-                        }}
-                        open={openMenuProfil}
-                        onClose={() => setOpenMenuProfil(false)}
-                     >
-                        {settingsProfil.map((setting) => (
-                           <MenuItem
-                              key={setting.id + "idsetpro"}
-                              onClick={() => {
-                                 setOpenMenuProfil(false);
-                                 setting.id === 3 ? deconnexion() : navigation(setting.lien);
-                              }}
-                              sx={{
-                                 "&:hover": {
-                                    backgroundColor: setting.id === 3 
-                                       ? "rgba(245, 101, 101, 0.1)" 
-                                       : "rgba(22, 163, 74, 0.1)",
-                                 },
-                                 transition: "all 0.2s ease",
-                                 display: "flex",
-                                 alignItems: "center",
-                                 gap: 1
-                              }}
-                           >
-                              {setting.id === 1 && <SettingsIcon sx={{ fontSize: 20, color: "#16a34a" }} />}
-                              {setting.id === 2 && <DashboardIcon sx={{ fontSize: 20, color: "#16a34a" }} />}
-                              {setting.id === 3 && <LogoutIcon sx={{ fontSize: 20, color: "#f56565" }} />}
-                              <Typography 
-                                 sx={{
-                                    color: setting.id === 3 ? "#f56565" : "#1f2937",
-                                    fontWeight: setting.id === 3 ? 700 : 500,
-                                    fontFamily: "'Inter', sans-serif",
-                                    flex: 1
-                                 }}
-                              >
-                                 {isFrench ? setting.nom : setting.nomEn}
-                              </Typography>
-                           </MenuItem>
-                        ))}
-                     </Menu>
-                  </Box>
+                     </>
+                  )}
                </Box>
             </Box>
 
@@ -408,11 +338,6 @@ const HeaderComponent = () => {
                                  setOpenVerticalMenu(false);
                               }}
                            >
-                              {getHeaderIcon(item) && (
-                                 <Box className="mobileMenuItemIcon">
-                                    {getHeaderIcon(item)}
-                                 </Box>
-                              )}
                               <ListItemText 
                                  primary={isFrench ? item.nom : item.nomEn}
                                  primaryTypographyProps={{
@@ -453,37 +378,39 @@ const HeaderComponent = () => {
                      </Box>
                   )}
                   
-                  <Box 
-                     sx={{ 
-                        marginTop: 2,
-                        display: "flex",
+                  <Button
+                     className="languageToggleButton"
+                     onClick={toggleLanguage}
+                     startIcon={<LanguageIcon sx={{ color: "#16a34a", fontSize: 16 }} />}
+                     sx={{
+                        display: "inline-flex",
                         alignItems: "center",
-                        gap: 1,
-                        backgroundColor: "#f9fafb",
+                        gap: 4,
+                        px: 2,
+                        py: 1.5,
+                        textTransform: "none",
+                        fontWeight: 600,
+                        color: "#4b5563",
+                        backgroundColor: "white",
                         borderRadius: "12px",
-                        padding: "4px 8px 4px 12px",
-                        border: "1px solid #e5e7eb"
+                        border: "1px solid #e5e7eb",
+                        boxShadow: "none",
+                        minWidth: 78,
+                        justifyContent: "center",
+                        fontSize: "0.875rem",
+                        "&:hover": {
+                           backgroundColor: "#f3f4f6",
+                           color: "#111827",
+                        },
+                        "& .MuiButton-startIcon": {
+                           marginRight: 4
+                        }
                      }}
+                     title={isFrench ? "Passer en anglais" : "Switch to French"}
+                     aria-label={isFrench ? "Passer en anglais" : "Switch to French"}
                   >
-                     <LanguageIcon sx={{ fontSize: 18, color: "#16a34a" }} />
-                     <FormControl fullWidth size="small">
-                        <Select
-                           value={language}
-                           onChange={handleLanguageChange}
-                           renderValue={(value) => value === "FR" ? "Français" : "English"}
-                           sx={{
-                              fontWeight: 600,
-                              fontFamily: "'Inter', sans-serif",
-                              "& fieldset": {
-                                 border: "none"
-                              }
-                           }}
-                        >
-                           <MenuItem value="EN">English</MenuItem>
-                           <MenuItem value="FR">Français</MenuItem>
-                        </Select>
-                     </FormControl>
-                  </Box>
+                     {isFrench ? "EN" : "FR"}
+                  </Button>
                </Box>
             </Box>
          </Drawer>

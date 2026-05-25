@@ -1,0 +1,5 @@
+{
+  "common": { "save": "Enregistrer", "cancel": "Annuler" },
+  "language": { "fr": "Français", "en": "English" },
+  "landing": { "login": "Connexion", "register": "S'inscrire" }
+}
