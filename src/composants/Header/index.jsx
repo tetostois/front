@@ -118,7 +118,7 @@ const HeaderComponent = () => {
          }}
       >
          <Toolbar className="headerToolbar">
-            <Box className="headerContent">
+            <Box className="headerContent largeScreanList">
                <Box className="logoDiv">
                   <img 
                      className="logo" 
