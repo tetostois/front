@@ -41,6 +41,27 @@ export default function Home() {
    return (
       <div style={{ width: "100%" }}>
          <Header />
+         
+         <section className="videoSection">
+            <div className="videoContainer">
+               <h2 className="videoTitle">
+                  {isFrench ? "Découvrez le Programme" : "Discover the Program"}
+               </h2>
+               <div className="videoWrapper">
+                  <video
+                     className="videoPlayer"
+                     controls
+                     width="100%"
+                     height="auto"
+                     poster={`${process.env.PUBLIC_URL}/images/video-poster.jpg`}
+                  >
+                     <source src={`${process.env.PUBLIC_URL}/videos/PEDAG   01.mp4`} type="video/mp4" />
+                     Your browser does not support the video tag.
+                  </video>
+               </div>
+            </div>
+         </section>
+
          <section className="banniere">
             <div className="wapper">
                <div className="row-col">

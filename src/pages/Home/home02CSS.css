@@ -583,6 +583,48 @@ text-align: left;
     height: 62px;
 }
 
+/* Video Section Styles */
+.videoSection {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoContainer {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.videoTitle {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+.videoWrapper {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background-color: #000;
+}
+
+.videoPlayer {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+}
 
 /* Styles pour les smartphones */
 @media (min-width: 769px) {
